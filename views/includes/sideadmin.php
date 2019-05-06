@@ -6,14 +6,14 @@
       <ul>
 
         <li class="active">
-          <a href="index.html">
+          <a href="dashboard.php">
             <i class="icon icon-home"></i>
             <span>Listar cumplimiento</span>
           </a>
         </li>
 
         <li>
-          <a href="interface.html">
+          <a href="configuracion.php">
             <i class="icon icon-pencil"></i>
             <span>Configuracion</span>
           </a>

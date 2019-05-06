@@ -62,7 +62,7 @@
                         <div class="widget-box">
                           <div class="widget-title">
                             <span class="icon"><i class="icon-th"></i></span>
-                            <h5>Static table</h5>
+                            <h5>Nivel de cumplimiento</h5>
                           </div>
                           <div class="widget-content nopadding">
                             <table class="table table-bordered table-striped">
@@ -220,11 +220,9 @@
     <!--end-main-container-part-->
 
     <!--Footer-part-->
-
-    <div class="row-fluid">
-      <div id="footer" class="span12"> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in">Themedesigner.in</a> </div>
-    </div>
-
+    <?php 
+      include("../includes/footer.php");
+    ?>
     <!--end-Footer-part-->
 
 <script src="../js/excanvas.min.js"></script> 
