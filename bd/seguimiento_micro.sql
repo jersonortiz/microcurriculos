@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2019 a las 05:34:32
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.11
+-- Servidor: localhost:3306
+-- Tiempo de generación: 04-05-2019 a las 20:33:17
+-- Versión del servidor: 5.7.26-0ubuntu0.18.04.1
+-- Versión de PHP: 7.2.17-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -29,8 +27,16 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `administrador` (
+  `id` int(11) NOT NULL,
   `codigo_persona` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `administrador`
+--
+
+INSERT INTO `administrador` (`id`, `codigo_persona`) VALUES
+(1, 100100);
 
 -- --------------------------------------------------------
 
@@ -46,6 +52,17 @@ CREATE TABLE `asignatura` (
   `creditos` int(11) NOT NULL,
   `nombre_plandeestudios` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `asignatura`
+--
+
+INSERT INTO `asignatura` (`codigo`, `nombre`, `semestre`, `intensidadhoraria`, `creditos`, `nombre_plandeestudios`) VALUES
+(100100, 'calculo diferencial', 1, 4, 3, 'tecnologia agroindustrial'),
+(101101, 'calculo integral', 2, 4, 4, 'tecnico profesional en procesamiento de alimentos'),
+(102102, 'etica', 3, 4, 4, 'tecnico profesional en fabricacion industrial de p'),
+(109109, 'fisica I', 2, 3, 3, 'electromecanica'),
+(111111, 'fisica II', 3, 3, 3, 'ingenieria civil');
 
 -- --------------------------------------------------------
 
@@ -92,10 +109,22 @@ INSERT INTO `departamento` (`nombre`, `nombre_facultad`) VALUES
 --
 
 CREATE TABLE `docente` (
+  `id` int(11) NOT NULL,
   `codigo_persona` int(11) NOT NULL,
   `nombre_departamento` varchar(50) NOT NULL,
   `gruponumero` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `docente`
+--
+
+INSERT INTO `docente` (`id`, `codigo_persona`, `nombre_departamento`, `gruponumero`) VALUES
+(1, 959, 'SISTEMAS E INFORMATICA', 1),
+(2, 1080, 'SISTEMAS E INFORMATICA', 2),
+(3, 1111, 'SISTEMAS E INFORMATICA', 3),
+(4, 1178, 'SISTEMAS E INFORMATICA', 4),
+(5, 1995, 'SISTEMAS E INFORMATICA', 5);
 
 -- --------------------------------------------------------
 
@@ -104,6 +133,7 @@ CREATE TABLE `docente` (
 --
 
 CREATE TABLE `estudiante` (
+  `id` int(11) NOT NULL,
   `codigo_persona` int(11) NOT NULL,
   `id_matricula` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -112,11 +142,11 @@ CREATE TABLE `estudiante` (
 -- Volcado de datos para la tabla `estudiante`
 --
 
-INSERT INTO `estudiante` (`codigo_persona`, `id_matricula`) VALUES
-(340, 1),
-(959, 1),
-(1081, 1),
-(1130, 1);
+INSERT INTO `estudiante` (`id`, `codigo_persona`, `id_matricula`) VALUES
+(1, 340, 1),
+(2, 959, 1),
+(3, 1081, 1),
+(4, 1130, 1);
 
 -- --------------------------------------------------------
 
@@ -151,6 +181,17 @@ CREATE TABLE `grupo` (
   `codigo_asignatura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `grupo`
+--
+
+INSERT INTO `grupo` (`grupo_numero`, `codigo_asignatura`) VALUES
+(1, 100100),
+(2, 101101),
+(3, 102102),
+(4, 109109),
+(5, 111111);
+
 -- --------------------------------------------------------
 
 --
@@ -161,6 +202,17 @@ CREATE TABLE `grupomatricula` (
   `grupo_numero` int(11) NOT NULL,
   `id_matricula` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `grupomatricula`
+--
+
+INSERT INTO `grupomatricula` (`grupo_numero`, `id_matricula`) VALUES
+(1, 2),
+(2, 3),
+(3, 4),
+(4, 5),
+(5, 6);
 
 -- --------------------------------------------------------
 
@@ -270,6 +322,17 @@ CREATE TABLE `microcurriculo` (
   `archivo` varchar(50) NOT NULL,
   `codigo_asignatura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `microcurriculo`
+--
+
+INSERT INTO `microcurriculo` (`id`, `nombre`, `peso`, `formato`, `archivo`, `codigo_asignatura`) VALUES
+(100100100, 'calculo diferencial', '12kb', 'word', 'curriculo1', 100100),
+(101101101, 'calculo integral', '12kb', 'word', 'curriculo2', 101101),
+(102102102, 'etica', '12kb', 'word', 'curriculo3', 102102),
+(109109109, 'fisica I', '12kb', 'word', 'curriculo4', 109109),
+(111111111, 'fisica II', '12kb', 'word', 'curriculo5', 111111);
 
 -- --------------------------------------------------------
 
@@ -432,6 +495,17 @@ CREATE TABLE `prueba` (
   `id_tema` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `prueba`
+--
+
+INSERT INTO `prueba` (`id`, `fecha`, `porcentaje`, `id_prueba`, `id_unidad`, `id_tema`) VALUES
+(1011, '0000-00-00', 80, 4, 100100101, 1001001011),
+(1022, '0000-00-00', 60, 4, 101101102, 1011011022),
+(1033, '0000-00-00', 50, 4, 102102103, 1021021033),
+(1044, '0000-00-00', 88, 3, 109109104, 1091091044),
+(1155, '0000-00-00', 76, 3, 111111115, 1111111155);
+
 -- --------------------------------------------------------
 
 --
@@ -446,6 +520,17 @@ CREATE TABLE `tema` (
   `trabajoindependiente` varchar(200) NOT NULL,
   `unidad` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tema`
+--
+
+INSERT INTO `tema` (`id`, `id_unidad`, `nombre`, `actividadpresencial`, `trabajoindependiente`, `unidad`) VALUES
+(1001001011, 100100101, 'limites', '4', '8', 'unidad1'),
+(1011011022, 101101102, 'integrales', '4', '8', 'unidad2'),
+(1021021033, 102102103, 'valores', '4', '8', 'unidad3'),
+(1091091044, 109109104, 'fuerza', '3', '6', 'unidad4'),
+(1111111155, 111111115, 'electrones', '3', '6', 'unidad5');
 
 -- --------------------------------------------------------
 
@@ -483,6 +568,17 @@ CREATE TABLE `unidad` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Volcado de datos para la tabla `unidad`
+--
+
+INSERT INTO `unidad` (`id`, `nombre_contenido`, `id_microcurriculo`, `horaspresenciales`, `horasindependientes`, `horatotal`) VALUES
+(100100101, 'unidad1', 100100100, '00:00:04', '00:00:08', '00:00:12'),
+(101101102, 'unidad2', 101101101, '00:00:04', '00:00:08', '00:00:12'),
+(102102103, 'unidad3', 102102102, '00:00:04', '00:00:08', '00:00:12'),
+(109109104, 'unidad4', 109109109, '00:00:03', '00:00:06', '00:00:09'),
+(111111115, 'unidad5', 111111111, '00:00:03', '00:00:06', '00:00:09');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -490,7 +586,8 @@ CREATE TABLE `unidad` (
 -- Indices de la tabla `administrador`
 --
 ALTER TABLE `administrador`
-  ADD PRIMARY KEY (`codigo_persona`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `codigo_persona` (`codigo_persona`);
 
 --
 -- Indices de la tabla `asignatura`
@@ -510,16 +607,18 @@ ALTER TABLE `departamento`
 -- Indices de la tabla `docente`
 --
 ALTER TABLE `docente`
-  ADD PRIMARY KEY (`codigo_persona`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_docente_departamento` (`nombre_departamento`),
-  ADD KEY `fk_docente_grupo` (`gruponumero`);
+  ADD KEY `fk_docente_grupo` (`gruponumero`),
+  ADD KEY `fk_docente_persona` (`codigo_persona`);
 
 --
 -- Indices de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
-  ADD PRIMARY KEY (`codigo_persona`) USING BTREE,
-  ADD KEY `fk_estudiante_matricula` (`id_matricula`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_estudiante_matricula` (`id_matricula`),
+  ADD KEY `fk_estudiante_persona` (`codigo_persona`);
 
 --
 -- Indices de la tabla `facultad`
@@ -610,20 +709,28 @@ ALTER TABLE `unidad`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `administrador`
+--
+ALTER TABLE `administrador`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `docente`
+--
+ALTER TABLE `docente`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT de la tabla `estudiante`
+--
+ALTER TABLE `estudiante`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT de la tabla `matricula`
 --
 ALTER TABLE `matricula`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
-
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `administrador`
---
-ALTER TABLE `administrador`
-  ADD CONSTRAINT `fk_administrador_persona` FOREIGN KEY (`codigo_persona`) REFERENCES `persona` (`codigo`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `asignatura`
@@ -632,89 +739,16 @@ ALTER TABLE `asignatura`
   ADD CONSTRAINT `fk_asignatura_plandeestudios` FOREIGN KEY (`nombre_plandeestudios`) REFERENCES `plandeestudios` (`nombre`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `departamento`
---
-ALTER TABLE `departamento`
-  ADD CONSTRAINT `fk_departamento_facultad` FOREIGN KEY (`nombre_facultad`) REFERENCES `facultad` (`nombre`) ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `docente`
 --
 ALTER TABLE `docente`
-  ADD CONSTRAINT `fk_docente_departamento` FOREIGN KEY (`nombre_departamento`) REFERENCES `departamento` (`nombre`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_docente_grupo` FOREIGN KEY (`gruponumero`) REFERENCES `grupo` (`grupo_numero`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_docente_persona` FOREIGN KEY (`codigo_persona`) REFERENCES `persona` (`codigo`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
-  ADD CONSTRAINT `fk_estudiante_matricula` FOREIGN KEY (`id_matricula`) REFERENCES `matricula` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_estudiante_persona` FOREIGN KEY (`codigo_persona`) REFERENCES `persona` (`codigo`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `grupo`
---
-ALTER TABLE `grupo`
-  ADD CONSTRAINT `fk_grupo_asignatura` FOREIGN KEY (`codigo_asignatura`) REFERENCES `asignatura` (`codigo`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `grupomatricula`
---
-ALTER TABLE `grupomatricula`
-  ADD CONSTRAINT `fk_grupomatricula_grupo` FOREIGN KEY (`grupo_numero`) REFERENCES `grupo` (`grupo_numero`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_grupomatricula_matricula` FOREIGN KEY (`id_matricula`) REFERENCES `matricula` (`id`);
-
---
--- Filtros para la tabla `matricula`
---
-ALTER TABLE `matricula`
-  ADD CONSTRAINT `fk_matricula_programa` FOREIGN KEY (`código_programa`) REFERENCES `programa` (`codigo`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `microcurriculo`
---
-ALTER TABLE `microcurriculo`
-  ADD CONSTRAINT `fk_microcurriculo_asignatura` FOREIGN KEY (`codigo_asignatura`) REFERENCES `asignatura` (`codigo`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `persona`
---
-ALTER TABLE `persona`
-  ADD CONSTRAINT `fk_persona_tipo` FOREIGN KEY (`tipo`) REFERENCES `tipo` (`id`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `plandeestudios`
---
-ALTER TABLE `plandeestudios`
-  ADD CONSTRAINT `fk_plandeestudios_programa` FOREIGN KEY (`codigo`) REFERENCES `programa` (`codigo`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `programa`
---
-ALTER TABLE `programa`
-  ADD CONSTRAINT `fk_programa_facultad` FOREIGN KEY (`nombre_facultad`) REFERENCES `facultad` (`nombre`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `prueba`
---
-ALTER TABLE `prueba`
-  ADD CONSTRAINT `fk_prueba_matricula` FOREIGN KEY (`id_prueba`) REFERENCES `matricula` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_prueba_tema` FOREIGN KEY (`id_tema`) REFERENCES `tema` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_prueba_unidad` FOREIGN KEY (`id_unidad`) REFERENCES `unidad` (`id`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `tema`
---
-ALTER TABLE `tema`
-  ADD CONSTRAINT `fk_unidad_tema` FOREIGN KEY (`id_unidad`) REFERENCES `unidad` (`id`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `unidad`
---
-ALTER TABLE `unidad`
-  ADD CONSTRAINT `fk_unidad_microcurriculo` FOREIGN KEY (`id`) REFERENCES `microcurriculo` (`id`) ON UPDATE CASCADE;
-COMMIT;
+  ADD CONSTRAINT `fk_estudiante_persona` FOREIGN KEY (`codigo_persona`) REFERENCES `persona` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
