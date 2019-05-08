@@ -40,10 +40,37 @@
                                 <h5>Buscar</h5>
                             </a>
                         </div>
-                        <div id="collapsesearh" class="collapse in">
+                        <div id="collapsesearh" class="collapse">
 
-<h1> ola ke ase</h1>
+                            <div class="widget-content">
 
+                                <form action="#"  class="form-horizontal">
+
+                                    <div class="control-group">
+                                        <label class="control-label">
+                                            Buscar por
+                                        </label>
+                                        <div class="controls">
+                                            <select  id="tips">
+                                                <option>Nombre</option>
+                                                <option>Codigo</option>
+                                                <option>Semestre</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label">introdusca el valor</label>
+                                        <div class="controls">
+                                            <input type="text" name="hpre">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn-success">Buscar</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
 
@@ -109,7 +136,7 @@
 
                                     <div class="widget-title">
                                         <a data-toggle="collapse" href="#collapseuni2">
-                                            <h5>Unidad 2</h5>
+                                            <h5>semestre 2</h5>
                                         </a>
                                     </div>
                                     <div id="collapseuni2" class="collapse">
@@ -152,7 +179,7 @@
 
                                     <div class="widget-title">
                                         <a data-toggle="collapse" href="#collapseuni3">
-                                            <h5>Unidad 3</h5>
+                                            <h5>semestre 3</h5>
                                         </a>
                                     </div>
                                     <div id="collapseuni3" class="collapse">

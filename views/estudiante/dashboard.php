@@ -34,6 +34,7 @@
             <div class="container-fluid">
                 <div class="row-fluid">
 
+
                     <div class="widget-box collapsible">
                         <div class="widget-title">
                             <a data-toggle="collapse" href="#collapseOne">

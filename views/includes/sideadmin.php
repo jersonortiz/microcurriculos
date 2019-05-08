@@ -2,11 +2,25 @@
 <?php
 $conf= substr(basename($_SERVER['PHP_SELF']), 0,3);
 $a=$b='';
+$c=' class="submenu"';
+/*
 if($conf=='con'){
     $b = ' class="active"';
   } else{
      $a = ' class="active"';
-  }
+  } 
+*/
+switch($conf){
+    case "con":
+    $a = ' class="active"';
+    break;
+    case "bus":
+    $c = ' class="active  submenu"';
+    break;
+    default:
+    $b= ' class="active"';
+
+}  
 
 ?>
 
@@ -30,6 +44,16 @@ if($conf=='con'){
                 <span>Configuracion</span>
             </a>
         </li>
+
+        <li <?php echo $c; ?> >
+            <a href="#"><span>Addons</span></a>
+            <ul>
+                <li><a href="busestudiante.php">Buscar estudiante</a></li>
+                <li><a href="busdocente.php">Buscar Docente</a></li>
+                <li><a href="busmateria.php">Buscar Materia</a></li>
+            </ul>
+        </li>
+
 
     </ul>
 </div>
