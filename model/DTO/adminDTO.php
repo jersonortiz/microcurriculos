@@ -12,6 +12,7 @@
  * @author jerson
  */
 class adminDTO {
+    
    private $id;
    private $codigo_persona;
    
