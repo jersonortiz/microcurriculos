@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Admin</title>
+        <title>Control de microcurriculos UFPS</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -10,14 +10,14 @@
         <link rel="stylesheet" href="../css/matrix-style.css" />
         <link rel="stylesheet" href="../css/matrix-media.css" />
         <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
-        <link rel="stylesheet" href="../css/jquery.gritter.css" />
+        <link rel="stylesheet" href="../ss/jquery.gritter.css" />
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
     </head>
     <body>
 
         <?php
-        include("../includes/navadmin.php");
-        include("../includes/sideadmin.php");
+        include("../includes/navdocente.php");
+        include("../includes/sidedocente.php");
         ?>
 
         <!--main-container-part-->
@@ -25,40 +25,59 @@
             <!--breadcrumbs-->
             <div id="content-header">
                 <div id="breadcrumb">
-                    <a href="dashboard.php" class="tip-bottom">consulta microcurriculo</a>
-                    <a href="#" class="current">Configuracion</a>
+                    <a href="#" title="Go to Home" class="tip-bottom">
+                        Materias asignadas
+                    </a>
                 </div>
             </div>
-
             <div class="container-fluid">
                 <div class="row-fluid">
-                    <div class="span6">
-
-                    </div>
 
                     <div class="widget-box">
                         <div class="widget-title">
-                            <h5>Configurar</h5>
+                            <h5>Materias asignadas</h5>
                         </div>
                         <div class="widget-content">
-                            margen actual:<span class="label">80 %</span>
-                            <form action="#"  class="form-horizontal">
-                                <div class="control-group">
-                                    <label class="control-label">Introdusca nuevo margen minimo:</label>
-                                    <div class="controls">
-                                        <input type="number" class="span11" placeholder="80%" />
-                                    </div>
+                            <div class="widget-box">
+
+                                <div class="widget-content nopadding">
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Codigo</th>
+                                                <th>Grupo</th>
+                                                <th>Nombre</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd gradeX">
+                                                <td>1155001</td>
+                                                <td>A</td>
+                                                <td>Materia 1</td>
+                                                <td> <a href="conmicrocu.php"><span class="label label-info">info</span></a> </td>
+                                            </tr>
+                                            <tr class="odd gradeX">
+                                                <td>1155001</td>
+                                                <td>B</td>
+                                                <td>Materia 1</td>
+                                                <td> <a href="conmicrocu.php"><span class="label label-info">info</span></a> </td>
+                                            </tr>
+                                            <tr class="odd gradeX">
+                                                <td>1155002</td>
+                                                <td>B</td>
+                                                <td>Materia 2</td>
+                                                <td> <a href="conmicrocu.php"><span class="label label-info">info</span></a> </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="form-actions">
-                                    <button type="submit" class="btn btn-success">Guardar</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <!--end-main-container-part-->
 
         <!--Footer-part-->

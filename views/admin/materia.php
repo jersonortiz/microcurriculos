@@ -32,9 +32,6 @@
 
             <div class="container-fluid">
                 <div class="row-fluid">
-                    <div class="span6">
-
-                    </div>
 
                     <div class="widget-box ">
                         <div class="widget-title">
