@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../model/util/Conexion.php';
-require_once '../../model/DTO/personaDTO.php';
+require_once '../model/util/Conexion.php';
+require_once '../model/DTO/personaDTO.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,7 +21,7 @@ class personaDAO {
         $mensaje = "Fallido";
 
         if ($conexion != null) {
-            $consulta = $conexion->prepare('INSERT INTO persona(codigo, nombre, apellidos , correo , contraseña , tipo )'
+            $consulta = $conexion->prepare('INSERT INTO persona(codigo, nombre, apellidos , correo , contrasena , tipo )'
                     . ' VALUES(:cod, :nom,:ape ,:corr , :cont , :tip )');
             $consulta->bindParam(':cod', $ces->getCodigo());
             $consulta->bindParam(':nom', $ces->getNombre());
@@ -56,9 +56,9 @@ class personaDAO {
                 $ces = new personaDTO();
                 $ces->setCodigo($tabla_datos[$con]["codigo"]);
                 $ces->setNombre($tabla_datos[$con]["nombre"]);
-                $ces->setApellido($tabla_datos[$con]["pellidos"]);
+                $ces->setApellido($tabla_datos[$con]["apellidos"]);
                 $ces->setCorreo($tabla_datos[$con]["correo"]);
-                $ces->setContrasena($tabla_datos[$con]["contraseña"]);
+                $ces->setContrasena($tabla_datos[$con]["contrasena"]);
                 $ces->setTipo($tabla_datos[$con]["tipo"]);
             }
             return $ces;
@@ -101,9 +101,9 @@ class personaDAO {
             $ces = new personaDTO();
             $ces->setCodigo($tabla_datos[$con]["codigo"]);
             $ces->setNombre($tabla_datos[$con]["nombre"]);
-            $ces->setApellido($tabla_datos[$con]["pellidos"]);
+            $ces->setApellido($tabla_datos[$con]["apellidos"]);
             $ces->setCorreo($tabla_datos[$con]["correo"]);
-            $ces->setContrasena($tabla_datos[$con]["contraseña"]);
+            $ces->setContrasena($tabla_datos[$con]["contrasena"]);
             $ces->setTipo($tabla_datos[$con]["tipo"]);
             array_push($asct, $ces);
         }

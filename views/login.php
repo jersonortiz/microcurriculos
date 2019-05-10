@@ -12,7 +12,7 @@
     </head>
     <body>
         <div id="loginbox">            
-            <form id="loginform" class="form-vertical" action="">
+            <form id="loginform" class="form-vertical" action="../controllers/logincontroller.php">
 
                 <div class="control-group normal_text">
                     <h3>
@@ -40,6 +40,7 @@
                     <label class="control-label">Seleccione su tipo de usuario:</label>
                     <div class="controls">
                         <select>
+                            
                             <option selected>Estudiante</option>
                             <option>Docente</option>
                             <option>Administrador</option>
@@ -48,16 +49,20 @@
                 </div>
 
                 <div class="form-actions">
+
+
                     <label>
                         <input type="checkbox" name="radios" />
                         Mantener sesion iniciada
                     </label>
                     <span class="pull-left">
-                        <a href="#" class="flip-link btn btn-info" id="to-recover">Olvido su contraseña?</a>
-                    </span>
-                    <span class="pull-right">
                         <a type="submit" href="index.html" class="btn btn-success" />Entrar</a>
                     </span>
+                    <span class="pull-right">
+                        <a href="#" class="flip-link btn btn-info" id="to-recover">Olvido su contraseña?</a>
+                    </span>
+
+
                 </div>
 
             </form>
