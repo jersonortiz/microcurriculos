@@ -56,7 +56,7 @@
                         Mantener sesion iniciada
                     </label>
                     <span class="pull-left">
-                        <a type="submit" href="index.html" class="btn btn-success" />Entrar</a>
+                       //<a type="submit" href="../controllers/personacontroller.php"  class="btn-success" />Entrar</a>//
                     </span>
                     <span class="pull-right">
                         <a href="#" class="flip-link btn btn-info" id="to-recover">Olvido su contraseña?</a>
