@@ -12,7 +12,7 @@
     </head>
     <body>
         <div id="loginbox">            
-            <form id="loginform" class="form-vertical" action="../controllers/logincontroller.php">
+            <form id="loginform" class="form-vertical" method="post"  action="../controllers/logincontroller.php">
 
                 <div class="control-group normal_text">
                     <h3>
@@ -39,11 +39,10 @@
                 <div class="control-group">
                     <label class="control-label">Seleccione su tipo de usuario:</label>
                     <div class="controls">
-                        <select>
-                            
-                            <option selected>Estudiante</option>
-                            <option>Docente</option>
-                            <option>Administrador</option>
+                        <select name="tipo" id="tipo">
+                            <option selected value="1">Estudiante</option>
+                            <option value="2">Docente</option>
+                            <option value="3">Administrador</option>
                         </select>
                     </div>
                 </div>
@@ -56,7 +55,7 @@
                         Mantener sesion iniciada
                     </label>
                     <span class="pull-left">
-            //<a type="submit" href="../controllers/personacontroller.php"  class="btn-success" />Entrar</a>//
+                        <input type="submit" name="" value="entrar" class="btn-success">
                     </span>
                     <span class="pull-right">
                         <a href="#" class="flip-link btn btn-info" id="to-recover">Olvido su contraseña?</a>
@@ -65,7 +64,8 @@
 
                 </div>
 
-            </form
+            </form>
+
             <form id="recoverform" action="#" class="form-vertical">
                 <p class="normal_text">Ingrese su correo electronico para enviarle un correo de recuperacion</p>
 

@@ -3,6 +3,7 @@ require_once '../model/util/Conexion.php';
 require_once '../model/DAO/personaDAO.php';
 $ped= new personaDAO();
 $vr = $ped->listar();
+
 foreach ($vr as $var) { 
 echo "<br>".$var->getCodigo();
 echo "<br>".$var->getNombre();
