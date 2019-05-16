@@ -56,7 +56,7 @@
                         Mantener sesion iniciada
                     </label>
                     <span class="pull-left">
-                       //<a type="submit" href="../controllers/personacontroller.php"  class="btn-success" />Entrar</a>//
+            //<a type="submit" href="../controllers/personacontroller.php"  class="btn-success" />Entrar</a>//
                     </span>
                     <span class="pull-right">
                         <a href="#" class="flip-link btn btn-info" id="to-recover">Olvido su contraseña?</a>
@@ -65,8 +65,7 @@
 
                 </div>
 
-            </form>
-
+            </form
             <form id="recoverform" action="#" class="form-vertical">
                 <p class="normal_text">Ingrese su correo electronico para enviarle un correo de recuperacion</p>
 
@@ -85,6 +84,7 @@
 
         <script src="js/jquery.min.js"></script>  
         <script src="js/matrix.login.js"></script> 
+       
     </body>
 
 </html>
