@@ -9,11 +9,19 @@ $ped= new personaDAO();
 $vr = $ped->consultar($nom);
 
 $hash=$vr->getContrasena();
-echo $hash;
+$tipo=$vr->getTipo();
 
-if (password_verify($pass, $hash)) {
+if ($pass==$hash) {
     echo '¡La contraseña es válida!';
-} else {
+    if($tipo==2){
+    header( 'Location: ../views/estudiante/dashboard.php');
+    }
+    else{
+	header( 'Location: ../views/docente/docdash.php');
+    }
+ }   
+
+ else {
     echo 'La contraseña no es válida.';
 }
 ?>
