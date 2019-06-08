@@ -24,10 +24,7 @@
         <div id="content">
             <!--breadcrumbs-->
             <div id="content-header">
-                <div id="breadcrumb">
-                    <a href="dashboard.php" class="tip-bottom">consulta microcurriculo</a>
-                    <a href="#" class="current">Configuracion</a>
-                </div>
+              
             </div>
 
             <div class="container-fluid">

@@ -36,20 +36,7 @@
                     </div>
                 </div>
 
-                <div class="control-group">
-                    <label class="control-label">Seleccione su tipo de usuario:</label>
-                    <div class="controls">
-                        <select name="tipo" id="tipo">
-                            <option selected value="1">Estudiante</option>
-                            <option value="2">Docente</option>
-                            <option value="3">Administrador</option>
-                        </select>
-                    </div>
-                </div>
-
                 <div class="form-actions">
-
-
                     <label>
                         <input type="checkbox" name="radios" />
                         Mantener sesion iniciada
@@ -60,8 +47,6 @@
                     <span class="pull-right">
                         <a href="#" class="flip-link btn btn-info" id="to-recover">Olvido su contraseña?</a>
                     </span>
-
-
                 </div>
 
             </form>
@@ -76,7 +61,7 @@
                 </div>
 
                 <div class="form-actions">
-                    <span class="pull-left"><a href="#" class="flip-link btn btn-success" id="to-login">&laquo; Regrsar al login</a></span>
+                    <span class="pull-left"><a href="#" class="flip-link btn btn-success" id="to-login">&laquo; Regresar al login</a></span>
                     <span class="pull-right"><a class="btn btn-info"/>Reecover</a></span>
                 </div>
             </form>

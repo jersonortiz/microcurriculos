@@ -23,15 +23,8 @@
         <!--main-container-part-->
         <div id="content">
             <!--breadcrumbs-->
-            <div id="content-header">
-                <div id="breadcrumb">
-                    <a href="conmaterias.php" title="Go to Home" class="tip-bottom">
-                        Materias asignadas
-                    </a>
-                    <a href="#">
-                        Microcurriculo
-                    </a>
-                </div>
+  <div id="content-header">
+              
             </div>
 
             <div class="container-fluid">

@@ -23,21 +23,9 @@
         <!--main-container-part-->
         <div id="content">
             <!--breadcrumbs-->
-            <div id="content-header">
-                <div id="breadcrumb">
-                    <a href="#" title="Go to Home" class="tip-bottom">
-                        Materias asignadas
-                    </a>
-                    <a href="conmicrocu.php">
-                        Microcurriculo
-                    </a>
-                    <a href="#">
-                        Unidad
-                    </a>
-
-                </div>
+  <div id="content-header">
+              
             </div>
-
             <div class="container-fluid">
                 <div class="row-fluid">
 

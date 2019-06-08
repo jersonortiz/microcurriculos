@@ -22,25 +22,56 @@
 
         <!--main-container-part-->
         <div id="content">
-            <!--breadcrumbs-->
-            <div id="content-header">
-                <div id="breadcrumb">
-                    <a href="dashboard.php" title="Go to Home" class="tip-bottom">consulta microcurriculo</a>
-                    <a href="materia.php">consult materia</a>
-                    <a href="#" class="current"  >estudiante-materia</a>
-                </div>
+  <div id="content-header">
+              
             </div>
 
             <div class="container-fluid">
                 <div class="row-fluid">
-                    <div class="span6">
 
+                    <div class="span6">
+                    <a href="#">
+                        <span class="label label-info">exportar datos de estudiante</span>
+                    </a>
                     </div>
 
-                    <div class="widget-box ">
+
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <h5>Informacion de estudiante</h5>
+                    </div>
+                    <div class="widget-content">
+
+                        codigo:  <span class="label">115001</span>
+                        <br>
+                        nombre: <span class="label">estudiante 1</span>
+                        <br>
+                        apellido <span class="label">apellido 1</span>
+                        <br>
+                        correo<span class="label">persona@ufps.edu.co</span>
+                        <br>
+                        numero de materias matriculadas <span class="label">2</span>
+                        <br>
+                        
+                    </div>
+                </div>
+
+                     <div class="span6">
+                    <h3>
+                        Materias matriculadas
+                    </h3>
+                    </div>
+              
+
+                    <div class="widget-box collapsible">
+
                         <div class="widget-title">
-                            <h5>115001 estudinte 1 materia 1</h5>
+                            <a data-toggle="collapse" href="#collapseOne">
+                            <h5> materia 1</h5>
+                            </a>
                         </div>
+
+                        <div id="collapseOne" class="collapse">
 
                         <div class="widget-content">
 
@@ -189,7 +220,183 @@
 
                                 </div>
                             </div>
-                        </div>       
+                        </div>
+
+
+
+
+                        </div>    
+
+
+
+
+
+
+
+
+                        <div class="widget-title">
+                            <a data-toggle="collapse" href="#collapseOn">
+                            <h5> materia 2</h5>
+                            </a>
+                        </div>
+
+
+                        <div id="collapseOn" class="collapse">
+
+                        <div class="widget-content">
+
+                            <div class="widget-box collapsible">
+
+                                <div class="widget-title">
+                                    <a data-toggle="collapse" href="#collapsesem1">
+                                        <h5>Unidad 1</h5>
+                                    </a>
+                                </div>
+                                <div id="collapsesem1" class="collapse">
+                                    <div class="widget-content">
+
+                                        <div class="widget-box">
+                                            <div class="widget-title">
+                                                <span class="icon"><i class="icon-th"></i></span>
+                                                <h5>Cumplimiento por estudiante</h5>
+                                            </div>
+
+                                            <div class="widget-content nopadding">
+                                                <table class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Tema</th>
+                                                            <th>Calificacion</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="odd gradeA">
+                                                            <td>Tema 1</td>
+                                                            <td>80%</td>
+                                                        </tr>
+                                                        <tr class="even gradeB">
+                                                            <td>Tema 1</td>
+                                                            <td>80%</td>
+                                                        </tr>
+                                                        <tr class="odd gradeC">
+                                                            <td>Tema 1</td>
+                                                            <td>80%</td>
+                                                        </tr>
+                                                        <tr class="even gradeD">
+                                                            <td>Tema 1</td>
+                                                            <td>80%</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+
+
+                                <div class="widget-title">
+                                    <a data-toggle="collapse" href="#collapsesem2">
+                                        <h5>Unidad 2</h5>
+                                    </a>
+                                </div>
+                                <div id="collapsesem2" class="collapse">
+                                    <div class="widget-content">
+                                        <div class="widget-box">
+                                            <div class="widget-title">
+                                                <span class="icon"><i class="icon-th"></i></span>
+                                                <h5>Cumplimiento por estudiante</h5>
+                                            </div>
+
+                                            <div class="widget-content nopadding">
+                                                <table class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Tema</th>
+                                                            <th>Calificacion</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="odd gradeA">
+                                                            <td>Tema 1</td>
+                                                            <td>80%</td>
+                                                        </tr>
+                                                        <tr class="even gradeB">
+                                                            <td>Tema 1</td>
+                                                            <td>80%</td>
+                                                        </tr>
+                                                        <tr class="odd gradeC">
+                                                            <td>Tema 1</td>
+                                                            <td>80%</td>
+                                                        </tr>
+                                                        <tr class="even gradeD">
+                                                            <td>Tema 1</td>
+                                                            <td>80%</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="widget-title">
+                                    <a data-toggle="collapse" href="#collapsesem3">
+                                        <h5>Unidad 3</h5>
+                                    </a>
+                                </div>
+                                <div id="collapsesem3" class="collapse">
+
+                                    <div class="widget-box">
+                                        <div class="widget-title">
+                                            <span class="icon"><i class="icon-th"></i></span>
+                                            <h5>Cumplimiento por estudiante</h5>
+                                        </div>
+
+                                        <div class="widget-content nopadding">
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Tema</th>
+                                                        <th>Calificacion</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="odd gradeA">
+                                                        <td>Tema 1</td>
+                                                        <td>80%</td>
+                                                    </tr>
+                                                    <tr class="even gradeB">
+                                                        <td>Tema 1</td>
+                                                        <td>80%</td>
+                                                    </tr>
+                                                    <tr class="odd gradeC">
+                                                        <td>Tema 1</td>
+                                                        <td>80%</td>
+                                                    </tr>
+                                                    <tr class="even gradeD">
+                                                        <td>Tema 1</td>
+                                                        <td>80%</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        </div>  
+
                     </div>
                 </div>
             </div>

@@ -23,15 +23,8 @@
         <!--main-container-part-->
         <div id="content">
             <!--breadcrumbs-->
-            <div id="content-header">
-                <div id="breadcrumb">
-                    <a href="dashboard.php" title="Go to Home" class="tip-bottom">
-                        Listado de pruebas
-                    </a>
-                    <a href="#">
-                        prueba
-                    </a>
-                </div>
+  <div id="content-header">
+              
             </div>
 
             <div class="container-fluid">
@@ -67,7 +60,15 @@
                                             <tbody>
                                                 <tr class="odd gradeX">
                                                     <td>tema 1</td>
-                                                    <td><input type="number" name="" placeholder="##%"></td>
+                                                    <td>
+                                                        <select id="sl1">
+                                                            <option>0 %</option>
+                                                            <option>25 %</option>
+                                                            <option>50 %</option>
+                                                            <option>75 %</option>
+                                                            <option>10 %</option>
+                                                        </select>
+                                                    </td>
                                                     <td>
                                                         <button class="btn btn-primary">
                                                             Guardar
@@ -76,7 +77,15 @@
                                                 </tr>
                                                 <tr class="odd gradeX">
                                                     <td>tema 2</td>
-                                                    <td><input type="number" name="" placeholder="##%"></td>
+                                                    <td>
+                                                        <select id="sl1">
+                                                            <option>0 %</option>
+                                                            <option>25 %</option>
+                                                            <option>50 %</option>
+                                                            <option>75 %</option>
+                                                            <option>10 %</option>
+                                                        </select>
+                                                    </td>
                                                     <td>
                                                         <button class="btn btn-primary">
                                                             Guardar
@@ -85,7 +94,15 @@
                                                 </tr>
                                                 <tr class="odd gradeX">
                                                     <td>tema 3</td>
-                                                    <td><input type="number" name="" placeholder="##%"></td>
+                                                    <td>
+                                                        <select id="sl1">
+                                                            <option>0 %</option>
+                                                            <option>25 %</option>
+                                                            <option>50 %</option>
+                                                            <option>75 %</option>
+                                                            <option>10 %</option>
+                                                        </select>
+                                                    </td>
                                                     <td>
                                                         <button class="btn btn-primary">
                                                             Guardar
@@ -94,7 +111,15 @@
                                                 </tr>
                                                 <tr class="odd gradeX">
                                                     <td>tema 4</td>
-                                                    <td><input type="number" name="" placeholder="##%"></td>
+                                                                                                    <td>
+                                                        <select id="sl1">
+                                                            <option>0 %</option>
+                                                            <option>25 %</option>
+                                                            <option>50 %</option>
+                                                            <option>75 %</option>
+                                                            <option>10 %</option>
+                                                        </select>
+                                                    </td>
                                                     <td>
                                                         <button class="btn btn-primary">
                                                             Guardar
@@ -131,7 +156,15 @@
                                             <tbody>
                                                 <tr class="odd gradeX">
                                                     <td>tema 1</td>
-                                                    <td><input type="number" name="" placeholder="##%"></td>
+                                                    <td>
+                                                        <select id="sl1">
+                                                            <option>0 %</option>
+                                                            <option>25 %</option>
+                                                            <option>50 %</option>
+                                                            <option>75 %</option>
+                                                            <option>10 %</option>
+                                                        </select>
+                                                    </td>
                                                     <td>
                                                         <button class="btn btn-primary" disabled="" title="no disponible">
                                                             Guardar
@@ -140,7 +173,15 @@
                                                 </tr>
                                                 <tr class="odd gradeX">
                                                     <td>tema 2</td>
-                                                    <td><input type="number" name="" placeholder="##%"></td>
+                                                    <td>
+                                                        <select id="sl1">
+                                                            <option>0 %</option>
+                                                            <option>25 %</option>
+                                                            <option>50 %</option>
+                                                            <option>75 %</option>
+                                                            <option>10 %</option>
+                                                        </select>
+                                                    </td>
                                                     <td>
                                                         <button class="btn btn-primary" disabled="" title="no disponible">
                                                             Guardar
@@ -149,7 +190,15 @@
                                                 </tr>
                                                 <tr class="odd gradeX">
                                                     <td>tema 3</td>
-                                                    <td><input type="number" name="" placeholder="##%"></td>
+                                                    <td>
+                                                        <select id="sl1">
+                                                            <option>0 %</option>
+                                                            <option>25 %</option>
+                                                            <option>50 %</option>
+                                                            <option>75 %</option>
+                                                            <option>10 %</option>
+                                                        </select>
+                                                    </td>
                                                     <td>
                                                         <button class="btn btn-primary" disabled="" title="no disponible">
                                                             Guardar

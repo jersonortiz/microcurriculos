@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Control de microcurriculos UFPS<</title>
+        <title>Admin</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -10,14 +10,14 @@
         <link rel="stylesheet" href="../css/matrix-style.css" />
         <link rel="stylesheet" href="../css/matrix-media.css" />
         <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
-        <link rel="stylesheet" href="../ss/jquery.gritter.css" />
+        <link rel="stylesheet" href="../css/jquery.gritter.css" />
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
     </head>
     <body>
 
         <?php
-        include("../includes/navestudiante.php");
-        include("../includes/sideestudiante.php");
+        include("../includes/navadmin.php");
+        include("../includes/sideadmin.php");
         ?>
 
         <!--main-container-part-->
@@ -29,15 +29,18 @@
 
             <div class="container-fluid">
                 <div class="row-fluid">
+                    <div class="span6">
 
+                    </div>
 
                     <div class="widget-box collapsible">
                         <div class="widget-title">
                             <a data-toggle="collapse" href="#collapseOne">
-                                <h5>Pruebas pendientes</h5>
+                                <h5>Ingenieria en sistemas</h5>
                             </a>
                         </div>
                         <div id="collapseOne" class="collapse in">
+
                             <div class="widget-content">
 
                                 <div class="widget-box">
@@ -47,105 +50,117 @@
                                                 <tr>
                                                     <th>Codigo</th>
                                                     <th>Nombre</th>
-                                                    <th>Grupo</th>
-                                                    <th>Docente</th>
-                                                    <th>Prueba</th>
-                                                    <th>Estado</th>
+                                                    <th>Materias</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="odd gradeA">
-                                                    <td>1155001</td>
-                                                    <td>materia 1</td>
-                                                    <td>A</td>
+                                                    <td>1150001</td>
                                                     <td>profesor 1</td>
+                                                    <td>5</td>
                                                     <td>
-                                                        <a href="prueba.php"><button class="btn btn-primary">
-                                                            <i class="icon-pencil"></i>Realizar prueba
-                                                        </button></a>
-                                                    </td>
-                                                    <td>
-                                                        <span class="label label-warning">
-                                                        Prueba pendiente
-                                                        </span>
+                                                        <a href="materiadocente.php">
+                                                            <span class="label label-info">ver info</span>
+                                                        </a>
                                                     </td>
                                                 </tr>
-
-                                                <tr class="odd gradeB">
-                                                    <td>1155002</td>
-                                                    <td>materia 2</td>
-                                                    <td>A</td>
+                                                <tr class="even gradeB">
+                                                    <td>1150002</td>
                                                     <td>profesor 2</td>
+                                                    <td>6</td>
                                                     <td>
-                                                        <a href="prueba.php"><button class="btn btn-primary">
-                                                            <i class="icon-pencil"></i>Realizar prueba
-                                                        </button></a>
-                                                    </td>
-                                                    <td>
-                                                        <span class="label label-warning">
-                                                        Prueba pendiente
-                                                        </span>
+                                                        <a href="materiadocente.php">
+                                                            <span class="label label-info">ver info</span>
+                                                        </a>
                                                     </td>
                                                 </tr>
-
                                                 <tr class="odd gradeC">
-                                                    <td>1155003</td>
-                                                    <td>materia 3</td>
-                                                    <td>B</td>
+                                                    <td>1150003</td>
                                                     <td>profesor 3</td>
+                                                    <td>5</td>
                                                     <td>
-                                                        <a href="prueba.php"><button class="btn btn-primary">
-                                                            <i class="icon-pencil"></i>Realizar prueba
-                                                        </button></a>
-                                                    </td>
-                                                    <td>
-                                                        <span class="label label-important">
-                                                        Prueba atrasada
-                                                        </span>
+                                                        <a href="materiadocente.php">
+                                                            <span class="label label-info">ver info</span>
+                                                        </a>
                                                     </td>
                                                 </tr>
-
+                                                <tr class="even gradeD">
+                                                    <td>1150004</td>
+                                                    <td>profesor 4</td>
+                                                    <td>7</td>
+                                                    <td>
+                                                        <a href="materiadocente.php">
+                                                            <span class="label label-info">ver info</span>
+                                                        </a>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
 
 
                         <div class="widget-title">
                             <a data-toggle="collapse" href="#collapseTwo">
-                                <h5>Pruebas realizadas</h5>
+                                <h5>Ingenieria el algo mas</h5>
                             </a>
                         </div>
                         <div id="collapseTwo" class="collapse">
                             <div class="widget-content">
                                 <div class="widget-box">
                                     <div class="widget-content nopadding">
-
                                         <table class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
                                                     <th>Codigo</th>
                                                     <th>Nombre</th>
-                                                    <th>Grupo</th>
-                                                    <th>Docente</th>
-                                                    <th>Prueba</th>
-                                                    <th>Estado</th>
+                                                    <th>Materias</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
-                                                <tr class="odd gradeX">
-                                                    <td>1155004</td>
-                                                    <td>materia 4</td>
-                                                    <td>A</td>
-                                                    <td>profesor 4</td>
-                                                    <td>-</td>
+                                                <tr class="odd gradeA">
+                                                    <td>1150001</td>
+                                                    <td>profesor 1</td>
+                                                    <td>5</td>
                                                     <td>
-                                                        <span class="label label-success">
-                                                        Prueba realizada
-                                                        </span>
+                                                        <a href="materiadocente.php">
+                                                            <span class="label label-info">ver info</span>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="even gradeB">
+                                                    <td>1150002</td>
+                                                    <td>profesor 2</td>
+                                                    <td>6</td>
+                                                    <td>
+                                                        <a href="materiadocente.php">
+                                                            <span class="label label-info">ver info</span>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd gradeC">
+                                                    <td>1150003</td>
+                                                    <td>profesor 3</td>
+                                                    <td>5</td>
+                                                    <td>
+                                                        <a href="materiadocente.php">
+                                                            <span class="label label-info">ver info</span>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="even gradeD">
+                                                    <td>1150004</td>
+                                                    <td>profesor 4</td>
+                                                    <td>7</td>
+                                                    <td>
+                                                        <a href="materiadocente.php">
+                                                           <span class="label label-info">ver info</span>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -153,8 +168,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>       
-                    </div>
+                        </div>
+                    </div>       
+
                 </div>
             </div>
         </div>

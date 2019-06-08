@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Control de microcurriculos UFPS</title>
+        <title>Admin</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -10,14 +10,14 @@
         <link rel="stylesheet" href="../css/matrix-style.css" />
         <link rel="stylesheet" href="../css/matrix-media.css" />
         <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" />
-        <link rel="stylesheet" href="../ss/jquery.gritter.css" />
+        <link rel="stylesheet" href="../css/jquery.gritter.css" />
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
     </head>
     <body>
 
         <?php
-        include("../includes/navdocente.php");
-        include("../includes/sidedocente.php");
+        include("../includes/navadmin.php");
+        include("../includes/sideadmin.php");
         ?>
 
         <!--main-container-part-->
@@ -26,14 +26,43 @@
   <div id="content-header">
               
             </div>
+
             <div class="container-fluid">
                 <div class="row-fluid">
+                    <div class="span6">
+                    <a href="#">
+                        <span class="label label-info">exportar datos de docente</span>
+                    </a>
+                    </div>
+
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <h5>Informacion de docente</h5>
+                    </div>
+                    <div class="widget-content">
+
+                        codigo:  <span class="label">115001</span>
+                        <br>
+                        nombre: <span class="label">docente 1</span>
+                        <br>
+                        apellido <span class="label">apellido 1</span>
+                        <br>
+                        correo<span class="label">persona@ufps.edu.co</span>
+                        <br>
+                        numero de materias que esta dictando<span class="label">2</span>
+                        <br>
+                        
+                    </div>
+                </div>
+
+
 
                     <div class="widget-box">
                         <div class="widget-title">
-                            <h5>Materias asignadas</h5>
+                            <h5>Materias</h5>
                         </div>
                         <div class="widget-content">
+
                             <div class="widget-box">
 
                                 <div class="widget-content nopadding">
@@ -41,39 +70,64 @@
                                         <thead>
                                             <tr>
                                                 <th>Codigo</th>
-                                                <th>Grupo</th>
                                                 <th>Nombre</th>
+                                                <th>Grupo</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="odd gradeX">
-                                                <td>1155001</td>
+                                            <tr class="odd gradeA">
+                                                <td>1150001</td>
+                                                <td>Materia 1</td>
                                                 <td>A</td>
-                                                <td>Materia 1</td>
-                                                <td> <a href="conmicrocu.php"><span class="label label-info">info</span></a> </td>
+                                                <td>
+                                                    <a href="materia.php">
+                                                        <span class="label label-info">ver info</span>
+                                                    </a>
+                                                </td>
                                             </tr>
-                                            <tr class="odd gradeX">
-                                                <td>1155001</td>
-                                                <td>B</td>
+                                            <tr class="even gradeB">
+                                                <td>1150001</td>
                                                 <td>Materia 1</td>
-                                                <td> <a href="conmicrocu.php"><span class="label label-info">info</span></a> </td>
+                                                <td>A</td>
+                                                <td>
+                                                    <a href="materia.php">
+                                                        <span class="label label-info">ver info</span>
+                                                    </a>
+                                                </td>
                                             </tr>
-                                            <tr class="odd gradeX">
-                                                <td>1155002</td>
-                                                <td>B</td>
-                                                <td>Materia 2</td>
-                                                <td> <a href="conmicrocu.php"><span class="label label-info">info</span></a> </td>
+                                            <tr class="odd gradeC">
+                                                <td>1150001</td>
+                                                <td>Materia 1</td>
+                                                <td>A</td>
+                                                <td>
+                                                    <a href="materia.php">
+                                                        <span class="label label-info">ver info</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr class="even gradeD">
+                                                <td>1150001</td>
+                                                <td>Materia 1</td>
+                                                <td>A</td>
+                                                <td>
+                                                    <a href="materia.php">
+                                                        <span class="label label-info">ver info</span>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
+
         <!--end-main-container-part-->
 
         <!--Footer-part-->

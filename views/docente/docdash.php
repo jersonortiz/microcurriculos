@@ -23,12 +23,8 @@
         <!--main-container-part-->
         <div id="content">
             <!--breadcrumbs-->
-            <div id="content-header">
-                <div id="breadcrumb">
-                    <a href="index.html" title="Go to Home" class="tip-bottom">
-                        <i class="icon-home"></i>Consulta cumplimiento
-                    </a>
-                </div>
+  <div id="content-header">
+              
             </div>
 
             <div class="container-fluid">
@@ -92,7 +88,7 @@
 
                                     <div class="widget-title">
                                         <a data-toggle="collapse" href="#collapseuni1">
-                                            <h5>semestre 1 </h5>
+                                            <h5>materia  1 </h5>
                                         </a>
                                     </div>
                                     <div id="collapseuni1" class="collapse">
@@ -136,7 +132,7 @@
 
                                     <div class="widget-title">
                                         <a data-toggle="collapse" href="#collapseuni2">
-                                            <h5>semestre 2</h5>
+                                            <h5>materia 2</h5>
                                         </a>
                                     </div>
                                     <div id="collapseuni2" class="collapse">
@@ -179,7 +175,7 @@
 
                                     <div class="widget-title">
                                         <a data-toggle="collapse" href="#collapseuni3">
-                                            <h5>semestre 3</h5>
+                                            <h5>materia 3</h5>
                                         </a>
                                     </div>
                                     <div id="collapseuni3" class="collapse">
@@ -233,7 +229,7 @@
                         </div>
                         <div id="collapseTwo" class="collapse">
                             <div class="widget-content">
-                                This box is now open
+                               
                             </div>
                         </div>       
 
