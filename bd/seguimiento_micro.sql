@@ -388,7 +388,7 @@ CREATE TABLE `persona` (
   `nombre` varchar(50) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `correo` varchar(50) NOT NULL,
-  `contraseña` varchar(255) NOT NULL,
+  `contrasena` varchar(255) NOT NULL,
   `tipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -396,7 +396,7 @@ CREATE TABLE `persona` (
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`codigo`, `nombre`, `apellidos`, `correo`, `contraseña`, `tipo`) VALUES
+INSERT INTO `persona` (`codigo`, `nombre`, `apellidos`, `correo`, `contrasena`, `tipo`) VALUES
 (340, 'camilo andres', 'jaimes sanchez', 'camiloandresjs@ufps.edu.co', '1674d63ef58fb2ca8b70bfc4443b4343e7f15863', 2),
 (959, 'carlos enrique', 'guerrero acosta', 'carlosenriquega@ufps.edu.co', '450f9b16e4b0559c28be8a4097e21614c6af6117', 2),
 (1080, 'oscar alberto', 'gallardo perez', 'oscargallardo@ufps.edu.co', 'dfd35f40aba09e6adee88265ef12430126d359b5', 3),
