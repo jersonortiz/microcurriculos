@@ -12,13 +12,26 @@
  * @author Camilo J
  */
 class programaDTO {
+
     //put your code here
+    private $nombre;
     private $codigo;
     private $nombre_facultad;
-    
-            function __construct() {
+
+    function __construct() {
         
     }
+    
+    
+    function getNombre() {
+        return $this->nombre;
+    }
+
+    function setNombre($nombre) {
+        $this->nombre = $nombre;
+    }
+
+    
     function getCodigo() {
         return $this->codigo;
     }
@@ -34,6 +47,5 @@ class programaDTO {
     function setNombre_facultad($nombre_facultad) {
         $this->nombre_facultad = $nombre_facultad;
     }
-
 
 }

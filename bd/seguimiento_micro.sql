@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 04-05-2019 a las 20:33:17
+-- Tiempo de generación: 09-06-2019 a las 14:16:45
 -- Versión del servidor: 5.7.26-0ubuntu0.18.04.1
--- Versión de PHP: 7.2.17-0ubuntu0.18.04.1
+-- Versión de PHP: 7.2.19-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,17 +31,6 @@ CREATE TABLE `administrador` (
   `codigo_persona` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `administrador`
---
-
-INSERT INTO `administrador` (`id`, `codigo_persona`) VALUES
-(1, 100100);
-
-
-SELECT * FROM `administrador`;
-
-DELETE FROM `administrador` WHERE `id`='1';
 -- --------------------------------------------------------
 
 --
@@ -62,16 +51,13 @@ CREATE TABLE `asignatura` (
 --
 
 INSERT INTO `asignatura` (`codigo`, `nombre`, `semestre`, `intensidadhoraria`, `creditos`, `nombre_plandeestudios`) VALUES
-(100100, 'calculo diferencial', 1, 4, 3, 'tecnologia agroindustrial'),
+(11111, 'calculo diferencial', 1, 4, 4, 'ingenieria civil'),
+(21111, 'calculo integral', 2, 4, 4, 'ingenieria civil'),
 (101101, 'calculo integral', 2, 4, 4, 'tecnico profesional en procesamiento de alimentos'),
 (102102, 'etica', 3, 4, 4, 'tecnico profesional en fabricacion industrial de p'),
 (109109, 'fisica I', 2, 3, 3, 'electromecanica'),
 (111111, 'fisica II', 3, 3, 3, 'ingenieria civil');
 
-
-SELECT * FROM `asignatura`;
-
-DELETE FROM `asignatura` WHERE `codigo`=100100;
 -- --------------------------------------------------------
 
 --
@@ -88,7 +74,6 @@ CREATE TABLE `departamento` (
 --
 
 INSERT INTO `departamento` (`nombre`, `nombre_facultad`) VALUES
-('CIENCIAS AGRARIAS', 'CIENCIAS AGRARIAS Y DEL AMBIENTE'),
 ('CIENCIAS DEL MEDIO AMBIENTE', 'CIENCIAS AGRARIAS Y DEL AMBIENTE'),
 ('CIENCIAS PECUARIAS', 'CIENCIAS AGRARIAS Y DEL AMBIENTE'),
 ('BIOLOGIA', 'CIENCIAS BASICAS'),
@@ -110,11 +95,6 @@ INSERT INTO `departamento` (`nombre`, `nombre_facultad`) VALUES
 ('HIDRAULICA', 'INGENIERIA'),
 ('SISTEMAS E INFORMATICA', 'INGENIERIA');
 
-
-SELECT * FROM `departamento`;
-
-DELETE FROM `departamento` WHERE `nombre`='CIENCIAS AGRARIAS';
-
 -- --------------------------------------------------------
 
 --
@@ -133,15 +113,10 @@ CREATE TABLE `docente` (
 --
 
 INSERT INTO `docente` (`id`, `codigo_persona`, `nombre_departamento`, `gruponumero`) VALUES
-(1, 959, 'SISTEMAS E INFORMATICA', 1),
 (2, 1080, 'SISTEMAS E INFORMATICA', 2),
 (3, 1111, 'SISTEMAS E INFORMATICA', 3),
 (4, 1178, 'SISTEMAS E INFORMATICA', 4),
 (5, 1995, 'SISTEMAS E INFORMATICA', 5);
-
-SELECT * FROM `docente`;
-
-DELETE FROM `docente` WHERE `id`=1;
 
 -- --------------------------------------------------------
 
@@ -160,15 +135,9 @@ CREATE TABLE `estudiante` (
 --
 
 INSERT INTO `estudiante` (`id`, `codigo_persona`, `id_matricula`) VALUES
-(1, 340, 1),
 (2, 959, 1),
 (3, 1081, 1),
 (4, 1130, 1);
-
-
-SELECT * FROM `estudiante`;
-
-DELETE FROM `estudiante` WHERE `id`=1;
 
 -- --------------------------------------------------------
 
@@ -186,15 +155,10 @@ CREATE TABLE `facultad` (
 
 INSERT INTO `facultad` (`nombre`) VALUES
 ('CIENCIAS AGRARIAS Y DEL AMBIENTE'),
-('CIENCIAS BASICAS'),
 ('CIENCIAS DE LA SALUD'),
 ('CIENCIAS EMPRESARIALES'),
 ('EDUCACION, ARTES Y HUMANIDADES'),
 ('INGENIERIA');
-
-SELECT * FROM `facultad`;
-
-DELETE FROM `facultad` WHERE `nombre`='CIENCIAS BASICAS';
 
 -- --------------------------------------------------------
 
@@ -204,23 +168,19 @@ DELETE FROM `facultad` WHERE `nombre`='CIENCIAS BASICAS';
 
 CREATE TABLE `grupo` (
   `grupo_numero` int(11) NOT NULL,
-  `codigo_asignatura` int(11) NOT NULL
+  `codigo_asignatura` int(11) NOT NULL,
+  `grupo` char(1) NOT NULL DEFAULT 'A'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `grupo`
 --
 
-INSERT INTO `grupo` (`grupo_numero`, `codigo_asignatura`) VALUES
-(1, 100100),
-(2, 101101),
-(3, 102102),
-(4, 109109),
-(5, 111111);
-
-SELECT * FROM `grupo`;
-
-DELETE FROM `grupo` WHERE `grupo_numero`=1;
+INSERT INTO `grupo` (`grupo_numero`, `codigo_asignatura`, `grupo`) VALUES
+(2, 101101, 'A'),
+(3, 102102, 'A'),
+(4, 109109, 'A'),
+(5, 111111, 'A');
 
 -- --------------------------------------------------------
 
@@ -238,15 +198,10 @@ CREATE TABLE `grupomatricula` (
 --
 
 INSERT INTO `grupomatricula` (`grupo_numero`, `id_matricula`) VALUES
-(1, 2),
 (2, 3),
 (3, 4),
 (4, 5),
 (5, 6);
-
-SELECT * FROM `grupomatricula`;
-
-DELETE FROM `grupomatricula` WHERE `grupo_numero`=1;
 
 -- --------------------------------------------------------
 
@@ -265,7 +220,6 @@ CREATE TABLE `matricula` (
 --
 
 INSERT INTO `matricula` (`id`, `semestre`, `código_programa`) VALUES
-(1, 1, 115),
 (2, 2, 115),
 (3, 1, 119),
 (4, 2, 119),
@@ -342,10 +296,6 @@ INSERT INTO `matricula` (`id`, `semestre`, `código_programa`) VALUES
 (75, 1, 101),
 (76, 2, 101);
 
-SELECT * FROM `matricula`;
-
-DELETE FROM `matricula` WHERE `id`=1;
-
 -- --------------------------------------------------------
 
 --
@@ -366,16 +316,10 @@ CREATE TABLE `microcurriculo` (
 --
 
 INSERT INTO `microcurriculo` (`id`, `nombre`, `peso`, `formato`, `archivo`, `codigo_asignatura`) VALUES
-(100100100, 'calculo diferencial', '12kb', 'word', 'curriculo1', 100100),
 (101101101, 'calculo integral', '12kb', 'word', 'curriculo2', 101101),
 (102102102, 'etica', '12kb', 'word', 'curriculo3', 102102),
 (109109109, 'fisica I', '12kb', 'word', 'curriculo4', 109109),
 (111111111, 'fisica II', '12kb', 'word', 'curriculo5', 111111);
-
-
-SELECT * FROM `microcurriculo`;
-
-DELETE FROM `microcurriculo` WHERE `id`=100100100;
 
 -- --------------------------------------------------------
 
@@ -397,7 +341,6 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`codigo`, `nombre`, `apellidos`, `correo`, `contrasena`, `tipo`) VALUES
-(340, 'camilo andres', 'jaimes sanchez', 'camiloandresjs@ufps.edu.co', '1674d63ef58fb2ca8b70bfc4443b4343e7f15863', 2),
 (959, 'carlos enrique', 'guerrero acosta', 'carlosenriquega@ufps.edu.co', '450f9b16e4b0559c28be8a4097e21614c6af6117', 2),
 (1080, 'oscar alberto', 'gallardo perez', 'oscargallardo@ufps.edu.co', 'dfd35f40aba09e6adee88265ef12430126d359b5', 3),
 (1081, 'paula andrea', 'rozo corredor', 'paulaandrearc@ufps.edu.co', 'ed4b1925f6306d4ee0e6edf3d0391b5cd9dac3ca', 2),
@@ -412,9 +355,6 @@ INSERT INTO `persona` (`codigo`, `nombre`, `apellidos`, `correo`, `contrasena`, 
 (4608, 'matias', 'herrera caceres', 'matiashc@ufps.edu.co', 'ef059cf85fb69cedc1dec4b7bd4b450c24c43d71', 3),
 (5096, 'claudia yamile', 'gomez llanez', 'claudiaygomez@ufps.edu.co', '532fc4fdf20bb32066b05edecd14c3e7a40a9517', 3),
 (6209, 'nelly rosana', 'diaz leal', 'nellyrosanadl@ufps.edu.co', '7952b8f72e05f9e2abbce0a544ff34ad64d446b2', 3);
-
-
-DELETE FROM `persona` WHERE `codigo`=340;
 
 -- --------------------------------------------------------
 
@@ -435,7 +375,6 @@ INSERT INTO `plandeestudios` (`nombre`, `codigo`) VALUES
 ('tecnologia agroindustrial', 100),
 ('tecnico profesional en procesamiento de alimentos', 101),
 ('tecnico profesional en fabricacion industrial de p', 102),
-('electromecanica', 109),
 ('ingenieria civil', 111),
 ('ingenieria civil(cohorte especial)', 111),
 ('mecanica', 112),
@@ -470,10 +409,6 @@ INSERT INTO `plandeestudios` (`nombre`, `codigo`) VALUES
 ('tecnologia en procesos industriales', 198),
 ('trabajo social-nocturna', 234);
 
-SELECT * FROM `plandeestudios`;
-
-DELETE FROM `plandeestudios` WHERE `nombre`='electromecanica';
-
 -- --------------------------------------------------------
 
 --
@@ -491,7 +426,6 @@ CREATE TABLE `programa` (
 --
 
 INSERT INTO `programa` (`nombre`, `codigo`, `nombre_facultad`) VALUES
-('TECNOLOGIA AGROINDUSTRIAL', 100, 'CIENCIAS AGRARIAS Y DEL AMBIENTE'),
 ('TECNICO PROFESIONAL EN PROCESAMIENTO DE ALIMENTOS', 101, 'CIENCIAS AGRARIAS Y DEL AMBIENTE'),
 ('TÉCNICO PROFESIONAL EN FABRICACIÓN INDUSTRIAL DE P', 102, 'INGENIERIA'),
 ('INGENIERIA ELECTROMECANICA', 109, 'INGENIERIA'),
@@ -530,10 +464,6 @@ INSERT INTO `programa` (`nombre`, `codigo`, `nombre_facultad`) VALUES
 ('INGENIERIA CIVIL(COHORTE ESPECIAL)', 211, 'INGENIERIA'),
 ('TRABAJO SOCIAL - NOCTURNA', 234, 'EDUCACION, ARTES Y HUMANIDADES');
 
-SELECT * FROM `programa`;
-
-DELETE FROM `programa` WHERE `codigo`=100;
-
 -- --------------------------------------------------------
 
 --
@@ -554,16 +484,10 @@ CREATE TABLE `prueba` (
 --
 
 INSERT INTO `prueba` (`id`, `fecha`, `porcentaje`, `id_prueba`, `id_unidad`, `id_tema`) VALUES
-(1011, '0000-00-00', 80, 4, 100100101, 1001001011),
 (1022, '0000-00-00', 60, 4, 101101102, 1011011022),
 (1033, '0000-00-00', 50, 4, 102102103, 1021021033),
 (1044, '0000-00-00', 88, 3, 109109104, 1091091044),
 (1155, '0000-00-00', 76, 3, 111111115, 1111111155);
-
-
-SELECT * FROM `prueba`;
-
-DELETE FROM `prueba` WHERE `id`=1011;
 
 -- --------------------------------------------------------
 
@@ -585,15 +509,10 @@ CREATE TABLE `tema` (
 --
 
 INSERT INTO `tema` (`id`, `id_unidad`, `nombre`, `actividadpresencial`, `trabajoindependiente`, `unidad`) VALUES
-(1001001011, 100100101, 'limites', '4', '8', 'unidad1'),
 (1011011022, 101101102, 'integrales', '4', '8', 'unidad2'),
 (1021021033, 102102103, 'valores', '4', '8', 'unidad3'),
 (1091091044, 109109104, 'fuerza', '3', '6', 'unidad4'),
 (1111111155, 111111115, 'electrones', '3', '6', 'unidad5');
-
-SELECT * FROM `tema`;
-
-DELETE FROM `tema` WHERE `id`=1001001011;
 
 -- --------------------------------------------------------
 
@@ -611,13 +530,8 @@ CREATE TABLE `tipo` (
 --
 
 INSERT INTO `tipo` (`id`, `descripcion`) VALUES
-(1, 'ADMINISTRADOR'),
 (2, 'ESTUDIANTE'),
 (3, 'DOCENTE');
-
-SELECT * FROM `tipo`;
-
-DELETE FROM `tipo` WHERE `id`=1;
 
 -- --------------------------------------------------------
 
@@ -639,16 +553,10 @@ CREATE TABLE `unidad` (
 --
 
 INSERT INTO `unidad` (`id`, `nombre_contenido`, `id_microcurriculo`, `horaspresenciales`, `horasindependientes`, `horatotal`) VALUES
-(100100101, 'unidad1', 100100100, '00:00:04', '00:00:08', '00:00:12'),
 (101101102, 'unidad2', 101101101, '00:00:04', '00:00:08', '00:00:12'),
 (102102103, 'unidad3', 102102102, '00:00:04', '00:00:08', '00:00:12'),
 (109109104, 'unidad4', 109109109, '00:00:03', '00:00:06', '00:00:09'),
 (111111115, 'unidad5', 111111111, '00:00:03', '00:00:06', '00:00:09');
-
-SELECT * FROM `unidad`;
-
-
-DELETE FROM `unidad` WHERE `id`=100100101;
 
 --
 -- Índices para tablas volcadas

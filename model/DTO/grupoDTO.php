@@ -12,14 +12,24 @@
  * @author Camilo J
  */
 class grupoDTO {
+
     //put your code here
     private $grupo_numero;
     private $codigo_asignatura;
-    
+    private $grupo;
+
     function __construct() {
         
     }
-    
+
+    function getGrupo() {
+        return $this->grupo;
+    }
+
+    function setGrupo($grupo) {
+        $this->grupo = $grupo;
+    }
+
     function getGrupo_numero() {
         return $this->grupo_numero;
     }
@@ -35,6 +45,5 @@ class grupoDTO {
     function setCodigo_asignatura($codigo_asignatura) {
         $this->codigo_asignatura = $codigo_asignatura;
     }
-
 
 }
