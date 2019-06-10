@@ -45,7 +45,7 @@
                         foreach ($list as $fila) {
                             $plan = $fila["pro"];
                             $mats = $fila["mat"];
-                        ?>
+                            ?>
 
                             <div class="widget-title">
                                 <a data-toggle="collapse" href="#collapse<?php echo $contc; ?>">
@@ -57,92 +57,72 @@
                                 <div class="widget-content">
 
                                     <div class="widget-box collapsible">
-                                <?php  
-                                $cont=1;
+                                        <?php
+                                        $cont = 1;
 
-                                foreach ($mats as $sem) { 
-                                 ?>
+                                        foreach ($mats as $sem) {
+                                            ?>
 
 
-                                        <div class="widget-title">
-                                            <a data-toggle="collapse" href="#collapsesem<?php echo $contc.$cont; ?>">
-                                                <h5>Semestre <?php echo $cont; ?> </h5>
-                                            
-                                            </a>
-                                        </div>
+                                            <div class="widget-title">
+                                                <a data-toggle="collapse" href="#collapsesem<?php echo $contc . $cont; ?>">
+                                                    <h5>Semestre <?php echo $cont; ?> </h5>
+                                                </a>
+                                            </div>
 
-                                        <div id="collapsesem<?php echo $contc . $cont; ?>" class="collapse">
-                                             <?php $cont++; ?>
-
-                                            <div class="widget-content">
-
-                                                <div class="widget-box">
-
-                                                    <div class="widget-content nopadding">
-                                                        <table class="table table-bordered table-striped">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Codigo</th>
-                                                                    <th>Nombre</th>
-                                                                    <th>Grupo</th>
-                                                                    <th>Docente</th>
-                                                                    <th></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-    <?php
-    foreach ($sem as $row) {
-        ?>
-
-                                                                    <tr class="odd gradeA">
-                                                                        <td> <?php echo $row[0]; ?> </td>
-                                                                        <td> <?php echo $row[1]; ?> </td>
-                                                                        <td> <?php echo $row[3]; ?> </td>
-                                                                        <td> <?php echo $row[4]; ?></td>
-                                                                        <td>
-                                                                            <a href="materia.php?cod=<?php echo $row[0]."&gru=$row[5]"; ?> ">
-                                                                                <span class="label label-info">ver info</span>
-                                                                            </a>
-                                                                        </td>
+                                            <div id="collapsesem<?php echo $contc . $cont; ?>" class="collapse">
+                                                <?php $cont++; ?>
+                                                <div class="widget-content">
+                                                    <div class="widget-box">
+                                                        <div class="widget-content nopadding">
+                                                            <table class="table table-bordered table-striped">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Codigo</th>
+                                                                        <th>Nombre</th>
+                                                                        <th>Grupo</th>
+                                                                        <th>Docente</th>
+                                                                        <th></th>
                                                                     </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php
+                                                                    foreach ($sem as $row) {
+                                                                        ?>
 
-    <?php } ?>
-                                                            </tbody>
-                                                        </table>                                                    
+                                                                        <tr class="odd gradeA">
+                                                                            <td> <?php echo $row[0]; ?> </td>
+                                                                            <td> <?php echo $row[1]; ?> </td>
+                                                                            <td> <?php echo $row[3]; ?> </td>
+                                                                            <td> <?php echo $row[4]; ?></td>
+                                                                            <td>
+                                                                                <a href="materia.php?cod=<?php echo $row[0] . "&gru=$row[5]"; ?> ">
+                                                                                    <span class="label label-info">ver info</span>
+                                                                                </a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    <?php } ?>
+                                                                </tbody>
+                                                            </table>                                                    
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                        </div>
-                                         <?php $contc++; ?>
-<?php } ?>
-
-
-
-
-
+                                            <?php $contc++; ?>
+                                        <?php } ?>
                                     </div>
-
                                 </div>
                             </div>
-
-<?php } ?>
-
-
-
+                        <?php } ?>
                     </div>       
-
                 </div>
-
             </div>
         </div>
 
         <!--end-main-container-part-->
 
         <!--Footer-part-->
-<?php
-include("../includes/footer.php");
-?>
+        <?php include("../includes/footer.php"); ?>
         <!--end-Footer-part-->
 
         <script src="../js/excanvas.min.js"></script> 

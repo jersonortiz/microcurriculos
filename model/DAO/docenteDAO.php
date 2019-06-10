@@ -1,4 +1,5 @@
 <?php
+
 require_once '../../model/util/Conexion.php';
 require_once '../../model/DTO/docenteDTO.php';
 
@@ -25,9 +26,9 @@ class docenteDAO {
                     . ' VALUES(null, :codper,:nomdep ,:numgrup )');
             //$consulta->bindParam(':id', $ces->getId());
             $consulta->bindParam(':codper', $ces->getCodigo_persona());
-            $consulta->bindParam(':nomdep', $ces->getNombre_departamento() );
+            $consulta->bindParam(':nomdep', $ces->getNombre_departamento());
             $consulta->bindParam(':numgrup', $ces->getGruponumero());
-            
+
             if ($consulta->execute()) {
                 $mensaje = "exitoso";
             }
@@ -95,11 +96,11 @@ class docenteDAO {
         $asct = array();
 
         foreach ($tabla_datos as $con => $valor) {
-                $ces = new docenteDTO();
-                $ces->setId($tabla_datos[$con]["id"]);
-                $ces->setCodigo_persona($tabla_datos[$con]["codigo_persona"]);
-                $ces->setNombre_departamento($tabla_datos[$con]["nombre_departamento"]);
-                $ces->setGruponumero($tabla_datos[$con]["gruponumero"]);
+            $ces = new docenteDTO();
+            $ces->setId($tabla_datos[$con]["id"]);
+            $ces->setCodigo_persona($tabla_datos[$con]["codigo_persona"]);
+            $ces->setNombre_departamento($tabla_datos[$con]["nombre_departamento"]);
+            $ces->setGruponumero($tabla_datos[$con]["gruponumero"]);
             array_push($asct, $ces);
         }
         return $asct;

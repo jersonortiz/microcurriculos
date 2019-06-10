@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+    <?php
+    $cod = $_GET["cod"];
+    require_once '../../model/DAO/asignaturaDAO.php';
+    require_once '../../model/DTO/asignaturaDTO.php';
+    require_once '../../controllers/consultaseguimientocontroller.php';
+    $algo = new consultaController();
+    $list = $algo->consultaestudiante($cod);
+    ?>
+
     <head>
         <title>Admin</title>
         <meta charset="UTF-8" />

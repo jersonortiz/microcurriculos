@@ -12,23 +12,30 @@
  * @author Camilo J
  */
 class temaDTO {
+
     //put your code here
     private $id;
-    private $unidad;
+    private $idunidad;
+    private $calificacion;
+
     private $nombre;
     private $actividad_presencial;
     private $trabajo_independiente;
-    
+
     function __construct() {
         
     }
-    
+
     function getId() {
         return $this->id;
     }
 
-    function getUnidad() {
-        return $this->unidad;
+    function getIdunidad() {
+        return $this->idunidad;
+    }
+
+    function getCalificacion() {
+        return $this->calificacion;
     }
 
     function getNombre() {
@@ -47,8 +54,11 @@ class temaDTO {
         $this->id = $id;
     }
 
-    function setUnidad($unidad) {
-        $this->unidad = $unidad;
+    function setIdunidad($idunidad) {
+        $this->idunidad = $idunidad;
+    }
+    function setCalificacion($calificacion) {
+        $this->calificacion = $calificacion;
     }
 
     function setNombre($nombre) {
@@ -62,6 +72,5 @@ class temaDTO {
     function setTrabajo_independiente($trabajo_independiente) {
         $this->trabajo_independiente = $trabajo_independiente;
     }
-
 
 }

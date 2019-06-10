@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 09-06-2019 a las 14:16:45
+-- Tiempo de generación: 10-06-2019 a las 19:24:40
 -- Versión del servidor: 5.7.26-0ubuntu0.18.04.1
 -- Versión de PHP: 7.2.19-0ubuntu0.18.04.1
 
@@ -136,8 +136,10 @@ CREATE TABLE `estudiante` (
 
 INSERT INTO `estudiante` (`id`, `codigo_persona`, `id_matricula`) VALUES
 (2, 959, 1),
-(3, 1081, 1),
-(4, 1130, 1);
+(3, 1081, 3),
+(4, 1130, 4),
+(5, 1111, 77),
+(6, 1178, 6);
 
 -- --------------------------------------------------------
 
@@ -180,7 +182,8 @@ INSERT INTO `grupo` (`grupo_numero`, `codigo_asignatura`, `grupo`) VALUES
 (2, 101101, 'A'),
 (3, 102102, 'A'),
 (4, 109109, 'A'),
-(5, 111111, 'A');
+(5, 111111, 'A'),
+(6, 111111, 'B');
 
 -- --------------------------------------------------------
 
@@ -199,9 +202,12 @@ CREATE TABLE `grupomatricula` (
 
 INSERT INTO `grupomatricula` (`grupo_numero`, `id_matricula`) VALUES
 (2, 3),
+(5, 3),
 (3, 4),
+(6, 4),
 (4, 5),
-(5, 6);
+(5, 6),
+(5, 77);
 
 -- --------------------------------------------------------
 
@@ -294,7 +300,8 @@ INSERT INTO `matricula` (`id`, `semestre`, `código_programa`) VALUES
 (73, 1, 100),
 (74, 2, 100),
 (75, 1, 101),
-(76, 2, 101);
+(76, 2, 101),
+(77, 2, 119);
 
 -- --------------------------------------------------------
 
@@ -308,18 +315,19 @@ CREATE TABLE `microcurriculo` (
   `peso` varchar(50) NOT NULL,
   `formato` varchar(50) NOT NULL,
   `archivo` varchar(50) NOT NULL,
-  `codigo_asignatura` int(11) NOT NULL
+  `id_grupo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `microcurriculo`
 --
 
-INSERT INTO `microcurriculo` (`id`, `nombre`, `peso`, `formato`, `archivo`, `codigo_asignatura`) VALUES
-(101101101, 'calculo integral', '12kb', 'word', 'curriculo2', 101101),
-(102102102, 'etica', '12kb', 'word', 'curriculo3', 102102),
-(109109109, 'fisica I', '12kb', 'word', 'curriculo4', 109109),
-(111111111, 'fisica II', '12kb', 'word', 'curriculo5', 111111);
+INSERT INTO `microcurriculo` (`id`, `nombre`, `peso`, `formato`, `archivo`, `id_grupo`) VALUES
+(101101101, 'calculo integral', '12kb', 'word', 'curriculo2', 2),
+(102102102, 'etica', '12kb', 'word', 'curriculo3', 3),
+(109109109, 'fisica I', '12kb', 'word', 'curriculo4', 4),
+(111111111, 'fisica II', '12kb', 'word', 'curriculo5', 5),
+(111111112, 'fisica II', '20 KB', '.docx', 'microcurriculo.dock', 6);
 
 -- --------------------------------------------------------
 
@@ -487,7 +495,10 @@ INSERT INTO `prueba` (`id`, `fecha`, `porcentaje`, `id_prueba`, `id_unidad`, `id
 (1022, '0000-00-00', 60, 4, 101101102, 1011011022),
 (1033, '0000-00-00', 50, 4, 102102103, 1021021033),
 (1044, '0000-00-00', 88, 3, 109109104, 1091091044),
-(1155, '0000-00-00', 76, 3, 111111115, 1111111155);
+(1155, '0000-00-00', 76, 3, 111111115, 1111111155),
+(1156, '2019-06-10', 75, 6, 111111115, 1111111155),
+(1157, '2019-06-10', 75, 77, 111111115, 1111111155),
+(1158, '2019-06-10', 75, 4, 111111117, 1111111156);
 
 -- --------------------------------------------------------
 
@@ -498,21 +509,22 @@ INSERT INTO `prueba` (`id`, `fecha`, `porcentaje`, `id_prueba`, `id_unidad`, `id
 CREATE TABLE `tema` (
   `id` int(11) NOT NULL,
   `id_unidad` int(11) NOT NULL,
+  `calificacion` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `actividadpresencial` varchar(200) NOT NULL,
-  `trabajoindependiente` varchar(200) NOT NULL,
-  `unidad` varchar(50) NOT NULL
+  `trabajoindependiente` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tema`
 --
 
-INSERT INTO `tema` (`id`, `id_unidad`, `nombre`, `actividadpresencial`, `trabajoindependiente`, `unidad`) VALUES
-(1011011022, 101101102, 'integrales', '4', '8', 'unidad2'),
-(1021021033, 102102103, 'valores', '4', '8', 'unidad3'),
-(1091091044, 109109104, 'fuerza', '3', '6', 'unidad4'),
-(1111111155, 111111115, 'electrones', '3', '6', 'unidad5');
+INSERT INTO `tema` (`id`, `id_unidad`, `calificacion`, `nombre`, `actividadpresencial`, `trabajoindependiente`) VALUES
+(1011011022, 101101102, 0, 'integrales', '4', '8'),
+(1021021033, 102102103, 0, 'valores', '4', '8'),
+(1091091044, 109109104, 0, 'fuerza', '3', '6'),
+(1111111155, 111111115, 0, 'electrones', '3', '6'),
+(1111111156, 111111116, 0, 'electronesss', '3', '6');
 
 -- --------------------------------------------------------
 
@@ -543,9 +555,9 @@ CREATE TABLE `unidad` (
   `id` int(11) NOT NULL,
   `nombre_contenido` varchar(50) NOT NULL,
   `id_microcurriculo` int(11) NOT NULL,
-  `horaspresenciales` time NOT NULL,
-  `horasindependientes` time NOT NULL,
-  `horatotal` time NOT NULL
+  `horaspresenciales` int(11) NOT NULL,
+  `horasindependientes` int(11) NOT NULL,
+  `horatotal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -553,10 +565,12 @@ CREATE TABLE `unidad` (
 --
 
 INSERT INTO `unidad` (`id`, `nombre_contenido`, `id_microcurriculo`, `horaspresenciales`, `horasindependientes`, `horatotal`) VALUES
-(101101102, 'unidad2', 101101101, '00:00:04', '00:00:08', '00:00:12'),
-(102102103, 'unidad3', 102102102, '00:00:04', '00:00:08', '00:00:12'),
-(109109104, 'unidad4', 109109109, '00:00:03', '00:00:06', '00:00:09'),
-(111111115, 'unidad5', 111111111, '00:00:03', '00:00:06', '00:00:09');
+(101101102, 'unidad2', 101101101, 4, 8, 12),
+(102102103, 'unidad3', 102102102, 4, 8, 12),
+(109109104, 'unidad4', 109109109, 3, 6, 9),
+(111111115, 'unidad5', 111111111, 3, 6, 9),
+(111111116, 'unidad6', 111111111, 84748, 84750, 84753),
+(111111117, 'unidad 1', 111111112, 93700, 93703, 93715);
 
 --
 -- Índices para tablas volcadas
@@ -632,7 +646,7 @@ ALTER TABLE `matricula`
 --
 ALTER TABLE `microcurriculo`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_microcurriculo_asignatura` (`codigo_asignatura`);
+  ADD KEY `fk_grupo_microcurriculo` (`id_grupo`);
 
 --
 -- Indices de la tabla `persona`
@@ -692,7 +706,7 @@ ALTER TABLE `unidad`
 -- AUTO_INCREMENT de la tabla `administrador`
 --
 ALTER TABLE `administrador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `docente`
 --
@@ -702,12 +716,22 @@ ALTER TABLE `docente`
 -- AUTO_INCREMENT de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT de la tabla `grupo`
+--
+ALTER TABLE `grupo`
+  MODIFY `grupo_numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `matricula`
 --
 ALTER TABLE `matricula`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+--
+-- AUTO_INCREMENT de la tabla `unidad`
+--
+ALTER TABLE `unidad`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111111118;
 --
 -- Restricciones para tablas volcadas
 --
@@ -729,6 +753,24 @@ ALTER TABLE `docente`
 --
 ALTER TABLE `estudiante`
   ADD CONSTRAINT `fk_estudiante_persona` FOREIGN KEY (`codigo_persona`) REFERENCES `persona` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `microcurriculo`
+--
+ALTER TABLE `microcurriculo`
+  ADD CONSTRAINT `fk_grupo_microcurriculo` FOREIGN KEY (`id_grupo`) REFERENCES `grupo` (`grupo_numero`);
+
+--
+-- Filtros para la tabla `tema`
+--
+ALTER TABLE `tema`
+  ADD CONSTRAINT `fk_tema_unidad` FOREIGN KEY (`id_unidad`) REFERENCES `unidad` (`id`);
+
+--
+-- Filtros para la tabla `unidad`
+--
+ALTER TABLE `unidad`
+  ADD CONSTRAINT `fk_unidad_microcurriculo` FOREIGN KEY (`id_microcurriculo`) REFERENCES `microcurriculo` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

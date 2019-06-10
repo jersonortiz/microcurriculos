@@ -10,6 +10,8 @@ require_once '../../model/DAO/unidadDAO.php';
 require_once '../../model/DTO/unidadDTO.php';
 require_once '../../model/DAO/pruebaDAO.php';
 require_once '../../model/DTO/pruebaDTO.php';
+require_once '../../model/DAO/estudianteDAO.php';
+require_once '../../model/DTO/estudianteDTO.php';
 
 class consultaController {
 
@@ -76,35 +78,24 @@ class consultaController {
 
         $grupos = $grdao->consultar($cod);
         $asign = $asigdao->consultar($cod);
-
-
         $retorno = array();
 
         foreach ($grupos as $grup) {
-
-            $numgrupo= $grup->getGrupo_numero();
-//asdasds
-            $unidades = $udao->consultar($cod, $numgrupo);/// echo
-            //fnciona          asdsd
-            //rint_r($unidades);
-  
-            $datounidad = $this->cargapruebas($unidades , $numgrupo );
-   
+            $numgrupo = $grup->getGrupo_numero();
+            $unidades = $udao->consultar($cod, $numgrupo);
+            $datounidad = $this->cargapruebas($unidades, $numgrupo);
             array_push($retorno, array("grup" => $grup, "unid" => $datounidad));
         }
         return $retorno;
     }
 
-    public function cargapruebas($unidades ,$numgrupo ) {
+    public function cargapruebas($unidades, $numgrupo) {
         $prdao = new pruebaDAO();
         $datounidad = array();
-        
+
         foreach ($unidades as $unidad) {
-
             $pruebas = $prdao->consultarPorUnidad($unidad->getId());
-            //print_r($pruebas);
             $datoper = $this->cargapersonas($pruebas);
-
             array_push($datounidad, array("uni" => $unidad, "pru" => $datoper));
         }
         return $datounidad;
@@ -115,8 +106,6 @@ class consultaController {
 
         foreach ($pruebas as $prueba) {
             $retor = $this->consultaDatos($prueba->getId());
-                        
-            //print_r($retor);
             array_push($datoper, $retor);
         }
         return $datoper;
@@ -136,6 +125,21 @@ class consultaController {
             array_push($astraba, $con);
         }
         return $astraba;
+    }
+
+    public function consultaestudiante($codigo) {
+
+        $estudao = new estudianteDAO();
+        $unidao = new unidadDAO();
+
+        $materias = $estudao->consultarMaterias($codigo);
+        //print_r($materias);
+
+        foreach ($materias as $materia) {
+            $unidadesest =$unidao->consultar($materia["mat"]->getCodigo(),$materia["gru"]->getGrupo_numero());
+            print_r($unidadesest);
+            
+        }
     }
 
 }
