@@ -1,7 +1,7 @@
 <?php
 
-require_once '../model/util/Conexion.php';
-require_once '../model/DTO/grupoDTO.php';
+require_once '../../model/util/Conexion.php';
+require_once '../../model/DTO/grupoDTO.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -43,25 +43,32 @@ class unidadDAO {
      * busca con base a la id de la asignatura
      */
 
-    public function consultar($id) {
+    public function consultar($id, $gru) {
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM unidad WHERE codigo_asignatura= :idc');
+        $consulta = $conexion->prepare("SELECT U.id , U.nombre_contenido ,"
+                . " U.id_microcurriculo , U.horaspresenciales , "
+                . "U.horasindependientes , U.horatotal FROM unidad U ,"
+                . " microcurriculo M  ,grupo G WHERE U.id_microcurriculo="
+                . " M.id AND M.codigo_asignatura = :idc AND G.codigo_asignatura="
+                . "M.codigo_asignatura AND G.grupo= :idg");
         $consulta->bindParam(':idc', $id);
+        $consulta->bindParam(':idg', $gru);
         $consulta->execute();
         $tabla_datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
         $ces = null;
-        if (count($tabla_datos) == 1) {
 
-            foreach ($tabla_datos as $con => $valor) {
-                $ces = new unidadDTO();
-                $ces->setGrupo_numero($tabla_datos[$con]["grupo_numero"]);
-                $ces->setCodigo_asignatura($tabla_datos[$con]["codigo_asignatura"]);
-                $ces->setGrupo($tabla_datos[$con]["grupo"]);
-            }
-            return $ces;
-        } else {
-            return null;
+        $astraba = array();
+        foreach ($tabla_datos as $con => $valor) {
+            $ces = new unidadDTO();
+            $ces->setId($tabla_datos[$con]["id"]);
+            $ces->setNombre($tabla_datos[$con]["nombre_contenido"]);
+            $ces->setId_microcurriculo($tabla_datos[$con]["id_microcurriculo"]);
+            $ces->setHora_presencial($tabla_datos[$con]["horaspresenciales"]);
+            $ces->setHora_independiente($tabla_datos[$con]["horasindependientes"]);
+            $ces->setHora_total($tabla_datos[$con]["horatotal"]);
+            array_push($astraba, $ces);
         }
+        return $astraba;
     }
 
     /*
@@ -71,7 +78,7 @@ class unidadDAO {
     public function eliminar($id) {
         $mensaje = "Fallido";
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('DELETE FROM grupo WHERE grupo_numero= :idc');
+        $consulta = $conexion->prepare('DELETE FROM unidad WHERE id= :idc');
         $consulta->bindParam(':idc', $id);
         if ($consulta->execute()) {
             $mensaje = "exitoso";
@@ -84,21 +91,26 @@ class unidadDAO {
      * puede usar un foreach para acceder a los vlores
      *
      */
+
     public function listar() {
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM asignatura');
+        $consulta = $conexion->prepare('SELECT * FROM unidad');
         $consulta->execute();
         $ces = null;
         $tabla_datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
         $astraba = array();
-        
+
         foreach ($tabla_datos as $con => $valor) {
-            $ces = new grupoDTO();
-            $ces->setGrupo_numero($tabla_datos[$con]["grupo_numero"]);
-            $ces->setCodigo_asignatura($tabla_datos[$con]["codigo_asignatura"]);
-            $ces->setGrupo($tabla_datos[$con]["grupo"]);
+            $ces = new unidadDTO();
+            $ces->setId($tabla_datos[$con]["id"]);
+            $ces->setNombre($tabla_datos[$con]["nombre_contenido"]);
+            $ces->setId_microcurriculo($tabla_datos[$con]["id_microcurriculo"]);
+            $ces->setHora_presencialo($tabla_datos[$con]["horaspresenciales"]);
+            $ces->setHora_independiente($tabla_datos[$con]["horasindependientes"]);
+            $ces->setHora_total($tabla_datos[$con]["horatotal"]);
             array_push($astraba, $ces);
         }
         return $astraba;
     }
+
 }

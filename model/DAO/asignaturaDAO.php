@@ -1,7 +1,7 @@
 <?php
 
-require_once '../model/util/Conexion.php';
-require_once '../model/DTO/asignaturaDTO.php';
+require_once '../../model/util/Conexion.php';
+require_once '../../model/DTO/asignaturaDTO.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -24,7 +24,7 @@ class asignaturaDAO {
         $mensaje = "Fallido";
 
         if ($conexion != null) {
-            $consulta = $conexion->prepare('INSERT INTO asignatura(codigo,nombre, semestre, intensidadhoraria,creditos, nombre_plandeestudios) VALUES(:cod, :nom , :sem , ;int, :cre,:pla)');
+            $consulta = $conexion->prepare('INSERT INTO asignatura(codigo,nombre, semestre, intensidadhoraria,creditos, nombre_plandeestudios) VALUES(:cod, :nom , :sem , :int, :cre,:pla)');
 
 
             $consulta->bindParam(':cod', $ces->getCodigo());

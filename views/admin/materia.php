@@ -1,5 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+    <?php
+    $cod = $_GET["cod"];
+     $gru = $_GET["gru"];
+    require_once '../../model/DAO/asignaturaDAO.php';
+    require_once '../../model/DTO/asignaturaDTO.php';
+    require_once '../../controllers/consultaseguimientocontroller.php';
+        $algo = new consultaController();
+    $list = $algo->consultaMateria($cod, $gru);
+    //print_r($list);
+    $asig = new asignaturaDAO();
+    $mat = $asig->consultar($cod);
+    ?>
+
     <head>
         <title>Admin</title>
         <meta charset="UTF-8" />
@@ -23,8 +36,8 @@
         <!--main-container-part-->
         <div id="content">
 
-              <div id="content-header">
-              
+            <div id="content-header">
+
             </div>
             <!--breadcrumbs-->
 
@@ -34,6 +47,8 @@
                     <a href="#" class="current" >consulta materia</a>
                 </div>
             </div-->
+            
+            <?php   //echo print_r($list);?>
 
             <div class="container-fluid">
                 <div class="row-fluid">
@@ -45,27 +60,25 @@
                     </div>
 
 
-                <div class="widget-box">
-                    <div class="widget-title">
-                        <h5>Informacion de materia</h5>
-                    </div>
-                    <div class="widget-content">
+                    <div class="widget-box">
+                        <div class="widget-title">
+                            <h5>Informacion de materia</h5>
+                        </div>
+                        <div class="widget-content">
 
-                        codigo:  <span class="label">115001</span>
-                        <br>
-                        nombre: <span class="label">materia 1</span>
-                        <br>
-                        semestre <span class="label">1</span>
-                        <br>
-                        numero de grupos <span class="label">2</span>
-                        <br>
-                        intensidad horaria <span class="label">3</span>
-                        <br>
-                        creditos<span class="label">3</span>
-                        <br>
-                        
+                            codigo:  <span class="label"> <?php echo $mat->getCodigo() ?> </span>
+                            <br>
+                            nombre: <span class="label"><?php echo $mat->getNombre() ?></span>
+                            <br>
+                            semestre <span class="label"><?php echo $mat->getSemestre() ?></span>
+                            <br>
+                            intensidad horaria <span class="label"><?php echo $mat->getIntencidad_horaria() ?></span>
+                            <br>
+                            creditos<span class="label"><?php echo $mat->getCreditos() ?></span>
+                            <br>
+
+                        </div>
                     </div>
-                </div>
 
 
                     <div class="widget-box collapsible">

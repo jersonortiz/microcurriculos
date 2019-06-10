@@ -1,7 +1,7 @@
 <?php
 
-require_once '../model/util/Conexion.php';
-require_once '../model/DTO/grupoDTO.php';
+require_once '../../model/util/Conexion.php';
+require_once '../../model/DTO/grupoDTO.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -52,18 +52,16 @@ class grupoDAO {
 
         $tabla_datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
         $ces = null;
-        if (count($tabla_datos) == 1) {
+        $astraba = array();
 
-            foreach ($tabla_datos as $con => $valor) {
-                $ces = new grupoDTO();
-                $ces->setGrupo_numero($tabla_datos[$con]["grupo_numero"]);
-                $ces->setCodigo_asignatura($tabla_datos[$con]["codigo_asignatura"]);
-                $ces->setGrupo($tabla_datos[$con]["grupo"]);
-            }
-            return $ces;
-        } else {
-            return null;
+        foreach ($tabla_datos as $con => $valor) {
+            $ces = new grupoDTO();
+            $ces->setGrupo_numero($tabla_datos[$con]["grupo_numero"]);
+            $ces->setCodigo_asignatura($tabla_datos[$con]["codigo_asignatura"]);
+            $ces->setGrupo($tabla_datos[$con]["grupo"]);
+            array_push($astraba, $ces);
         }
+        return $astraba;
     }
 
     /*

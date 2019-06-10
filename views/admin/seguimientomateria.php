@@ -38,20 +38,14 @@
 
                     </div>
 
-
-
-
                     <div class="widget-box collapsible">
 
                         <?php
                         $contc = 1;
                         foreach ($list as $fila) {
                             $plan = $fila["pro"];
-
                             $mats = $fila["mat"];
-
-                            
-                            ?>
+                        ?>
 
                             <div class="widget-title">
                                 <a data-toggle="collapse" href="#collapse<?php echo $contc; ?>">
@@ -63,17 +57,23 @@
                                 <div class="widget-content">
 
                                     <div class="widget-box collapsible">
+                                <?php  
+                                $cont=1;
 
+                                foreach ($mats as $sem) { 
+                                 ?>
 
 
                                         <div class="widget-title">
-                                            <a data-toggle="collapse" href="#collapsesem<?php echo $contc; ?>">
-                                                <h5>Semestre 1</h5>
+                                            <a data-toggle="collapse" href="#collapsesem<?php echo $contc.$cont; ?>">
+                                                <h5>Semestre <?php echo $cont; ?> </h5>
+                                            
                                             </a>
                                         </div>
 
-                                        <div id="collapsesem<?php echo $contc; ?>" class="collapse">
-    <?php $contc++; ?>
+                                        <div id="collapsesem<?php echo $contc . $cont; ?>" class="collapse">
+                                             <?php $cont++; ?>
+
                                             <div class="widget-content">
 
                                                 <div class="widget-box">
@@ -91,16 +91,16 @@
                                                             </thead>
                                                             <tbody>
     <?php
-    foreach ($mats as $row) {
+    foreach ($sem as $row) {
         ?>
 
                                                                     <tr class="odd gradeA">
-                                                                        <td> <?php echo "codigo: " . $row[0]; ?> </td>
-                                                                        <td> <?php echo "codigo: " . $row[1]; ?> </td>
-                                                                        <td> <?php echo "codigo: " . $row[3]; ?> </td>
-                                                                        <td> <?php echo "codigo: " . $row[4]; ?></td>
+                                                                        <td> <?php echo $row[0]; ?> </td>
+                                                                        <td> <?php echo $row[1]; ?> </td>
+                                                                        <td> <?php echo $row[3]; ?> </td>
+                                                                        <td> <?php echo $row[4]; ?></td>
                                                                         <td>
-                                                                            <a href="materia.php?cod=<?php echo $row[0]; ?> ">
+                                                                            <a href="materia.php?cod=<?php echo $row[0]."&gru=$row[5]"; ?> ">
                                                                                 <span class="label label-info">ver info</span>
                                                                             </a>
                                                                         </td>
@@ -114,7 +114,8 @@
                                             </div>
 
                                         </div>
-
+                                         <?php $contc++; ?>
+<?php } ?>
 
 
 
