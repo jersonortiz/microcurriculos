@@ -8,7 +8,6 @@
     require_once '../../controllers/consultaseguimientocontroller.php';
         $algo = new consultaController();
     $list = $algo->consultaMateria($cod, $gru);
-    //print_r($list);
     $asig = new asignaturaDAO();
     $mat = $asig->consultar($cod);
     ?>
@@ -48,7 +47,7 @@
                 </div>
             </div-->
             
-            <?php   //echo print_r($list);?>
+    
 
             <div class="container-fluid">
                 <div class="row-fluid">
@@ -83,23 +82,37 @@
 
                     <div class="widget-box collapsible">
 
+
+                        <?php foreach ($list as $val) {                       
+                              $nomgrupo= $val["grup"]->getGrupo();
+                         ?>
+
                         <div class="widget-title">
-                            <a data-toggle="collapse" href="#collapseOne">
-                                <h5>grupo A</h5>
+                            <a data-toggle="collapse" href="#collapsegrupo<?php echo $nomgrupo; ?>">
+                                <h5><?php  echo "Grupo ".$nomgrupo ?>  </h5>
                             </a>
                         </div>
-                        <div id="collapseOne" class="collapse">
+                        <div id="collapsegrupo<?php echo $nomgrupo; ?>" class="collapse">
 
                             <div class="widget-content">
 
                                 <div class="widget-box collapsible">
 
+                                    <?php  $unidades= $val["unid"]; 
+
+                                    foreach ($unidades as $datos) {
+                                         $coduni = $datos['uni']->getId();
+
+                                        $nomuni = $datos['uni']->getNombre();
+                                     ?>
+
                                     <div class="widget-title">
-                                        <a data-toggle="collapse" href="#collapsesem1">
-                                            <h5>Unidad 1</h5>
+                                        <a data-toggle="collapse" href="#collapseuni<?php echo $nomgrupo.$coduni; ?>">
+                                            <h5><?php echo $nomuni; ?> </h5>
                                         </a>
                                     </div>
-                                    <div id="collapsesem1" class="collapse">
+
+                                    <div id="collapseuni<?php echo $nomgrupo.$coduni;?>" class="collapse">
                                         <div class="widget-content">
 
                                             <div class="widget-box">
@@ -119,62 +132,29 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+
+                                                            <?php  foreach ($datos["pru"] as $estudiante) { 
+                                                                ?>
+
                                                             <tr class="odd gradeA">
                                                                 <td>
                                                                     <a href="materia.php"  >
-                                                                        <span class="label label-info">1150001</span>
+                                                                        <span class="label label-info">
+                                                                            <?php echo $estudiante[0][0]; ?>
+                                                                        </span>
                                                                     </a>
                                                                 </td>
-                                                                <td>Estudiante 1</td>
-                                                                <td>80%</td>
+                                                                <td><?php echo $estudiante[0][1]; ?></td>
+                                                                <td><?php echo $estudiante[0][2]; ?></td>
                                                                 <td>
-                                                                    <a href="estudiante.php">
+                                                                    <a href="estudiante.php?cod=<?php echo $estudiante[0][0]; ?> ">
                                                                         <span class="label label-info">ver info</span>
                                                                     </a>
                                                                 </td>
                                                             </tr>
-                                                            <tr class="even gradeB">
-                                                                <td>
-                                                                    <a href="materia.php"  >
-                                                                        <span class="label label-info">1150001</span>
-                                                                    </a>
-                                                                </td>
-                                                                <td>Estudiante 2</td>
-                                                                <td>80%</td>
-                                                                <td>
-                                                                    <a href="estudiante.php">
-                                                                        <span class="label label-info">ver info</span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="odd gradeC">
-                                                                <td>
-                                                                    <a href="materia.php"  >
-                                                                        <span class="label label-info">1150001</span>
-                                                                    </a>
-                                                                </td>
-                                                                <td>Estudiante 3</td>
-                                                                <td>80%</td>
-                                                                <td>
-                                                                    <a href="estudiante.php">
-                                                                        <span class="label label-info">ver info</span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="even gradeD">
-                                                                <td>
-                                                                    <a href="materia.php"  >
-                                                                        <span class="label label-info">1150001</span>
-                                                                    </a>
-                                                                </td>
-                                                                <td>Estudiante 4</td>
-                                                                <td>80%</td>
-                                                                <td>
-                                                                    <a href="estudiante.php">
-                                                                        <span class="label label-info">ver info</span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
+                                                          
+                                                        
+                                                        <?php } ?>
                                                         </tbody>
                                                     </table>
 
@@ -187,465 +167,15 @@
                                     </div>
 
 
-                                    <div class="widget-title">
-                                        <a data-toggle="collapse" href="#collapsesem2">
-                                            <h5>Unidad 2</h5>
-                                        </a>
-                                    </div>
-                                    <div id="collapsesem2" class="collapse">
-                                        <div class="widget-content">
-                                            <div class="widget-box">
-                                                <div class="widget-title">
-                                                    <span class="icon"><i class="icon-th"></i></span>
-                                                    <h5>Cumplimiento por estudiante</h5>
-                                                </div>
-
-                                                <div class="widget-content nopadding">
-                                                    <table class="table table-bordered table-striped">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Codigo</th>
-                                                                <th>Nombre</th>
-                                                                <th>Calificacion</th>
-                                                                <th></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr class="odd gradeA">
-                                                                <td>
-                                                                    <a href="materia.php"  >
-                                                                        <span class="label label-info">1150001</span>
-                                                                    </a>
-                                                                </td>
-                                                                <td>Estudiante 1</td>
-                                                                <td>80%</td>
-                                                                <td>
-                                                                    <a href="estudiante.php">
-                                                                        <span class="label label-info">ver info</span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="even gradeB">
-                                                                <td>
-                                                                    <a href="materia.php"  >
-                                                                        <span class="label label-info">1150001</span>
-                                                                    </a>
-                                                                </td>
-                                                                <td>Estudiante 2</td>
-                                                                <td>80%</td>
-                                                                <td>
-                                                                    <a href="estudiante.php">
-                                                                        <span class="label label-info">ver info</span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="odd gradeC">
-                                                                <td>
-                                                                    <a href="materia.php"  >
-                                                                        <span class="label label-info">1150001</span>
-                                                                    </a>
-                                                                </td>
-                                                                <td>Estudiante 3</td>
-                                                                <td>80%</td>
-                                                                <td>
-                                                                    <a href="estudiante.php">
-                                                                        <span class="label label-info">ver info</span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="even gradeD">
-                                                                <td>
-                                                                    <a href="materia.php"  >
-                                                                        <span class="label label-info">1150001</span>
-                                                                    </a>
-                                                                </td>
-                                                                <td>Estudiante 4</td>
-                                                                <td>80%</td>
-                                                                <td>
-                                                                    <a href="estudiante.php">
-                                                                        <span class="label label-info">ver info</span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="widget-title">
-                                        <a data-toggle="collapse" href="#collapsesem3">
-                                            <h5>Unidad 3</h5>
-                                        </a>
-                                    </div>
-                                    <div id="collapsesem3" class="collapse">
-                                        <div class="widget-box">
-                                            <div class="widget-title">
-                                                <span class="icon"><i class="icon-th"></i></span>
-                                                <h5>Cumplimiento por estudiante</h5>
-                                            </div>
-
-                                            <div class="widget-content nopadding">
-                                                <table class="table table-bordered table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Codigo</th>
-                                                            <th>Nombre</th>
-                                                            <th>Calificacion</th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr class="odd gradeA">
-                                                            <td>
-                                                                <a href="materia.php"  >
-                                                                    <span class="label label-info">1150001</span>
-                                                                </a>
-                                                            </td>
-                                                            <td>Estudiante 1</td>
-                                                            <td>80%</td>
-                                                            <td>
-                                                                <a href="estudiante.php">
-                                                                    <span class="label label-info">ver info</span>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="even gradeB">
-                                                            <td>
-                                                                <a href="materia.php"  >
-                                                                    <span class="label label-info">1150001</span>
-                                                                </a>
-                                                            </td>
-                                                            <td>Estudiante 2</td>
-                                                            <td>80%</td>
-                                                            <td>
-                                                                <a href="estudiante.php">
-                                                                    <span class="label label-info">ver info</span>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="odd gradeC">
-                                                            <td>
-                                                                <a href="materia.php"  >
-                                                                    <span class="label label-info">1150001</span>
-                                                                </a>
-                                                            </td>
-                                                            <td>Estudiante 3</td>
-                                                            <td>80%</td>
-                                                            <td>
-                                                                <a href="estudiante.php">
-                                                                    <span class="label label-info">ver info</span>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="even gradeD">
-                                                            <td>
-                                                                <a href="materia.php"  >
-                                                                    <span class="label label-info">1150001</span>
-                                                                </a>
-                                                            </td>
-                                                            <td>Estudiante 4</td>
-                                                            <td>80%</td>
-                                                            <td>
-                                                                <a href="estudiante.php">
-                                                                    <span class="label label-info">ver info</span>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>  
-                                            </div>
-                                        </div>
-                                    </div>
+<?php } ?>
+                                    
                                 </div>
                             </div>
                         </div>
 
 
-                        <div class="widget-title">
-                            <a data-toggle="collapse" href="#collapseOn">
-                                <h5>grupo B</h5>
-                            </a>
-                        </div>
-
-
-                        <div id="collapseOn" class="collapse">
-
-                            <div class="widget-content">
-
-                                <div class="widget-box collapsible">
-
-                                    <div class="widget-title">
-                                        <a data-toggle="collapse" href="#collapsesem1">
-                                            <h5>Unidad 1</h5>
-                                        </a>
-                                    </div>
-                                    <div id="collapsesem1" class="collapse">
-                                        <div class="widget-content">
-
-                                            <div class="widget-box">
-                                                <div class="widget-title">
-                                                    <span class="icon"><i class="icon-th"></i></span>
-                                                    <h5>Cumplimiento por estudiante</h5>
-                                                </div>
-
-                                                <div class="widget-content nopadding">
-                                                    <table class="table table-bordered table-striped">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Codigo</th>
-                                                                <th>Nombre</th>
-                                                                <th>Calificacion</th>
-                                                                <th></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr class="odd gradeA">
-                                                                <td>
-                                                                    <a href="materia.php"  >
-                                                                        <span class="label label-info">1150001</span>
-                                                                    </a>
-                                                                </td>
-                                                                <td>Estudiante 1</td>
-                                                                <td>80%</td>
-                                                                <td>
-                                                                    <a href="estudiante.php">
-                                                                        <span class="label label-info">ver info</span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="even gradeB">
-                                                                <td>
-                                                                    <a href="materia.php"  >
-                                                                        <span class="label label-info">1150001</span>
-                                                                    </a>
-                                                                </td>
-                                                                <td>Estudiante 2</td>
-                                                                <td>80%</td>
-                                                                <td>
-                                                                    <a href="estudiante.php">
-                                                                        <span class="label label-info">ver info</span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="odd gradeC">
-                                                                <td>
-                                                                    <a href="materia.php"  >
-                                                                        <span class="label label-info">1150001</span>
-                                                                    </a>
-                                                                </td>
-                                                                <td>Estudiante 3</td>
-                                                                <td>80%</td>
-                                                                <td>
-                                                                    <a href="estudiante.php">
-                                                                        <span class="label label-info">ver info</span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="even gradeD">
-                                                                <td>
-                                                                    <a href="materia.php"  >
-                                                                        <span class="label label-info">1150001</span>
-                                                                    </a>
-                                                                </td>
-                                                                <td>Estudiante 4</td>
-                                                                <td>80%</td>
-                                                                <td>
-                                                                    <a href="estudiante.php">
-                                                                        <span class="label label-info">ver info</span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-
-                                                </div>
-                                            </div>
-
-
-
-                                        </div>
-                                    </div>
-
-
-                                    <div class="widget-title">
-                                        <a data-toggle="collapse" href="#collapsesem2">
-                                            <h5>Unidad 2</h5>
-                                        </a>
-                                    </div>
-                                    <div id="collapsesem2" class="collapse">
-                                        <div class="widget-content">
-                                            <div class="widget-box">
-                                                <div class="widget-title">
-                                                    <span class="icon"><i class="icon-th"></i></span>
-                                                    <h5>Cumplimiento por estudiante</h5>
-                                                </div>
-
-                                                <div class="widget-content nopadding">
-                                                    <table class="table table-bordered table-striped">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Codigo</th>
-                                                                <th>Nombre</th>
-                                                                <th>Calificacion</th>
-                                                                <th></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr class="odd gradeA">
-                                                                <td>
-                                                                    <a href="materia.php"  >
-                                                                        <span class="label label-info">1150001</span>
-                                                                    </a>
-                                                                </td>
-                                                                <td>Estudiante 1</td>
-                                                                <td>80%</td>
-                                                                <td>
-                                                                    <a href="estudiante.php">
-                                                                        <span class="label label-info">ver info</span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="even gradeB">
-                                                                <td>
-                                                                    <a href="materia.php"  >
-                                                                        <span class="label label-info">1150001</span>
-                                                                    </a>
-                                                                </td>
-                                                                <td>Estudiante 2</td>
-                                                                <td>80%</td>
-                                                                <td>
-                                                                    <a href="estudiante.php">
-                                                                        <span class="label label-info">ver info</span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="odd gradeC">
-                                                                <td>
-                                                                    <a href="materia.php"  >
-                                                                        <span class="label label-info">1150001</span>
-                                                                    </a>
-                                                                </td>
-                                                                <td>Estudiante 3</td>
-                                                                <td>80%</td>
-                                                                <td>
-                                                                    <a href="estudiante.php">
-                                                                        <span class="label label-info">ver info</span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="even gradeD">
-                                                                <td>
-                                                                    <a href="materia.php"  >
-                                                                        <span class="label label-info">1150001</span>
-                                                                    </a>
-                                                                </td>
-                                                                <td>Estudiante 4</td>
-                                                                <td>80%</td>
-                                                                <td>
-                                                                    <a href="estudiante.php">
-                                                                        <span class="label label-info">ver info</span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="widget-title">
-                                        <a data-toggle="collapse" href="#collapsesem3">
-                                            <h5>Unidad 3</h5>
-                                        </a>
-                                    </div>
-                                    <div id="collapsesem3" class="collapse">
-                                        <div class="widget-box">
-                                            <div class="widget-title">
-                                                <span class="icon"><i class="icon-th"></i></span>
-                                                <h5>Cumplimiento por estudiante</h5>
-                                            </div>
-
-                                            <div class="widget-content nopadding">
-                                                <table class="table table-bordered table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Codigo</th>
-                                                            <th>Nombre</th>
-                                                            <th>Calificacion</th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr class="odd gradeA">
-                                                            <td>
-                                                                <a href="materia.php"  >
-                                                                    <span class="label label-info">1150001</span>
-                                                                </a>
-                                                            </td>
-                                                            <td>Estudiante 1</td>
-                                                            <td>80%</td>
-                                                            <td>
-                                                                <a href="estudiante.php">
-                                                                    <span class="label label-info">ver info</span>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="even gradeB">
-                                                            <td>
-                                                                <a href="materia.php"  >
-                                                                    <span class="label label-info">1150001</span>
-                                                                </a>
-                                                            </td>
-                                                            <td>Estudiante 2</td>
-                                                            <td>80%</td>
-                                                            <td>
-                                                                <a href="estudiante.php">
-                                                                    <span class="label label-info">ver info</span>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="odd gradeC">
-                                                            <td>
-                                                                <a href="materia.php"  >
-                                                                    <span class="label label-info">1150001</span>
-                                                                </a>
-                                                            </td>
-                                                            <td>Estudiante 3</td>
-                                                            <td>80%</td>
-                                                            <td>
-                                                                <a href="estudiante.php">
-                                                                    <span class="label label-info">ver info</span>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="even gradeD">
-                                                            <td>
-                                                                <a href="materia.php"  >
-                                                                    <span class="label label-info">1150001</span>
-                                                                </a>
-                                                            </td>
-                                                            <td>Estudiante 4</td>
-                                                            <td>80%</td>
-                                                            <td>
-                                                                <a href="estudiante.php">
-                                                                    <span class="label label-info">ver info</span>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>  
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                  
+<?php  }?>
 
                     </div>       
                 </div>

@@ -71,39 +71,38 @@ class consultaController {
 
     public function consultaMateria($cod, $gru) {
         $grdao = new grupoDAO();
-        $grupos = $grdao->consultar($cod);
         $asigdao = new asignaturaDAO();
-        $asign = $asigdao->consultar($cod);
         $udao = new unidadDAO();
+
+        $grupos = $grdao->consultar($cod);
+        $asign = $asigdao->consultar($cod);
+
 
         $retorno = array();
 
         foreach ($grupos as $grup) {
 
-            $unidades = $udao->consultar($cod, $grup->getGrupo());
-            //fnciona
-            
-            print_r($unidades);
-            echo "ola";
-            $datounidad = $this->cargapruebas($unidades);
-            echo "ola";
-
-            
+            $numgrupo= $grup->getGrupo_numero();
+//asdasds
+            $unidades = $udao->consultar($cod, $numgrupo);/// echo
+            //fnciona          asdsd
+            //rint_r($unidades);
+  
+            $datounidad = $this->cargapruebas($unidades , $numgrupo );
+   
             array_push($retorno, array("grup" => $grup, "unid" => $datounidad));
         }
         return $retorno;
     }
 
-    public function cargapruebas($unidades) {
-         echo "<br> ola";
+    public function cargapruebas($unidades ,$numgrupo ) {
         $prdao = new pruebaDAO();
         $datounidad = array();
         
         foreach ($unidades as $unidad) {
 
             $pruebas = $prdao->consultarPorUnidad($unidad->getId());
-            echo "ola";
-            print_r($pruebas);
+            //print_r($pruebas);
             $datoper = $this->cargapersonas($pruebas);
 
             array_push($datounidad, array("uni" => $unidad, "pru" => $datoper));
@@ -116,7 +115,8 @@ class consultaController {
 
         foreach ($pruebas as $prueba) {
             $retor = $this->consultaDatos($prueba->getId());
-            print_r($retor);
+                        
+            //print_r($retor);
             array_push($datoper, $retor);
         }
         return $datoper;
@@ -130,7 +130,6 @@ class consultaController {
                 . " PE.codigo = E.codigo_persona AND P.id =:idc");
         $consulta->bindParam(':idc', $id);
         $consulta->execute();
-        $ces = null;
         $tabla_datos = $consulta->fetchAll(PDO::FETCH_NUM);
         $astraba = array();
         foreach ($tabla_datos as $con) {

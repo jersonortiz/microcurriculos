@@ -18,7 +18,7 @@ class microcurriculoDTO {
     private $peso;
     private $formato;
     private $archivo;
-    private $codigo_asignatura;
+    private $id_grupo;
     
     function __construct() {
         
@@ -44,8 +44,8 @@ class microcurriculoDTO {
         return $this->archivo;
     }
 
-    function getCodigo_asignatura() {
-        return $this->codigo_asignatura;
+    function getIdGrupo() {
+        return $this->id_grupo;
     }
 
     function setId($id) {
@@ -68,8 +68,8 @@ class microcurriculoDTO {
         $this->archivo = $archivo;
     }
 
-    function setCodigo_asignatura($codigo_asignatura) {
-        $this->codigo_asignatura = $codigo_asignatura;
+    function setIdGrupo($idgrup) {
+        $this->id_grupo= $idgrup;
     }
 
 

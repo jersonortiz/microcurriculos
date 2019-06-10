@@ -45,12 +45,16 @@ class unidadDAO {
 
     public function consultar($id, $gru) {
         $conexion = new Conexion();
-        $consulta = $conexion->prepare("SELECT U.id , U.nombre_contenido ,"
+
+       $consulta =  $conexion->prepare("SELECT U.id , U.nombre_contenido ,U.id_microcurriculo ,U.horaspresenciales,U.horasindependientes , U.horatotal FROM asignatura A , unidad U , microcurriculo M ,grupo G WHERE  U.id_microcurriculo=M.id AND M.id_grupo = :idg AND G.grupo_numero =M.id_grupo AND  A.codigo = G.codigo_asignatura and G.codigo_asignatura=:idc");
+
+        /*$consulta = $conexion->prepare("SELECT U.id , U.nombre_contenido ,"
                 . " U.id_microcurriculo , U.horaspresenciales , "
                 . "U.horasindependientes , U.horatotal FROM unidad U ,"
                 . " microcurriculo M  ,grupo G WHERE U.id_microcurriculo="
                 . " M.id AND M.codigo_asignatura = :idc AND G.codigo_asignatura="
-                . "M.codigo_asignatura AND G.grupo= :idg");
+                . "M.codigo_asignatura AND G.grupo_numero=:idg");
+                */
         $consulta->bindParam(':idc', $id);
         $consulta->bindParam(':idg', $gru);
         $consulta->execute();
