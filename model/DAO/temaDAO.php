@@ -13,7 +13,7 @@ require_once '../../model/DTO/temaDTO.php';
  *
  * @author jerson
  */
-class unidadDAO {
+class temaDAO {
 
     /**
      *  funcion para guardar en la base de datos
@@ -39,28 +39,28 @@ class unidadDAO {
     }
 
     /*
-     * busca con base a la id de la asignatura
+     * busca con bas a la id de matricula y la id de la unidad
      */
 
-    public function consultar($id, $gru) {
+    public function consultar($idm, $idu) {
         $conexion = new Conexion();
+        $consulta = $conexion->prepare("SELECT T.id , T.id_unidad , T.nombre , P.porcentaje from   tema T , unidad U , matricula M , prueba P WHERE
+P.id_prueba = M.id AND M.id = :idm AND T.id = P.id_tema AND P.id_unidad =
+T.id_unidad AND U.id = T.id_unidad  AND T.id_unidad =:idu ");
 
-        $consulta = $conexion->prepare("SELECT U.id , U.nombre_contenido ,U.id_microcurriculo ,U.horaspresenciales,U.horasindependientes , U.horatotal FROM asignatura A , unidad U , microcurriculo M ,grupo G WHERE  U.id_microcurriculo=M.id AND M.id_grupo = :idg AND G.grupo_numero =M.id_grupo AND  A.codigo = G.codigo_asignatura and G.codigo_asignatura=:idc");
-
-        $consulta->bindParam(':idc', $id);
-        $consulta->bindParam(':idg', $gru);
+        $consulta->bindParam(':idm', $idm);
+        $consulta->bindParam(':idu', $idu);
         $consulta->execute();
         $tabla_datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
         $ces = null;
 
         $astraba = array();
         foreach ($tabla_datos as $con => $valor) {
-            $ces = new unidadDTO();
+            $ces = new temaDTO();
             $ces->setId($tabla_datos[$con]["id"]);
             $ces->setIdunidad($tabla_datos[$con]["id_unidad"]);
             $ces->setNombre($tabla_datos[$con]["nombre"]);
-            $ces->setActividad_presencial($tabla_datos[$con]["actividadpresensial"]);
-            $ces->setTrabajo_independiente($tabla_datos[$con]["trabajoindependiete"]);
+            $ces->setCalificacion($tabla_datos[$con]["porcentaje"]);
             array_push($astraba, $ces);
         }
         return $astraba;
@@ -96,13 +96,10 @@ class unidadDAO {
         $astraba = array();
 
         foreach ($tabla_datos as $con => $valor) {
-            $ces = new unidadDTO();
+            $ces = new temaDTO();
             $ces->setId($tabla_datos[$con]["id"]);
-            $ces->setNombre($tabla_datos[$con]["nombre_contenido"]);
-            $ces->setId_microcurriculo($tabla_datos[$con]["id_microcurriculo"]);
-            $ces->setHora_presencialo($tabla_datos[$con]["horaspresenciales"]);
-            $ces->setHora_independiente($tabla_datos[$con]["horasindependientes"]);
-            $ces->setHora_total($tabla_datos[$con]["horatotal"]);
+            $ces->setIdunidad($tabla_datos[$con]["id_unidad"]);
+            $ces->setNombre($tabla_datos[$con]["calificacion"]);
             array_push($astraba, $ces);
         }
         return $astraba;

@@ -36,7 +36,7 @@ class estudianteDAO {
 
     public function consultar($id) {
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM estudiante WHERE codigo= :idc');
+        $consulta = $conexion->prepare('SELECT * FROM estudiante WHERE codigo_persona= :idc');
         $consulta->bindParam(':idc', $id);
         $consulta->execute();
 

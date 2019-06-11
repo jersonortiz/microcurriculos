@@ -1,7 +1,7 @@
 <?php
 
-require_once '../model/util/Conexion.php';
-require_once '../model/DTO/personaDTO.php';
+require_once '../../model/util/Conexion.php';
+require_once '../../model/DTO/personaDTO.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.

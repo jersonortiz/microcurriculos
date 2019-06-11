@@ -12,6 +12,11 @@ require_once '../../model/DAO/pruebaDAO.php';
 require_once '../../model/DTO/pruebaDTO.php';
 require_once '../../model/DAO/estudianteDAO.php';
 require_once '../../model/DTO/estudianteDTO.php';
+require_once '../../model/DAO/temaDAO.php';
+require_once '../../model/DTO/temaDTO.php';
+require_once '../../model/DAO/estudianteDAO.php';
+require_once '../../model/DTO/estudianteDTO.php';
+require_once '../../model/DTO/matriculaDTO.php';
 
 class consultaController {
 
@@ -132,14 +137,27 @@ class consultaController {
         $estudao = new estudianteDAO();
         $unidao = new unidadDAO();
 
+        $matricula = $estudao->obtenerMatricula($codigo);
         $materias = $estudao->consultarMaterias($codigo);
         //print_r($materias);
+        $combo = array();
 
         foreach ($materias as $materia) {
-            $unidadesest =$unidao->consultar($materia["mat"]->getCodigo(),$materia["gru"]->getGrupo_numero());
-            print_r($unidadesest);
-            
+            $unidadesest = $unidao->consultar($materia["mat"]->getCodigo(), $materia["gru"]->getGrupo_numero());
+            $contenido = $this->consultaTemaUnidad($unidadesest, $matricula);
+            array_push($combo, array("materia" => $materia, "conten" => $contenido));
         }
+        return $combo;
+    }
+
+    public function consultaTemaUnidad($unidades, $matricula) {
+        $temada = new temaDAO();
+        $temasu = array();
+        foreach ($unidades as $unidad) {
+            $temas = $temada->consultar($matricula->getId(), $unidad->getId());
+            array_push($temasu, array("unidad" => $unidad, "tema" => $temas));
+        }
+        return $temasu;
     }
 
 }

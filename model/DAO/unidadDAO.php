@@ -1,7 +1,7 @@
 <?php
 
 require_once '../../model/util/Conexion.php';
-require_once '../../model/DTO/grupoDTO.php';
+require_once '../../model/DTO/unidadDTO.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
