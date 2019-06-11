@@ -1,7 +1,7 @@
 <?php
 
 require_once '../../model/util/Conexion.php';
-require_once '../../model/DTO/grupoDTO.php';
+require_once '../../model/DTO/facultadDTO.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,11 +9,11 @@ require_once '../../model/DTO/grupoDTO.php';
  */
 
 /**
- * Description of AccionTrabajadoDAO
+ * Description of departamentoDAO
  *
  * @author jerson
  */
-class grupoDAO {
+class departamentoDAO {
 
     /**
      *  funcion para guardar en la base de datos
@@ -24,13 +24,9 @@ class grupoDAO {
         $mensaje = "Fallido";
 
         if ($conexion != null) {
-            $consulta = $conexion->prepare('INSERT INTO grupo(grupo_numero,codigo_asignatura, grupo .codigo_docente) VALUES(:num, :cod , :gru , :cdo)');
-
-
-            $consulta->bindParam(':num', $ces->getGrupo_numero());
-            $consulta->bindParam(':cod', $ces->getCodigo_asignatura());
-            $consulta->bindParam(':gru', $ces->getGrupo());
-            $consulta->bindParam(':cdo', $ces->getCodigo_docente());
+            $consulta = $conexion->prepare('INSERT INTO departamento(nombre , nombre_facultad) VALUES(:nom, :nomf)');
+            $consulta->bindParam(':num', $ces->getNombre());
+            $consulta->bindParam(':num', $ces->getNombre_facultad());
 
             if ($consulta->execute()) {
                 $mensaje = "exitoso";
@@ -41,54 +37,44 @@ class grupoDAO {
     }
 
     /*
-     * busca con base a la id de la asignatura
+     * busca con base a la facultad
      */
 
-    public function consultar($id) {
+    public function consultarporFacultad($id) {
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM grupo WHERE codigo_asignatura= :idc');
+        $consulta = $conexion->prepare('SELECT * FROM departamento WHERE nombre_facultad =:idc');
         $consulta->bindParam(':idc', $id);
         $consulta->execute();
-
-
         $tabla_datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
         $ces = null;
         $astraba = array();
 
         foreach ($tabla_datos as $con => $valor) {
-            $ces = new grupoDTO();
-            $ces->setGrupo_numero($tabla_datos[$con]["grupo_numero"]);
-            $ces->setCodigo_asignatura($tabla_datos[$con]["codigo_asignatura"]);
-            $ces->setGrupo($tabla_datos[$con]["grupo"]);
-            $ces->setCodigo_docente($tabla_datos[$con]["codigo_docente"]);
+            $ces = new departamentoDTO();
+            $ces->setNombre($tabla_datos[$con]["nombre"]);
+            $ces->setNombre_facultad($tabla_datos[$con]["nombre_facultad"]);
             array_push($astraba, $ces);
         }
         return $astraba;
     }
 
     /*
-     * busca con base al codigo del docente
+     * busca con base a la id
      */
-    public function consultarDocente($id) {
+
+    public function consultar($id) {
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM grupo WHERE codigo_docente= :idc');
+        $consulta = $conexion->prepare('SELECT * FROM departamento WHERE nombre =:idc');
         $consulta->bindParam(':idc', $id);
         $consulta->execute();
-
-
         $tabla_datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
         $ces = null;
-        $astraba = array();
-
         foreach ($tabla_datos as $con => $valor) {
-            $ces = new grupoDTO();
-            $ces->setGrupo_numero($tabla_datos[$con]["grupo_numero"]);
-            $ces->setCodigo_asignatura($tabla_datos[$con]["codigo_asignatura"]);
-            $ces->setGrupo($tabla_datos[$con]["grupo"]);
-            $ces->setCodigo_docente($tabla_datos[$con]["codigo_docente"]);
-            array_push($astraba, $ces);
+            $ces = new departamentoDTO();
+            $ces->setNombre($tabla_datos[$con]["nombre"]);
+            $ces->setNombre_facultad($tabla_datos[$con]["nombre_facultad"]);
         }
-        return $astraba;
+        return $ces;
     }
 
     /*
@@ -98,7 +84,7 @@ class grupoDAO {
     public function eliminar($id) {
         $mensaje = "Fallido";
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('DELETE FROM grupo WHERE grupo_numero= :idc');
+        $consulta = $conexion->prepare('DELETE FROM departamento WHERE nombre= :idc');
         $consulta->bindParam(':idc', $id);
         if ($consulta->execute()) {
             $mensaje = "exitoso";
@@ -114,7 +100,7 @@ class grupoDAO {
 
     public function listar() {
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM asignatura');
+        $consulta = $conexion->prepare('SELECT * FROM departamento');
         $consulta->execute();
         $ces = null;
 
@@ -124,11 +110,10 @@ class grupoDAO {
 
 
         foreach ($tabla_datos as $con => $valor) {
-            $ces = new grupoDTO();
-            $ces->setGrupo_numero($tabla_datos[$con]["grupo_numero"]);
-            $ces->setCodigo_asignatura($tabla_datos[$con]["codigo_asignatura"]);
-            $ces->setGrupo($tabla_datos[$con]["grupo"]);
-            $ces->setCodigo_docente($tabla_datos[$con]["codigo_docente"]);
+            $ces = new departamentoDTO();
+            $ces->setNombre($tabla_datos[$con]["nombre"]);
+            $ces->setNombre_facultad($tabla_datos[$con]["nombre_facultad"]);
+
             array_push($astraba, $ces);
         }
         return $astraba;

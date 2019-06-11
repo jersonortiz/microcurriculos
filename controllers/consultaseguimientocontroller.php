@@ -14,11 +14,35 @@ require_once '../../model/DAO/estudianteDAO.php';
 require_once '../../model/DTO/estudianteDTO.php';
 require_once '../../model/DAO/temaDAO.php';
 require_once '../../model/DTO/temaDTO.php';
-require_once '../../model/DAO/estudianteDAO.php';
-require_once '../../model/DTO/estudianteDTO.php';
 require_once '../../model/DTO/matriculaDTO.php';
+require_once '../../model/DAO/facultadDAO.php';
+require_once '../../model/DTO/facultadDTO.php';
+require_once '../../model/DAO/departamentoDAO.php';
+require_once '../../model/DTO/departamentoDTO.php';
+require_once '../../model/DAO/docenteDAO.php';
+require_once '../../model/DTO/docenteDTO.php';
+require_once '../../model/DAO/personaDAO.php';
+require_once '../../model/DTO/personaDTO.php';
 
+require_once '../../model/DAO/docenteDAO.php';
+require_once '../../model/DTO/docenteDTO.php';
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of consultaControlller
+ *
+ * @author jerson
+ */
 class consultaController {
+    /*
+     * 
+     */
 
     public function listarPlanEstudios() {
         $conexion = new Conexion();
@@ -39,6 +63,10 @@ class consultaController {
         }
         return $astraba;
     }
+
+    /*
+     * 
+     */
 
     public function listarmaterias($fac) {
 
@@ -76,6 +104,10 @@ class consultaController {
         return $astraba;
     }
 
+    /*
+     * 
+     */
+
     public function consultaMateria($cod, $gru) {
         $grdao = new grupoDAO();
         $asigdao = new asignaturaDAO();
@@ -94,10 +126,13 @@ class consultaController {
         return $retorno;
     }
 
+    /*
+     * 
+     */
+
     public function cargapruebas($unidades, $numgrupo) {
         $prdao = new pruebaDAO();
         $datounidad = array();
-
         foreach ($unidades as $unidad) {
             $pruebas = $prdao->consultarPorUnidad($unidad->getId());
             $datoper = $this->cargapersonas($pruebas);
@@ -106,15 +141,22 @@ class consultaController {
         return $datounidad;
     }
 
+    /*
+     * 
+     */
+
     public function cargapersonas($pruebas) {
         $datoper = array();
-
         foreach ($pruebas as $prueba) {
             $retor = $this->consultaDatos($prueba->getId());
             array_push($datoper, $retor);
         }
         return $datoper;
     }
+
+    /*
+     * 
+     */
 
     public function consultaDatos($id) {
         $conexion = new Conexion();
@@ -132,6 +174,10 @@ class consultaController {
         return $astraba;
     }
 
+    /*
+     * 
+     */
+
     public function consultaestudiante($codigo) {
 
         $estudao = new estudianteDAO();
@@ -139,9 +185,7 @@ class consultaController {
 
         $matricula = $estudao->obtenerMatricula($codigo);
         $materias = $estudao->consultarMaterias($codigo);
-        //print_r($materias);
         $combo = array();
-
         foreach ($materias as $materia) {
             $unidadesest = $unidao->consultar($materia["mat"]->getCodigo(), $materia["gru"]->getGrupo_numero());
             $contenido = $this->consultaTemaUnidad($unidadesest, $matricula);
@@ -158,6 +202,50 @@ class consultaController {
             array_push($temasu, array("unidad" => $unidad, "tema" => $temas));
         }
         return $temasu;
+    }
+
+    /*
+     * lista los docentes por facultad y departamento
+     */
+
+    public function listaDocente() {
+
+        $facdao = new facultadDAO();
+        $depdao = new departamentoDAO();
+        $docdao = new docenteDAO();
+        $perdao = new personaDAO();
+
+
+        $facultades = $facdao->listar();
+
+        $consulta = array();
+
+        foreach ($facultades as $facultad) {
+
+            $departamentos = $depdao->consultarporFacultad($facultad);
+            $combo = array();
+
+            foreach ($departamentos as $departamento) {
+
+                $docentes = $docdao->consultarDepartamento($departamento->getNombre());
+
+                $personas = array();
+                foreach ($docentes as $docente) {
+                    $persona = $perdao->consultar($docente->getCodigo_persona());
+                    array_push($personas, $persona);
+                }
+
+                array_push($combo, array("dep" => $departamento, "pers" => $personas));
+            }
+            array_push($consulta, array("fac" => $facultad, "dep" => $combo));
+        }
+
+        return $consulta;
+    }
+
+    public function consultaMateriasDocente($cod) {
+        $docdao = new docenteDAO();
+        return $docdao->consultarMaterias($cod);
     }
 
 }

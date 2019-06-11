@@ -1,5 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php 
+    require_once '../../model/DAO/docenteDAO.php';
+    require_once '../../model/DTO/docenteDTO.php';
+
+    require_once '../../controllers/consultaseguimientocontroller.php';
+    require_once '../../model/DAO/personaDAO.php';
+    require_once '../../model/DTO/personaDTO.php';
+session_start();
+
+
+if (!isset($_SESSION['user'])) {
+
+   header('Location: ../../views/login/login.php');
+    } else {
+        $usuario = $_SESSION['user'];
+    }
+
+    $algo = new consultaController();
+    $list = $algo->consultaMateriasDocente($usuario->getCodigo());
+    print_r($list);
+
+
+ ?>
+
+
     <head>
         <title>Control de microcurriculos UFPS</title>
         <meta charset="UTF-8" />

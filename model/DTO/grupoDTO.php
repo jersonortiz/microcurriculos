@@ -17,6 +17,7 @@ class grupoDTO {
     private $grupo_numero;
     private $codigo_asignatura;
     private $grupo;
+    private $codigo_docente;
 
     function __construct() {
         
@@ -45,5 +46,15 @@ class grupoDTO {
     function setCodigo_asignatura($codigo_asignatura) {
         $this->codigo_asignatura = $codigo_asignatura;
     }
+    
+    function getCodigo_docente() {
+        return $this->codigo_docente;
+    }
+
+    function setCodigo_docente($codigo_docente) {
+        $this->codigo_docente = $codigo_docente;
+    }
+
+
 
 }

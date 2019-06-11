@@ -22,12 +22,11 @@ class docenteDAO {
         $mensaje = "Fallido";
 
         if ($conexion != null) {
-            $consulta = $conexion->prepare('INSERT INTO docente(id ,codigo_persona,nombre_departamento, gruponumero )'
-                    . ' VALUES(null, :codper,:nomdep ,:numgrup )');
+            $consulta = $conexion->prepare('INSERT INTO docente(id ,codigo_persona,nombre_departamento )'
+                    . ' VALUES(null, :codper,:nomdep ,)');
             //$consulta->bindParam(':id', $ces->getId());
             $consulta->bindParam(':codper', $ces->getCodigo_persona());
             $consulta->bindParam(':nomdep', $ces->getNombre_departamento());
-            $consulta->bindParam(':numgrup', $ces->getGruponumero());
 
             if ($consulta->execute()) {
                 $mensaje = "exitoso";
@@ -57,12 +56,83 @@ class docenteDAO {
                 $ces->setId($tabla_datos[$con]["id"]);
                 $ces->setCodigo_persona($tabla_datos[$con]["codigo_persona"]);
                 $ces->setNombre_departamento($tabla_datos[$con]["nombre_departamento"]);
-                $ces->setGruponumero($tabla_datos[$con]["gruponumero"]);
             }
             return $ces;
         } else {
             return null;
         }
+    }
+
+    /*
+     * busca con base a la id
+     */
+
+    public function consultarCodigo($id) {
+        $conexion = new Conexion();
+        $consulta = $conexion->prepare('SELECT * FROM docente WHERE codigo_persona= :idc');
+        $consulta->bindParam(':idc', $id);
+        $consulta->execute();
+
+
+        $tabla_datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        $ces = null;
+        if (count($tabla_datos) == 1) {
+
+            foreach ($tabla_datos as $con => $valor) {
+                $ces = new docenteDTO();
+                $ces->setId($tabla_datos[$con]["id"]);
+                $ces->setCodigo_persona($tabla_datos[$con]["codigo_persona"]);
+                $ces->setNombre_departamento($tabla_datos[$con]["nombre_departamento"]);
+            }
+            return $ces;
+        } else {
+            return null;
+        }
+    }
+
+    /*
+     * busca con base a la id
+     */
+
+    public function consultarMaterias($id) {
+        $conexion = new Conexion();
+        $consulta = $conexion->prepare("SELECT  A.codigo , A.nombre , G.grupo , G.grupo_numero , A.nombre_plandeestudios   FROM asignatura A,
+            grupo G , docente D WHERE A.codigo = G.codigo_asignatura AND D.codigo_persona = G.codigo_docente AND G.codigo_docente =:idc");
+        $consulta->bindParam(':idc', $id);
+        $consulta->execute();
+        $tabla_datos = $consulta->fetchAll(PDO::FETCH_NUM);
+
+        $asct = array();
+        foreach ($tabla_datos as $con) {
+            array_push($asct, $con);
+        }
+        return $asct;
+    }
+
+    /*
+     * busca con base a la id
+     */
+
+    public function consultarDepartamento($id) {
+        $conexion = new Conexion();
+        $consulta = $conexion->prepare('SELECT * FROM docente WHERE nombre_departamento= :idc');
+        $consulta->bindParam(':idc', $id);
+        $consulta->execute();
+
+
+        $tabla_datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        $ces = null;
+
+        $asct = array();
+
+        foreach ($tabla_datos as $con => $valor) {
+            $ces = new docenteDTO();
+            $ces->setId($tabla_datos[$con]["id"]);
+            $ces->setCodigo_persona($tabla_datos[$con]["codigo_persona"]);
+            $ces->setNombre_departamento($tabla_datos[$con]["nombre_departamento"]);
+            array_push($asct, $ces);
+        }
+        return $asct;
     }
 
     /*
@@ -100,7 +170,6 @@ class docenteDAO {
             $ces->setId($tabla_datos[$con]["id"]);
             $ces->setCodigo_persona($tabla_datos[$con]["codigo_persona"]);
             $ces->setNombre_departamento($tabla_datos[$con]["nombre_departamento"]);
-            $ces->setGruponumero($tabla_datos[$con]["gruponumero"]);
             array_push($asct, $ces);
         }
         return $asct;

@@ -3,20 +3,20 @@
     <head>
         <title>Control de microcurriculos ufps</title><meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
-        <link rel="stylesheet" href="css/matrix-login.css" />
+        <link rel="stylesheet" href="../css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
+        <link rel="stylesheet" href="../css/matrix-login.css" />
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
     </head>
     <body>
         <div id="loginbox">            
-            <form id="loginform" class="form-vertical" method="post"  action="../controllers/logincontroller.php">
+            <form id="loginform" class="form-vertical" method="post"  action="../../controllers/login/logincontroller.php">
 
                 <div class="control-group normal_text">
                     <h3>
-                        <img src="img/logo.png" alt="Logo"/>
+                        <img src="../img/logo.png" alt="Logo"/>
                     </h3>
                 </div>
 
@@ -67,8 +67,8 @@
             </form>
         </div>
 
-        <script src="js/jquery.min.js"></script>  
-        <script src="js/matrix.login.js"></script> 
+        <script src="../js/jquery.min.js"></script>  
+        <script src="../js/matrix.login.js"></script> 
        
     </body>
 

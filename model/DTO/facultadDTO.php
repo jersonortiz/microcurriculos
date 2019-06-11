@@ -12,22 +12,19 @@
  * @author camilo
  */
 class facultadDTO {
-    
-   private $nombre;
-   
-   
-   function __construct() {
-       
-   }
-   
-   function getNombre() {
-       return $this->nombre;
-   }
 
-   function setNombre($nombre) {
-       $this->nombre = $nombre;
-   }
+    private $nombre;
 
-
+    function __construct() {
         
+    }
+
+    function getNombre() {
+        return $this->nombre;
+    }
+
+    function setNombre($nombre) {
+        $this->nombre = $nombre;
+    }
+
 }

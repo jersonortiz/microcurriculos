@@ -12,14 +12,15 @@
  * @author Camilo J
  */
 class departamentoDTO {
+
     //put your code here
     private $nombre;
     private $nombre_facultad;
-    
+
     function __construct() {
         
     }
-    
+
     function getNombre() {
         return $this->nombre;
     }
@@ -35,6 +36,5 @@ class departamentoDTO {
     function setNombre_facultad($nombre_facultad) {
         $this->nombre_facultad = $nombre_facultad;
     }
-
 
 }

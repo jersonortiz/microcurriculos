@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+    $cod = $_GET["cod"];
+
+    require_once '../../model/DAO/docenteDAO.php';
+    require_once '../../model/DTO/docenteDTO.php';
+    require_once '../../model/DAO/personaDAO.php';
+    require_once '../../model/DTO/personaDTO.php';
+    require_once '../../controllers/consultaseguimientocontroller.php';
+    $algo = new consultaController();
+    $perdao = new personaDAO();
+    $persona= $perdao->consultar($cod);
+
+    $list = $algo->consultaMateriasDocente($cod);
+    ?>
     <head>
         <title>Admin</title>
         <meta charset="UTF-8" />
@@ -41,15 +55,13 @@
                     </div>
                     <div class="widget-content">
 
-                        codigo:  <span class="label">115001</span>
+                        codigo:  <span class="label"><?php echo $persona->getCodigo(); ?> </span>
                         <br>
-                        nombre: <span class="label">docente 1</span>
+                        nombre: <span class="label"><?php echo $persona->getNombre(); ?></span>
                         <br>
-                        apellido <span class="label">apellido 1</span>
+                        apellido: <span class="label"><?php echo $persona->getApellido(); ?></span>
                         <br>
-                        correo<span class="label">persona@ufps.edu.co</span>
-                        <br>
-                        numero de materias que esta dictando<span class="label">2</span>
+                        correo: <span class="label"><?php echo $persona->getCorreo(); ?></span>
                         <br>
                         
                     </div>
@@ -61,6 +73,7 @@
                         <div class="widget-title">
                             <h5>Materias</h5>
                         </div>
+
                         <div class="widget-content">
 
                             <div class="widget-box">
@@ -76,46 +89,25 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+
+                                            <?php  foreach ($list as $mat) { ?>
+                                                # code...
+                                           
                                             <tr class="odd gradeA">
-                                                <td>1150001</td>
-                                                <td>Materia 1</td>
-                                                <td>A</td>
+                                                <td><?php  echo $mat[0] ?> </td>
+                                                <td><?php  echo $mat[1] ?></td>
+                                                <td><?php  echo $mat[2] ?></td>
                                                 <td>
-                                                    <a href="materia.php">
+                                                    <a href="materia.php?<?php  echo 'cod='.$mat[0].'&gru='.$mat[0]; ?>">
                                                         <span class="label label-info">ver info</span>
                                                     </a>
                                                 </td>
                                             </tr>
-                                            <tr class="even gradeB">
-                                                <td>1150001</td>
-                                                <td>Materia 1</td>
-                                                <td>A</td>
-                                                <td>
-                                                    <a href="materia.php">
-                                                        <span class="label label-info">ver info</span>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd gradeC">
-                                                <td>1150001</td>
-                                                <td>Materia 1</td>
-                                                <td>A</td>
-                                                <td>
-                                                    <a href="materia.php">
-                                                        <span class="label label-info">ver info</span>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr class="even gradeD">
-                                                <td>1150001</td>
-                                                <td>Materia 1</td>
-                                                <td>A</td>
-                                                <td>
-                                                    <a href="materia.php">
-                                                        <span class="label label-info">ver info</span>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            <?php } ?>
+
+
+                       
+
                                         </tbody>
                                     </table>
                                 </div>

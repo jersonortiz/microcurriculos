@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 10-06-2019 a las 19:24:40
+-- Tiempo de generación: 11-06-2019 a las 16:42:51
 -- Versión del servidor: 5.7.26-0ubuntu0.18.04.1
 -- Versión de PHP: 7.2.19-0ubuntu0.18.04.1
 
@@ -116,7 +116,8 @@ INSERT INTO `docente` (`id`, `codigo_persona`, `nombre_departamento`, `gruponume
 (2, 1080, 'SISTEMAS E INFORMATICA', 2),
 (3, 1111, 'SISTEMAS E INFORMATICA', 3),
 (4, 1178, 'SISTEMAS E INFORMATICA', 4),
-(5, 1995, 'SISTEMAS E INFORMATICA', 5);
+(5, 1995, 'SISTEMAS E INFORMATICA', 5),
+(6, 6209, 'MATEMATICAS Y ESTADISTICA', 6);
 
 -- --------------------------------------------------------
 
@@ -157,6 +158,7 @@ CREATE TABLE `facultad` (
 
 INSERT INTO `facultad` (`nombre`) VALUES
 ('CIENCIAS AGRARIAS Y DEL AMBIENTE'),
+('CIENCIAS BASICAS'),
 ('CIENCIAS DE LA SALUD'),
 ('CIENCIAS EMPRESARIALES'),
 ('EDUCACION, ARTES Y HUMANIDADES'),
@@ -171,19 +173,20 @@ INSERT INTO `facultad` (`nombre`) VALUES
 CREATE TABLE `grupo` (
   `grupo_numero` int(11) NOT NULL,
   `codigo_asignatura` int(11) NOT NULL,
-  `grupo` char(1) NOT NULL DEFAULT 'A'
+  `grupo` char(1) NOT NULL DEFAULT 'A',
+  `codigo_docente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `grupo`
 --
 
-INSERT INTO `grupo` (`grupo_numero`, `codigo_asignatura`, `grupo`) VALUES
-(2, 101101, 'A'),
-(3, 102102, 'A'),
-(4, 109109, 'A'),
-(5, 111111, 'A'),
-(6, 111111, 'B');
+INSERT INTO `grupo` (`grupo_numero`, `codigo_asignatura`, `grupo`, `codigo_docente`) VALUES
+(2, 101101, 'A', 1080),
+(3, 102102, 'A', 1111),
+(4, 109109, 'A', 1178),
+(5, 111111, 'A', 1995),
+(6, 111111, 'B', 6209);
 
 -- --------------------------------------------------------
 
@@ -218,14 +221,14 @@ INSERT INTO `grupomatricula` (`grupo_numero`, `id_matricula`) VALUES
 CREATE TABLE `matricula` (
   `id` int(50) NOT NULL,
   `semestre` int(11) NOT NULL,
-  `código_programa` int(50) NOT NULL
+  `codigo_programa` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `matricula`
 --
 
-INSERT INTO `matricula` (`id`, `semestre`, `código_programa`) VALUES
+INSERT INTO `matricula` (`id`, `semestre`, `codigo_programa`) VALUES
 (2, 2, 115),
 (3, 1, 119),
 (4, 2, 119),
@@ -349,20 +352,21 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`codigo`, `nombre`, `apellidos`, `correo`, `contrasena`, `tipo`) VALUES
-(959, 'carlos enrique', 'guerrero acosta', 'carlosenriquega@ufps.edu.co', '450f9b16e4b0559c28be8a4097e21614c6af6117', 2),
-(1080, 'oscar alberto', 'gallardo perez', 'oscargallardo@ufps.edu.co', 'dfd35f40aba09e6adee88265ef12430126d359b5', 3),
-(1081, 'paula andrea', 'rozo corredor', 'paulaandrearc@ufps.edu.co', 'ed4b1925f6306d4ee0e6edf3d0391b5cd9dac3ca', 2),
-(1111, 'carlos eduardo', 'pardo garcia', 'carlospardo@ufps.edu.co', '13d27f12a8581ff3e9bb196b07e1dd3841927085', 3),
-(1130, 'jerson andres', 'ortiz calderon', 'jersonandresoc@ufps.edu.co', 'caaddf802df14958ed285712665ef978c31e738f', 2),
-(1178, 'jose martin', 'calixto cely', 'mcalixto@ufps.edu.co', '218baa3a1d5c84f7207798fdcf53a9e5b47842f0', 3),
-(1995, 'judith del pilar', 'rodriguez tenjo', 'judithdelpilarrt@ufps.edu.co', 'bb11a84cc7fc6de5dc20b49853bf1e2e1e3bfb4c', 3),
-(1996, 'jairo alberto', 'fuentes camargo', 'jairoalbertofc@ufps.edu.cov', '77b1c6cb997d06dd6202119ec9d63215afea7cbd', 3),
-(2049, 'maria del pilar', 'rojas puentes', 'pilarrojas@ufps.edu.co', '1c3c8246eee4a0cc60e3ca4ce4c2cd82e588637a', 3),
-(3556, 'milton jesus', 'vera contreras', 'miltonjesusvc@ufps.edu.co', '7f192ed27667bdb74beb7aa6499095a4c1f02ae6', 3),
-(4412, 'eduard gilberto', 'puerto cuadros', 'eduardpuerto@ufps.edu.co', '59572984021d5b2ca9fffc0435284aa4b67d48f8', 3),
-(4608, 'matias', 'herrera caceres', 'matiashc@ufps.edu.co', 'ef059cf85fb69cedc1dec4b7bd4b450c24c43d71', 3),
-(5096, 'claudia yamile', 'gomez llanez', 'claudiaygomez@ufps.edu.co', '532fc4fdf20bb32066b05edecd14c3e7a40a9517', 3),
-(6209, 'nelly rosana', 'diaz leal', 'nellyrosanadl@ufps.edu.co', '7952b8f72e05f9e2abbce0a544ff34ad64d446b2', 3);
+(959, 'carlos enrique', 'guerrero acosta', 'carlosenriquega@ufps.edu.co', '0000', 2),
+(1080, 'oscar alberto', 'gallardo perez', 'oscargallardo@ufps.edu.co', '0000', 3),
+(1081, 'paula andrea', 'rozo corredor', 'paulaandrearc@ufps.edu.co', '0000', 2),
+(1111, 'carlos eduardo', 'pardo garcia', 'carlospardo@ufps.edu.co', '0000', 3),
+(1130, 'jerson andres', 'ortiz calderon', 'jersonandresoc@ufps.edu.co', '0000', 2),
+(1178, 'jose martin', 'calixto cely', 'mcalixto@ufps.edu.co', '0000', 3),
+(1995, 'judith del pilar', 'rodriguez tenjo', 'judithdelpilarrt@ufps.edu.co', '0000', 3),
+(1996, 'jairo alberto', 'fuentes camargo', 'jairoalbertofc@ufps.edu.cov', '0000', 3),
+(2049, 'maria del pilar', 'rojas puentes', 'pilarrojas@ufps.edu.co', '0000', 3),
+(3556, 'milton jesus', 'vera contreras', 'miltonjesusvc@ufps.edu.co', '0000', 3),
+(4412, 'eduard gilberto', 'puerto cuadros', 'eduardpuerto@ufps.edu.co', '0000', 3),
+(4608, 'matias', 'herrera caceres', 'matiashc@ufps.edu.co', '0000', 3),
+(5096, 'claudia yamile', 'gomez llanez', 'claudiaygomez@ufps.edu.co', '0000', 3),
+(6209, 'nelly rosana', 'diaz leal', 'nellyrosanadl@ufps.edu.co', '0000', 3),
+(9999, 'admin', 'admin', 'admin@ufps.edu.co', '0000', 1);
 
 -- --------------------------------------------------------
 
@@ -639,7 +643,7 @@ ALTER TABLE `grupomatricula`
 --
 ALTER TABLE `matricula`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_matricula_programa` (`código_programa`);
+  ADD KEY `fk_matricula_programa` (`codigo_programa`);
 
 --
 -- Indices de la tabla `microcurriculo`
@@ -711,7 +715,7 @@ ALTER TABLE `administrador`
 -- AUTO_INCREMENT de la tabla `docente`
 --
 ALTER TABLE `docente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `estudiante`
 --

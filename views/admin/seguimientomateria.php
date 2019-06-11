@@ -52,9 +52,12 @@
                                     <h5> <?php echo $plan->getNombre(); ?>  </h5>
                                 </a>
                             </div>
+
                             <div id="collapse<?php echo $contc; ?>" class="collapse">
 
                                 <div class="widget-content">
+
+                                    
 
                                     <div class="widget-box collapsible">
                                         <?php

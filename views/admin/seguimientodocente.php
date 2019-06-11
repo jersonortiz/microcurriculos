@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+    <?php
+    require_once '../../controllers/consultaseguimientocontroller.php';
+    $algo = new consultaController();
+    $list = $algo->listaDocente();
+    ?>
     <head>
         <title>Admin</title>
         <meta charset="UTF-8" />
@@ -23,8 +28,8 @@
         <!--main-container-part-->
         <div id="content">
             <!--breadcrumbs-->
-  <div id="content-header">
-              
+            <div id="content-header">
+
             </div>
 
             <div class="container-fluid">
@@ -33,147 +38,106 @@
 
                     </div>
 
+
                     <div class="widget-box collapsible">
-                        <div class="widget-title">
-                            <a data-toggle="collapse" href="#collapseOne">
-                                <h5>Ingenieria en sistemas</h5>
-                            </a>
-                        </div>
-                        <div id="collapseOne" class="collapse in">
 
-                            <div class="widget-content">
+                        <?php
+                        $cont = 1;
+                        $flag = "fac";
+                        foreach ($list as $facultad) {
+                            $show = $flag . $cont;
+                            ?>
 
-                                <div class="widget-box">
-                                    <div class="widget-content nopadding">
-                                        <table class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Codigo</th>
-                                                    <th>Nombre</th>
-                                                    <th>Materias</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="odd gradeA">
-                                                    <td>1150001</td>
-                                                    <td>profesor 1</td>
-                                                    <td>5</td>
-                                                    <td>
-                                                        <a href="materiadocente.php">
-                                                            <span class="label label-info">ver info</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even gradeB">
-                                                    <td>1150002</td>
-                                                    <td>profesor 2</td>
-                                                    <td>6</td>
-                                                    <td>
-                                                        <a href="materiadocente.php">
-                                                            <span class="label label-info">ver info</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd gradeC">
-                                                    <td>1150003</td>
-                                                    <td>profesor 3</td>
-                                                    <td>5</td>
-                                                    <td>
-                                                        <a href="materiadocente.php">
-                                                            <span class="label label-info">ver info</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even gradeD">
-                                                    <td>1150004</td>
-                                                    <td>profesor 4</td>
-                                                    <td>7</td>
-                                                    <td>
-                                                        <a href="materiadocente.php">
-                                                            <span class="label label-info">ver info</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
+                            <div class="widget-title">
+                                <a data-toggle="collapse" href="#collapse<?php echo $show; ?>">
+                                    <h5><?php echo $facultad['fac']; ?></h5>
+                                </a>
                             </div>
-                        </div>
+
+                            <div id="collapse<?php echo $show; ?>" class="collapse in">
+
+                                <div class="widget-content">
 
 
-                        <div class="widget-title">
-                            <a data-toggle="collapse" href="#collapseTwo">
-                                <h5>Ingenieria el algo mas</h5>
-                            </a>
-                        </div>
-                        <div id="collapseTwo" class="collapse">
-                            <div class="widget-content">
-                                <div class="widget-box">
-                                    <div class="widget-content nopadding">
-                                        <table class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Codigo</th>
-                                                    <th>Nombre</th>
-                                                    <th>Materias</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="odd gradeA">
-                                                    <td>1150001</td>
-                                                    <td>profesor 1</td>
-                                                    <td>5</td>
-                                                    <td>
-                                                        <a href="materiadocente.php">
-                                                            <span class="label label-info">ver info</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even gradeB">
-                                                    <td>1150002</td>
-                                                    <td>profesor 2</td>
-                                                    <td>6</td>
-                                                    <td>
-                                                        <a href="materiadocente.php">
-                                                            <span class="label label-info">ver info</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="odd gradeC">
-                                                    <td>1150003</td>
-                                                    <td>profesor 3</td>
-                                                    <td>5</td>
-                                                    <td>
-                                                        <a href="materiadocente.php">
-                                                            <span class="label label-info">ver info</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="even gradeD">
-                                                    <td>1150004</td>
-                                                    <td>profesor 4</td>
-                                                    <td>7</td>
-                                                    <td>
-                                                        <a href="materiadocente.php">
-                                                           <span class="label label-info">ver info</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    <div class="widget-box collapsible">
+
+                                        <?php
+                                        $flad = 'dep';
+                                        $cond = 1;
+                                        foreach ($facultad['dep'] as $departamento) {
+                                            $colld = $flad . $cond;
+                                            ?>
+
+                                            <div class="widget-title">
+                                                <a data-toggle="collapse" href="#collapse<?php echo $colld; ?>">
+                                                    <h5> <?php echo $departamento['dep']->getNombre(); ?> </h5>
+                                                </a>
+                                            </div>
+
+                                            <div id="collapse<?php echo $colld; ?>" class="collapse in">
+
+                                                <div class="widget-content">
+
+                                                    <div class="widget-box">
+                                                        <div class="widget-content nopadding">
+                                                            <?php
+                                                            if (!count($departamento['pers']) == 0) {
+                                                                ?>
+                                                                <table class="table table-bordered table-striped">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Codigo</th>
+                                                                            <th>Nombre</th>
+                                                                            <th>Apellido</th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+
+
+                                                                        <?php foreach ($departamento['pers'] as $persona) {
+                                                                            ?>
+                                                                            <tr class="odd gradeA">
+                                                                                <td><?php echo $persona->getCodigo(); ?> </td>
+                                                                                <td><?php echo $persona->getNombre(); ?> </td>
+                                                                                <td><?php echo $persona->getApellido(); ?>  </td>
+                                                                                <td>
+                                                                                    <a href="materiadocente.php?cod=<?php echo $persona->getCodigo() ?>">
+                                                                                        <span class="label label-info">ver info</span>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                        <?php } ?>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            <?php } else { ?>
+                                                                <div class="span6">
+                                                                    No hay docentes en el departamento
+                                                                </div>
+
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php
+                                            $cond++;
+                                        }
+                                        ?>
+                                    </div>       
                                 </div>
                             </div>
-                        </div>
-                    </div>       
-
+                            <?php
+                            $cont++;
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
+
 
         <!--end-main-container-part-->
 
