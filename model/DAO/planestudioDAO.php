@@ -22,12 +22,14 @@ class planestudioDAO {
     public function guardar($ces) {
         $conexion = new Conexion();
         $mensaje = "Fallido";
+        $nom = $ces->getNombre();
+        $cod = $ces->getCodigo();
 
         if ($conexion != null) {
             $consulta = $conexion->prepare('INSERT INTO plandeestudios(nombre,codigo) VALUES(:nom, :cod)');
 
-            $consulta->bindParam(':nom', $ces->getNombre());
-            $consulta->bindParam(':cod', $ces->getCodigo());
+            $consulta->bindParam(':nom', $nom);
+            $consulta->bindParam(':cod', $cod);
             if ($consulta->execute()) {
                 $mensaje = "exitoso";
             }
@@ -110,11 +112,8 @@ class planestudioDAO {
         $consulta = $conexion->prepare('SELECT * FROM plandeestudios');
         $consulta->execute();
         $ces = null;
-
         $tabla_datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
-
         $astraba = array();
-
 
         foreach ($tabla_datos as $con => $valor) {
             $ces = new planEstudiosDTO();

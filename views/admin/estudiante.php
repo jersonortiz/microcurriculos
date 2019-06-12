@@ -76,80 +76,80 @@
                         <?php
                         foreach ($list as $elemento) {
 
-                            $mater = $elemento["materia"];
-                            $mat = $mater["mat"]->getCodigo();
-                            $manon = $mater["mat"]->getNombre();
-                            $gru = $mater["gru"]->getGrupo();
+                          $mater = $elemento["materia"];
+                          $mat = $mater["mat"]->getCodigo();
+                          $manon = $mater["mat"]->getNombre();
+                          $gru = $mater["gru"]->getGrupo();
 
-                            $cont = $elemento["conten"];
+                          $cont = $elemento["conten"];
 
-                            $mostmat = $mat . '-' . $gru . ' ' . $manon;
-                            ?>
+                          $mostmat = $mat . '-' . $gru . ' ' . $manon;
+                          ?>
 
 
-                            <div class="widget-title">
-                                <a data-toggle="collapse" href="#collapse<?php echo $mat . $gru ?>">
-                                    <h5> <?php echo $mostmat ?>  </h5>
-                                </a>
-                            </div>
+                          <div class="widget-title">
+                              <a data-toggle="collapse" href="#collapse<?php echo $mat . $gru ?>">
+                                  <h5> <?php echo $mostmat ?>  </h5>
+                              </a>
+                          </div>
 
-                            <div id="collapse<?php echo $mat . $gru ?>" class="collapse">
+                          <div id="collapse<?php echo $mat . $gru ?>" class="collapse">
 
-                                <div class="widget-content">
+                              <div class="widget-content">
 
-                                    <div class="widget-box collapsible">
+                                  <div class="widget-box collapsible">
 
-                                        <?php
-                                        foreach ($cont as $unids) {
-                                            $unidad = $unids["unidad"];
-                                            $nomuni = $unidad->getNombre();
-                                            $temas = $unids["tema"];
-                                            $uniid = $unidad->getId();
-                                            $mouni = $uniid . $nomuni;
-                                            ?>
+                                      <?php
+                                      foreach ($cont as $unids) {
+                                        $unidad = $unids["unidad"];
+                                        $nomuni = $unidad->getNombre();
+                                        $temas = $unids["tema"];
+                                        $uniid = $unidad->getId();
+                                        $mouni = $uniid . $nomuni;
+                                        ?>
 
-                                            <div class="widget-title">
-                                                <a data-toggle="collapse" href="#collapse<?php echo $mouni ?>">
-                                                    <h5><?php echo $nomuni; ?>  </h5>
-                                                </a>
-                                            </div>
+                                        <div class="widget-title">
+                                            <a data-toggle="collapse" href="#collapse<?php echo $mouni ?>">
+                                                <h5><?php echo $nomuni; ?>  </h5>
+                                            </a>
+                                        </div>
 
-                                            <div id="collapse<?php echo $mouni ?>" class="collapse">
-                                                <div class="widget-content">
+                                        <div id="collapse<?php echo $mouni ?>" class="collapse">
+                                            <div class="widget-content">
 
-                                                    <div class="widget-box">
+                                                <div class="widget-box">
 
-                                                        <div class="widget-title">
-                                                            <h5>Cumplimiento por estudiante</h5>
-                                                        </div>
+                                                    <div class="widget-title">
+                                                        <h5>Cumplimiento por estudiante</h5>
+                                                    </div>
 
-                                                        <div class="widget-content nopadding">
+                                                    <div class="widget-content nopadding">
 
-                                                            <table class="table table-bordered table-striped">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Tema</th>
-                                                                        <th>Calificacion</th>
-                                                                    </tr>
-                                                                </thead>
+                                                        <table class="table table-bordered table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Tema</th>
+                                                                    <th>Calificacion</th>
+                                                                </tr>
+                                                            </thead>
 
-                                                                <tbody>
-                                                                    <?php foreach ($temas as $tema) { ?>
-                                                                        <tr class="odd gradeA">
-                                                                            <td> <?php echo $tema->getNombre(); ?></td>
-                                                                            <td><?php echo $tema->getCalificacion(); ?></td>
-                                                                        </tr>
-                                                                    <?php } ?>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
+                                                            <tbody>
+                                                                <?php foreach ($temas as $tema) { ?>
+                                                                  <tr class="odd gradeA">
+                                                                      <td> <?php echo $tema->getNombre(); ?></td>
+                                                                      <td><?php echo $tema->getCalificacion(); ?></td>
+                                                                  </tr>
+                                                                <?php } ?>
+                                                            </tbody>
+                                                        </table>
                                                     </div>
                                                 </div>
                                             </div>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                            </div>    
+                                        </div>
+                                      <?php } ?>
+                                  </div>
+                              </div>
+                          </div>    
                         <?php } ?>
                     </div>
                 </div>

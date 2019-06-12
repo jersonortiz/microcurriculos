@@ -23,7 +23,7 @@
         <div id="content">
             <!--breadcrumbs-->
             <div id="content-header">
-              
+
             </div>
 
             <div class="container-fluid">
@@ -34,60 +34,36 @@
 
                     <div class="widget-box">
                         <div class="widget-title">
-                            <h5>Registrar Materia</h5>
+                            <h5>Registrar grupo </h5>
                         </div>
                         <div class="widget-content">
                             <div class="widget-box">
                                 <div class="widget-content nopadding">
-                                    <form action="../../programacontroller.php" method="get" class="form-horizontal">
+                                    <form action="../../controllers/acad/grupocontroller.php?acc=reg" method="post" class="form-horizontal">
+
+                                        <div class="control-group">
+                                            <label class="control-label">Grupo:</label>
+                                            <div class="controls">
+                                                <input type="text" name="grup" id="grup" class="span11" placeholder="A" />
+                                            </div>
+                                        </div>
 
                                         <div class="control-group">
                                             <label class="control-label">Codigo materia:</label>
                                             <div class="controls">
-                                                <input type="number" name="cod" id="cod" class="span11" placeholder="First name" />
+                                                <?php
+                                                if (isset($_GET['cod'])) {
+                                                  $cod = $_GET['cod'];
+                                                  ?>
+                                                  <input type="number" name="cod" id="cod" value="<?php echo $cod; ?>" class="span11" />
+                                                <?php } else { ?>
+                                                  <input type="number" name="cod" id="cod"  class="span11" placeholder="1009090" />
+<?php } ?>
                                             </div>
                                         </div>
-
-                                        <div class="control-group">
-                                            <label class="control-label">Nombre materia:</label>
-                                            <div class="controls">
-                                                <input type="text" name="nom" id="nom" class="span11" placeholder="First name" />
-                                            </div>
-                                        </div>
-
-                                        <div class="control-group">
-                                            <label class="control-label">Semestre materia:</label>
-                                            <div class="controls">
-                                                <input type="number" name="sem" id="sem" class="span11" placeholder="First name" />
-                                            </div>
-                                        </div>
-
-                                        <div class="control-group">
-                                            <label class="control-label">Intensidad horaria:</label>
-                                            <div class="controls">
-                                                <input type="number" name="ihor" id="ihor" class="span11" placeholder="First name" />
-                                            </div>
-                                        </div>
-
-                                        <div class="control-group">
-                                            <label class="control-label">Creditos:</label>
-                                            <div class="controls">
-                                                <input type="number" name="cre" id="cre" class="span11" placeholder="First name" />
-                                            </div>
-                                        </div>
-
-										<div class="control-group">
-											<label class="control-label">Programa</label>
-											<div class="controls">
-												<select id=facultades>
-													<option value="" >First option</option>
-													<option value="" >Second option</option>
-												</select>
-											</div>
-										</div>
 
                                         <div class="form-actions">
-                                            <input type="submit" value="Guardar" class="btn btn-success">
+                                            <input type="submit" value="Guardar" name="regrupo" class="btn btn-success">
                                         </div>
 
                                     </form>

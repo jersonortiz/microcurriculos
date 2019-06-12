@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php
-
+    <?php
     require_once '../../model/DAO/facultadDAO.php';
     require_once '../../model/DTO/facultadDTO.php';
 
-$fdao = new facultadDAO();
-
-
+    $fdao = new facultadDAO();
     $list = $fdao->listar();
-?>
+    ?>
     <head>
         <title>Admin</title>
         <meta charset="UTF-8" />
@@ -34,7 +31,7 @@ $fdao = new facultadDAO();
         <div id="content">
             <!--breadcrumbs-->
             <div id="content-header">
-              
+
             </div>
 
             <div class="container-fluid">
@@ -66,16 +63,16 @@ $fdao = new facultadDAO();
                                             </div>
                                         </div>
 
-										<div class="control-group">
-											<label class="control-label">Facultad</label>
-											<div class="controls">
-												<select id="facultad" name="facultad">
-												 <?php foreach ($list as $key) { ?>
-													<option value="<?php echo $key; ?>"><?php echo $key; ?></option>
-                                                      <?php  } ?>
-												</select>
-											</div>
-										</div>
+                                        <div class="control-group">
+                                            <label class="control-label">Facultad</label>
+                                            <div class="controls">
+                                                <select id="facultad" name="facultad">
+                                                    <?php foreach ($list as $key) { ?>
+                                                      <option value="<?php echo $key; ?>"><?php echo $key; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
 
                                         <div class="form-actions">
                                             <input type="submit" value="Guardar" class="btn btn-success">

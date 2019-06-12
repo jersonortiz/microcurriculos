@@ -1,19 +1,19 @@
 <?php
 
-require_once '../../model/util/Conexion.php';
-require_once '../../model/DTO/pruebaDTO.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+require_once '../../model/util/Conexion.php';
+require_once '../../model/DTO/pruebaDTO.php';
 
 /**
- * Description of asignaturaDAO
+ * Description of microcurriculoDAO
  *
  * @author jerson
  */
-class pruebaDAO {
+class microcurriculoDAO {
 
     /**
      *  funcion para guardar en la base de datos
@@ -23,23 +23,21 @@ class pruebaDAO {
         $conexion = new Conexion();
         $mensaje = "Fallido";
 
-        $fec = $ces->getFecha();
-        $por = $ces->getPorcentaje();
-        $idpr = $ces->getId_prueba();
-        $idu = $ces->getId_unidad();
-        $idt = $ces->getId_tema();
+        $nom = $ces->getNombre();
+        $pes = $ces->getPeso();
+        $form = $ces->getFormato();
+        $arc = $ces->getArchivo();
+        $idg = $ces->getIdGrupo();
 
         if ($conexion != null) {
-            $consulta = $conexion->prepare('INSERT INTO prueba(fecha,porcentaje, id_prueba,'
-                    . 'id_unidad,id_tema) '
-                    . 'VALUES(:fec, :por , :idpr ,:idu, :idt)');
+            $consulta = $conexion->prepare('INSERT INTO microcurriculo(nombre,peso, formato,'
+                    . 'archivo,id_grupo) VALUES(:nom, :pes ,:form ,:arc, :idg)');
 
-
-            $consulta->bindParam(':fec', $fec);
-            $consulta->bindParam(':por', $por);
-            $consulta->bindParam(':idpr', $idpr);
-            $consulta->bindParam(':idu', $idu);
-            $consulta->bindParam(':idt', $idt);
+            $consulta->bindParam(':nom', $nom);
+            $consulta->bindParam(':pes', $pes);
+            $consulta->bindParam(':form', $form);
+            $consulta->bindParam(':arc', $arc);
+            $consulta->bindParam(':idg', $idg);
 
             if ($consulta->execute()) {
                 $mensaje = "exitoso";
@@ -50,12 +48,12 @@ class pruebaDAO {
     }
 
     /*
-     * busca con base a la id_prueba
+     * busca con base a la id 
      */
 
-    public function consultarPorMatricula($id) {
+    public function consultar($id) {
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM prueba WHERE id_prueba= :idc');
+        $consulta = $conexion->prepare('SELECT * FROM microcurriculo WHERE id= :idc');
         $consulta->bindParam(':idc', $id);
         $consulta->execute();
 
@@ -64,69 +62,40 @@ class pruebaDAO {
         $astraba = array();
 
         foreach ($tabla_datos as $con => $valor) {
-            $ces = new pruebaDTO();
+            $ces = new microcurriculoDTO();
             $ces->setId($tabla_datos[$con]["id"]);
-            $ces->setFecha($tabla_datos[$con]["fecha"]);
-            $ces->setPorcentaje($tabla_datos[$con]["porcentaje"]);
-            $ces->setId_prueba($tabla_datos[$con]["id_prueba"]);
-            $ces->setId_unidad($tabla_datos[$con]["id_unidad"]);
-            $ces->setId_tema($tabla_datos[$con]["id_tema"]);
+            $ces->setNombre($tabla_datos[$con]["nombre"]);
+            $ces->setPeso($tabla_datos[$con]["peso"]);
+            $ces->setFormato($tabla_datos[$con]["formato"]);
+            $ces->setArchivo($tabla_datos[$con]["arcivo"]);
+            $ces->setIdGrupo($tabla_datos[$con]["id_grupo"]);
             array_push($astraba, $ces);
         }
         return $astraba;
     }
 
     /*
-     * busca con base a la id_unidad
+     * busca con base a la id del grupo
      */
 
-    public function consultarPorUnidad($id) {
+    public function consultarPorGrupo($id) {
         $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM prueba WHERE id_unidad= :idc');
+        $consulta = $conexion->prepare('SELECT * FROM prueba WHERE id_grupo= :idc');
         $consulta->bindParam(':idc', $id);
         $consulta->execute();
-
 
         $tabla_datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
         $ces = null;
         $astraba = array();
 
         foreach ($tabla_datos as $con => $valor) {
-            $ces = new pruebaDTO();
+            $ces = new microcurriculoDTO();
             $ces->setId($tabla_datos[$con]["id"]);
-            $ces->setFecha($tabla_datos[$con]["fecha"]);
-            $ces->setPorcentaje($tabla_datos[$con]["porcentaje"]);
-            $ces->setId_prueba($tabla_datos[$con]["id_prueba"]);
-            $ces->setId_unidad($tabla_datos[$con]["id_unidad"]);
-            $ces->setId_tema($tabla_datos[$con]["id_tema"]);
-            array_push($astraba, $ces);
-        }
-        return $astraba;
-    }
-
-    /*
-     * busca con base a la id_tema
-     */
-
-    public function consultarPorTema($id) {
-        $conexion = new Conexion();
-        $consulta = $conexion->prepare('SELECT * FROM prueba WHERE id_tema= :idc');
-        $consulta->bindParam(':idc', $id);
-        $consulta->execute();
-
-
-        $tabla_datos = $consulta->fetchAll(PDO::FETCH_ASSOC);
-        $ces = null;
-        $astraba = array();
-
-        foreach ($tabla_datos as $con => $valor) {
-            $ces = new pruebaDTO();
-            $ces->setId($tabla_datos[$con]["id"]);
-            $ces->setFecha($tabla_datos[$con]["fecha"]);
-            $ces->setPorcentaje($tabla_datos[$con]["porcentaje"]);
-            $ces->setId_prueba($tabla_datos[$con]["id_prueba"]);
-            $ces->setId_unidad($tabla_datos[$con]["id_unidad"]);
-            $ces->setId_tema($tabla_datos[$con]["id_tema"]);
+            $ces->setNombre($tabla_datos[$con]["nombre"]);
+            $ces->setPeso($tabla_datos[$con]["peso"]);
+            $ces->setFormato($tabla_datos[$con]["formato"]);
+            $ces->setArchivo($tabla_datos[$con]["arcivo"]);
+            $ces->setIdGrupo($tabla_datos[$con]["id_grupo"]);
             array_push($astraba, $ces);
         }
         return $astraba;

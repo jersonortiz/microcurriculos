@@ -20,10 +20,12 @@ class estudianteDAO {
     public function guardar($ces) {
         $conexion = new Conexion();
         $mensaje = "Fallido";
-        $consulta = $conexion->prepare('INSERT INTO estudiante(id ,codigo_persona,id_matricula )'
-                . ' VALUES(null, :codper,:idma )');
-        $consulta->bindParam(':codper', $ces->getCodigo_persona());
-        $consulta->bindParam(':idma', $ces->getId_matricula());
+        $codper = $ces->getCodigo_persona();
+        $idma = $ces->getId_matricula();
+        $consulta = $conexion->prepare('INSERT INTO estudiante(codigo_persona,id_matricula )'
+                . ' VALUES( :codper,:idma )');
+        $consulta->bindParam(':codper', $codper);
+        $consulta->bindParam(':idma', $idma);
         if ($consulta->execute()) {
             $mensaje = "exitoso";
         }

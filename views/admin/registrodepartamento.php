@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
-
+    <?php
     require_once '../../model/DAO/facultadDAO.php';
     require_once '../../model/DTO/facultadDTO.php';
 
-$fdao = new facultadDAO();
+    $fdao = new facultadDAO();
 
 
     $list = $fdao->listar();
-
     ?>
     <head>
         <title>Admin</title>
@@ -26,15 +24,15 @@ $fdao = new facultadDAO();
     </head>
     <body>
 
-        <?php
-        include("../includes/navadmin.php");
-        include("../includes/sideadmin.php");
-        ?>
+<?php
+include("../includes/navadmin.php");
+include("../includes/sideadmin.php");
+?>
         <!--main-container-part-->
         <div id="content">
             <!--breadcrumbs-->
             <div id="content-header">
-              
+
             </div>
 
             <div class="container-fluid">
@@ -58,16 +56,16 @@ $fdao = new facultadDAO();
                                             </div>
                                         </div>
 
-										<div class="control-group">
-											<label class="control-label">Facultad</label>
-											<div class="controls">
-												<select id="facultad" name="facultad">
-                                                    <?php foreach ($list as $key) { ?>
-													<option value="<?php echo $key; ?>" ><?php echo $key; ?></option>
-                                                    <?php  } ?>
-												</select>
-											</div>
-										</div>
+                                        <div class="control-group">
+                                            <label class="control-label">Facultad</label>
+                                            <div class="controls">
+                                                <select id="facultad" name="facultad">
+<?php foreach ($list as $key) { ?>
+                                                      <option value="<?php echo $key; ?>" ><?php echo $key; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
 
                                         <div class="form-actions">
                                             <input type="submit" value="Guardar" class="btn btn-success">
@@ -85,9 +83,9 @@ $fdao = new facultadDAO();
         <!--end-main-container-part-->
 
         <!--Footer-part-->
-        <?php
-        include("../includes/footer.php");
-        ?>
+<?php
+include("../includes/footer.php");
+?>
         <!--end-Footer-part-->
 
         <script src="../js/excanvas.min.js"></script> 

@@ -22,12 +22,13 @@ class facultadDAO {
     public function guardar($ces) {
         $conexion = new Conexion();
         $mensaje = "Fallido";
+        $fac = $ces->getNombre();
 
         if ($conexion != null) {
             $consulta = $conexion->prepare('INSERT INTO facultad(nombre) VALUES(:nom)');
 
 
-            $consulta->bindParam(':num', $ces->getNombre());
+            $consulta->bindParam(':num', $fac);
 
             if ($consulta->execute()) {
                 $mensaje = "exitoso";
@@ -71,7 +72,7 @@ class facultadDAO {
 
         foreach ($tabla_datos as $con => $valor) {
             $ces = $tabla_datos[$con]["nombre"];
-  
+
             array_push($astraba, $ces);
         }
         return $astraba;

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
+    <?php
     $cod = $_GET["cod"];
 
     require_once '../../model/DAO/docenteDAO.php';
@@ -10,7 +10,7 @@
     require_once '../../controllers/consultaseguimientocontroller.php';
     $algo = new consultaController();
     $perdao = new personaDAO();
-    $persona= $perdao->consultar($cod);
+    $persona = $perdao->consultar($cod);
 
     $list = $algo->consultaMateriasDocente($cod);
     ?>
@@ -37,35 +37,35 @@
         <!--main-container-part-->
         <div id="content">
             <!--breadcrumbs-->
-  <div id="content-header">
-              
+            <div id="content-header">
+
             </div>
 
             <div class="container-fluid">
                 <div class="row-fluid">
                     <div class="span6">
-                    <a href="#">
-                        <span class="label label-info">exportar datos de docente</span>
-                    </a>
+                        <a href="#">
+                            <span class="label label-info">exportar datos de docente</span>
+                        </a>
                     </div>
 
-                <div class="widget-box">
-                    <div class="widget-title">
-                        <h5>Informacion de docente</h5>
-                    </div>
-                    <div class="widget-content">
+                    <div class="widget-box">
+                        <div class="widget-title">
+                            <h5>Informacion de docente</h5>
+                        </div>
+                        <div class="widget-content">
 
-                        codigo:  <span class="label"><?php echo $persona->getCodigo(); ?> </span>
-                        <br>
-                        nombre: <span class="label"><?php echo $persona->getNombre(); ?></span>
-                        <br>
-                        apellido: <span class="label"><?php echo $persona->getApellido(); ?></span>
-                        <br>
-                        correo: <span class="label"><?php echo $persona->getCorreo(); ?></span>
-                        <br>
-                        
+                            codigo:  <span class="label"><?php echo $persona->getCodigo(); ?> </span>
+                            <br>
+                            nombre: <span class="label"><?php echo $persona->getNombre(); ?></span>
+                            <br>
+                            apellido: <span class="label"><?php echo $persona->getApellido(); ?></span>
+                            <br>
+                            correo: <span class="label"><?php echo $persona->getCorreo(); ?></span>
+                            <br>
+
+                        </div>
                     </div>
-                </div>
 
 
 
@@ -90,23 +90,23 @@
                                         </thead>
                                         <tbody>
 
-                                            <?php  foreach ($list as $mat) { ?>
-                                                # code...
-                                           
-                                            <tr class="odd gradeA">
-                                                <td><?php  echo $mat[0] ?> </td>
-                                                <td><?php  echo $mat[1] ?></td>
-                                                <td><?php  echo $mat[2] ?></td>
-                                                <td>
-                                                    <a href="materia.php?<?php  echo 'cod='.$mat[0].'&gru='.$mat[0]; ?>">
-                                                        <span class="label label-info">ver info</span>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            <?php foreach ($list as $mat) { ?>
+                                              # code...
+
+                                              <tr class="odd gradeA">
+                                                  <td><?php echo $mat[0] ?> </td>
+                                                  <td><?php echo $mat[1] ?></td>
+                                                  <td><?php echo $mat[2] ?></td>
+                                                  <td>
+                                                      <a href="materia.php?<?php echo 'cod=' . $mat[0] . '&gru=' . $mat[0]; ?>">
+                                                          <span class="label label-info">ver info</span>
+                                                      </a>
+                                                  </td>
+                                              </tr>
                                             <?php } ?>
 
 
-                       
+
 
                                         </tbody>
                                     </table>

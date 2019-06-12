@@ -23,13 +23,19 @@ class unidadDAO {
         $conexion = new Conexion();
         $mensaje = "Fallido";
 
+        $nom = $ces->getNombre();
+        $idm = $ces->getId_microcurriculo();
+        $hpr = $ces->getHora_presencial();
+        $hin = $ces->getHora_independiente();
+        $hto = $ces->getHora_total();
+
         if ($conexion != null) {
             $consulta = $conexion->prepare('INSERT INTO unidad(nombre_contenido,id_microcurriculo, horaspresenciales , horasindependientes , horatotal) VALUES(:nom, :idm , :hpr , :hin , :hto)');
-            $consulta->bindParam(':nom', $ces->getNombre());
-            $consulta->bindParam(':idm', $ces->getId_microcurriculo());
-            $consulta->bindParam(':hpr', $ces->getHora_presencial());
-            $consulta->bindParam(':hin', $ces->getHora_independiente());
-            $consulta->bindParam(':hto', $ces->getHora_total());
+            $consulta->bindParam(':nom', $nom);
+            $consulta->bindParam(':idm', $idm);
+            $consulta->bindParam(':hpr', $hpr);
+            $consulta->bindParam(':hin', $hin);
+            $consulta->bindParam(':hto', $hto);
 
             if ($consulta->execute()) {
                 $mensaje = "exitoso";
@@ -46,15 +52,15 @@ class unidadDAO {
     public function consultar($id, $gru) {
         $conexion = new Conexion();
 
-       $consulta =  $conexion->prepare("SELECT U.id , U.nombre_contenido ,U.id_microcurriculo ,U.horaspresenciales,U.horasindependientes , U.horatotal FROM asignatura A , unidad U , microcurriculo M ,grupo G WHERE  U.id_microcurriculo=M.id AND M.id_grupo = :idg AND G.grupo_numero =M.id_grupo AND  A.codigo = G.codigo_asignatura and G.codigo_asignatura=:idc");
+        $consulta = $conexion->prepare("SELECT U.id , U.nombre_contenido ,U.id_microcurriculo ,U.horaspresenciales,U.horasindependientes , U.horatotal FROM asignatura A , unidad U , microcurriculo M ,grupo G WHERE  U.id_microcurriculo=M.id AND M.id_grupo = :idg AND G.grupo_numero =M.id_grupo AND  A.codigo = G.codigo_asignatura and G.codigo_asignatura=:idc");
 
-        /*$consulta = $conexion->prepare("SELECT U.id , U.nombre_contenido ,"
-                . " U.id_microcurriculo , U.horaspresenciales , "
-                . "U.horasindependientes , U.horatotal FROM unidad U ,"
-                . " microcurriculo M  ,grupo G WHERE U.id_microcurriculo="
-                . " M.id AND M.codigo_asignatura = :idc AND G.codigo_asignatura="
-                . "M.codigo_asignatura AND G.grupo_numero=:idg");
-                */
+        /* $consulta = $conexion->prepare("SELECT U.id , U.nombre_contenido ,"
+          . " U.id_microcurriculo , U.horaspresenciales , "
+          . "U.horasindependientes , U.horatotal FROM unidad U ,"
+          . " microcurriculo M  ,grupo G WHERE U.id_microcurriculo="
+          . " M.id AND M.codigo_asignatura = :idc AND G.codigo_asignatura="
+          . "M.codigo_asignatura AND G.grupo_numero=:idg");
+         */
         $consulta->bindParam(':idc', $id);
         $consulta->bindParam(':idg', $gru);
         $consulta->execute();

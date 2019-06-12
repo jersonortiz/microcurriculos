@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
-
+    <?php
     require_once '../../model/DAO/programaDAO.php';
     require_once '../../model/DTO/programaDTO.php';
 
     $fdao = new programaDAO();
 
-    if( isset($_GET['fac']) ){
+    if (isset($_GET['fac'])) {
 
-        $list = $fdao->consultarFacultad($_GET['fac']);
+      $list = $fdao->consultarFacultad($_GET['fac']);
     } else {
-        $list = $fdao->listar();
+      $list = $fdao->listar();
     }
-?>
+    ?>
     <head>
         <title>Admin</title>
         <meta charset="UTF-8" />
@@ -37,52 +36,52 @@
         <div id="content">
             <!--breadcrumbs-->
             <div id="content-header">
-              
+
             </div>
 
             <div class="container-fluid">
                 <div class="row-fluid">
                     <div class="span6">
 
-                    <div class="widget-box">
-                        <div class="widget-title">
-                            <h5>Registrar Plan de estudios: </h5>
-                        </div>
-                        <div class="widget-content">
-                            <div class="widget-box">
-                                <div class="widget-content nopadding">
-                                    <form action="../../controllers/acad/planestudiocontroller.php?acc=reg" method="post" class="form-horizontal">
+                        <div class="widget-box">
+                            <div class="widget-title">
+                                <h5>Registrar Plan de estudios: </h5>
+                            </div>
+                            <div class="widget-content">
+                                <div class="widget-box">
+                                    <div class="widget-content nopadding">
+                                        <form action="../../controllers/acad/planestudiocontroller.php?acc=reg" method="post" class="form-horizontal">
 
-                                        <div class="control-group">
-                                            <label class="control-label">Nombre Plan de estudio:</label>
-                                            <div class="controls">
-                                                <input type="text" name="nom" id="nom" class="span11" placeholder="First name" />
+                                            <div class="control-group">
+                                                <label class="control-label">Nombre Plan de estudio:</label>
+                                                <div class="controls">
+                                                    <input type="text" name="nom" id="nom" class="span11" placeholder="First name" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
-										<div class="control-group">
-											<label class="control-label">Programa: </label>
-											<div class="controls">
-												<select id="prog" nom="prog">
-                                                     <?php foreach ($list as $key) { ?>
-													<option value="<?php echo $key->getCodigo(); ?>" ><?php echo $key->getNombre(); ?></option>
-                                                     <?php  } ?>
-												</select>
-											</div>
-										</div>
+                                            <div class="control-group">
+                                                <label class="control-label">Programa: </label>
+                                                <div class="controls">
+                                                    <select id="prog" nom="prog">
+                                                        <?php foreach ($list as $key) { ?>
+                                                          <option value="<?php echo $key->getCodigo(); ?>" ><?php echo $key->getNombre(); ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
 
-                                        <div class="form-actions">
-                                            <input type="submit" value="Guardar" class="btn btn-success">
-                                        </div>
+                                            <div class="form-actions">
+                                                <input type="submit" value="Guardar" class="btn btn-success">
+                                            </div>
 
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                     </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -77,85 +77,89 @@
                         </div>
                     </div>
 
+                    <a href="registrogrupo.php?cod=<?php echo $mat->getCodigo(); ?>">
+                        <button class="btn btn-primary">Añadir Grupo</button>
+                    </a>
+
 
                     <div class="widget-box collapsible">
 
 
                         <?php
                         foreach ($list as $val) {
-                            $nomgrupo = $val["grup"]->getGrupo();
-                            ?>
+                          $nomgrupo = $val["grup"]->getGrupo();
+                          ?>
 
-                            <div class="widget-title">
-                                <a data-toggle="collapse" href="#collapsegrupo<?php echo $nomgrupo; ?>">
-                                    <h5><?php echo "Grupo " . $nomgrupo ?>  </h5>
-                                </a>
-                            </div>
-                            <div id="collapsegrupo<?php echo $nomgrupo; ?>" class="collapse">
+                          <div class="widget-title">
+                              <a data-toggle="collapse" href="#collapsegrupo<?php echo $nomgrupo; ?>">
+                                  <h5><?php echo "Grupo " . $nomgrupo ?>  </h5>
+                              </a>
+                          </div>
+                          <div id="collapsegrupo<?php echo $nomgrupo; ?>" class="collapse">
 
-                                <div class="widget-content">
+                              <div class="widget-content">
 
-                                    <div class="widget-box collapsible">
+                                  <div class="widget-box collapsible">
 
-                                        <?php
-                                        $unidades = $val["unid"];
+                                      <?php
+                                      $unidades = $val["unid"];
 
-                                        foreach ($unidades as $datos) {
-                                            $coduni = $datos['uni']->getId();
+                                      foreach ($unidades as $datos) {
+                                        $coduni = $datos['uni']->getId();
 
-                                            $nomuni = $datos['uni']->getNombre();
-                                            ?>
+                                        $nomuni = $datos['uni']->getNombre();
+                                        ?>
 
-                                            <div class="widget-title">
-                                                <a data-toggle="collapse" href="#collapseuni<?php echo $nomgrupo . $coduni; ?>">
-                                                    <h5><?php echo $nomuni; ?> </h5>
-                                                </a>
-                                            </div>
+                                        <div class="widget-title">
+                                            <a data-toggle="collapse" href="#collapseuni<?php echo $nomgrupo . $coduni; ?>">
+                                                <h5><?php echo $nomuni; ?> </h5>
+                                            </a>
+                                        </div>
 
-                                            <div id="collapseuni<?php echo $nomgrupo . $coduni; ?>" class="collapse">
-                                                <div class="widget-content">
+                                        <div id="collapseuni<?php echo $nomgrupo . $coduni; ?>" class="collapse">
+                                            <div class="widget-content">
 
-                                                    <div class="widget-box">
-                                                        <div class="widget-title">
-                                                            <h5>Cumplimiento por estudiante</h5>
-                                                        </div>
+                                                <div class="widget-box">
+                                                    <div class="widget-title">
+                                                        <h5>Cumplimiento por estudiante</h5>
+                                                    </div>
 
-                                                        <div class="widget-content nopadding">
-                                                            <table class="table table-bordered table-striped">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Codigo</th>
-                                                                        <th>Nombre</th>
-                                                                        <th>Calificacion</th>
-                                                                        <th></th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <?php foreach ($datos["pru"] as $estudiante) { ?>
+                                                    <div class="widget-content nopadding">
+                                                        <table class="table table-bordered table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Codigo</th>
+                                                                    <th>Nombre</th>
+                                                                    <th>Calificacion</th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php foreach ($datos["pru"] as $estudiante) { ?>
 
-                                                                        <tr class="odd gradeA">
-                                                                            <td>
-                                                                                <?php echo $estudiante[0][0]; ?>
-                                                                            </td>
-                                                                            <td><?php echo $estudiante[0][1]; ?></td>
-                                                                            <td><?php echo $estudiante[0][2]; ?></td>
-                                                                            <td>
-                                                                                <a href="estudiante.php?cod=<?php echo $estudiante[0][0]; ?> ">
-                                                                                    <span class="label label-info">ver info</span>
-                                                                                </a>
-                                                                            </td>
-                                                                        </tr>     
-                                                                    <?php } ?>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
+                                                                  <tr class="odd gradeA">
+                                                                      <td>
+                                                                          <?php echo $estudiante[0][0]; ?>
+                                                                      </td>
+                                                                      <td><?php echo $estudiante[0][1]; ?></td>
+                                                                      <td><?php echo $estudiante[0][2]; ?></td>
+                                                                      <td>
+                                                                          <a href="estudiante.php?cod=<?php echo $estudiante[0][0]; ?> ">
+                                                                              <span class="label label-info">ver info</span>
+                                                                          </a>
+                                                                      </td>
+                                                                  </tr>     
+                                                                <?php } ?>
+                                                            </tbody>
+                                                        </table>
                                                     </div>
                                                 </div>
                                             </div>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                            </div>
+                                        </div>
+                                      <?php } ?>
+                                  </div>
+                              </div>
+                          </div>
                         <?php } ?>
                     </div>       
                 </div>

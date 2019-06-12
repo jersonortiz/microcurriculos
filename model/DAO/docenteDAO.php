@@ -20,13 +20,15 @@ class docenteDAO {
     public function guardar($ces) {
         $conexion = new Conexion();
         $mensaje = "Fallido";
+        $codper = $ces->getCodigo_persona();
+        $nomdep = $ces->getNombre_departamento();
+
 
         if ($conexion != null) {
-            $consulta = $conexion->prepare('INSERT INTO docente(id ,codigo_persona,nombre_departamento )'
-                    . ' VALUES(null, :codper,:nomdep ,)');
-            //$consulta->bindParam(':id', $ces->getId());
-            $consulta->bindParam(':codper', $ces->getCodigo_persona());
-            $consulta->bindParam(':nomdep', $ces->getNombre_departamento());
+            $consulta = $conexion->prepare('INSERT INTO docente(codigo_persona,nombre_departamento )'
+                    . ' VALUES( :codper,:nomdep ,)');
+            $consulta->bindParam(':codper', $codper);
+            $consulta->bindParam(':nomdep', $nomdep);
 
             if ($consulta->execute()) {
                 $mensaje = "exitoso";

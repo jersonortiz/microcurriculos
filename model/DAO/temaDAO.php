@@ -23,12 +23,17 @@ class temaDAO {
         $conexion = new Conexion();
         $mensaje = "Fallido";
 
+        $idu = $ces->getIdunidad();
+        $nom = $ces->getNombre();
+        $apr = $ces->getActividad_presencial();
+        $tin = $ces->getTrabajo_independiente();
+
         if ($conexion != null) {
             $consulta = $conexion->prepare('INSERT INTO tema(id_unidad,nombre, actividadpresensial , trabajoindependiete) VALUES(:idu, :nom ,:apr , :tin)');
-            $consulta->bindParam(':idu', $ces->getIdunidad());
-            $consulta->bindParam(':nom', $ces->getNombre());
-            $consulta->bindParam(':apr', $ces->getActividad_presencial());
-            $consulta->bindParam(':tin', $ces->getTrabajo_independiente());
+            $consulta->bindParam(':idu', $idu);
+            $consulta->bindParam(':nom', $nom);
+            $consulta->bindParam(':apr', $apr);
+            $consulta->bindParam(':tin', $tin);
 
             if ($consulta->execute()) {
                 $mensaje = "exitoso";

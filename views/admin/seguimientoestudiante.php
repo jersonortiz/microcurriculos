@@ -29,8 +29,8 @@
         <!--main-container-part-->
         <div id="content">
             <!--breadcrumbs-->
-  <div id="content-header">
-              
+            <div id="content-header">
+
             </div>
 
             <div class="container-fluid">
@@ -112,7 +112,7 @@
                                                 </td>
                                             </tr>
 
-                                           <tr class="gradeX">
+                                            <tr class="gradeX">
                                                 <td>1150004</td>
                                                 <td>estudiante 4</td>
                                                 <td>5</td>

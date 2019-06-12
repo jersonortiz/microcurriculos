@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
+    <?php
     require_once '../../model/DAO/programaDAO.php';
     require_once '../../model/DTO/programaDTO.php';
     require_once '../../model/DTO/planEstudiosDTO.php';
     require_once '../../model/DAO/planestudioDAO.php';
     $fdao = new planestudioDAO();
 
-    if( isset($_GET['fac']) ){
-        $plan = $_GET['fac'];
-        $panest =  $fdao->consultar($plan);
-        $list = array( $panest );
+    if (isset($_GET['fac'])) {
+      $plan = $_GET['fac'];
+      $panest = $fdao->consultar($plan);
+      $list = array($panest);
     } else {
-        $list = $fdao->listar();
+      $list = $fdao->listar();
     }
-?>
+    ?>
     <head>
         <title>Admin</title>
         <meta charset="UTF-8" />
@@ -38,7 +38,7 @@
         <div id="content">
             <!--breadcrumbs-->
             <div id="content-header">
-              
+
             </div>
 
             <div class="container-fluid">
@@ -91,16 +91,16 @@
                                             </div>
                                         </div>
 
-										<div class="control-group">
-											<label class="control-label">Plan de estudios</label>
-											<div class="controls">
-												<select id="pla" name="pla">
-                                                    <?php  foreach ($list as $key ) { ?>
-													<option value="<?php echo $key->getCodigo(); ?>" ><?php echo $key->getNombre(); ?></option>
+                                        <div class="control-group">
+                                            <label class="control-label">Plan de estudios</label>
+                                            <div class="controls">
+                                                <select id="pla" name="pla">
+                                                    <?php foreach ($list as $key) { ?>
+                                                      <option value="<?php echo $key->getNombre(); ?>" ><?php echo $key->getNombre(); ?></option>
                                                     <?php } ?>
-												</select>
-											</div>
-										</div>
+                                                </select>
+                                            </div>
+                                        </div>
 
                                         <div class="form-actions">
                                             <input type="submit" value="Guardar" class="btn btn-success">

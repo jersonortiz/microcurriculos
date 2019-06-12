@@ -22,15 +22,16 @@ class grupoDAO {
     public function guardar($ces) {
         $conexion = new Conexion();
         $mensaje = "Fallido";
+       
+        $cod= $ces->getCodigo_asignatura();
+        $gru=$ces->getGrupo();
+        $coddo= $ces->getCodigo_docente();
 
         if ($conexion != null) {
-            $consulta = $conexion->prepare('INSERT INTO grupo(grupo_numero,codigo_asignatura, grupo .codigo_docente) VALUES(:num, :cod , :gru , :cdo)');
+            $consulta = $conexion->prepare('INSERT INTO grupo(codigo_asignatura, grupo ) VALUES( :cod , :gru)');
 
-
-            $consulta->bindParam(':num', $ces->getGrupo_numero());
-            $consulta->bindParam(':cod', $ces->getCodigo_asignatura());
-            $consulta->bindParam(':gru', $ces->getGrupo());
-            $consulta->bindParam(':cdo', $ces->getCodigo_docente());
+            $consulta->bindParam(':cod', $cod);
+            $consulta->bindParam(':gru', $gru);
 
             if ($consulta->execute()) {
                 $mensaje = "exitoso";
@@ -69,6 +70,7 @@ class grupoDAO {
     /*
      * busca con base al codigo del docente
      */
+
     public function consultarDocente($id) {
         $conexion = new Conexion();
         $consulta = $conexion->prepare('SELECT * FROM grupo WHERE codigo_docente= :idc');

@@ -19,16 +19,22 @@ class personaDAO {
     public function guardar($ces) {
         $conexion = new Conexion();
         $mensaje = "Fallido";
+        $cod = $ces->getCodigo();
+        $nom = $ces->getNombre();
+        $ape = $ces->getApellido();
+        $corr = $ces->getCorreo();
+        $cont = $ces->getContrasena();
+        $tip = $ces->getTipo();
 
         if ($conexion != null) {
             $consulta = $conexion->prepare('INSERT INTO persona(codigo, nombre, apellidos , correo , contrasena , tipo )'
                     . ' VALUES(:cod, :nom,:ape ,:corr , :cont , :tip )');
-            $consulta->bindParam(':cod', $ces->getCodigo());
-            $consulta->bindParam(':nom', $ces->getNombre());
-            $consulta->bindParam(':ape', $ces->getApellido());
-            $consulta->bindParam(':corr', $ces->getCorreo());
-            $consulta->bindParam(':cont', $ces->getContrasena());
-            $consulta->bindParam(':tip', $ces->getTipo());
+            $consulta->bindParam(':cod', $cod);
+            $consulta->bindParam(':nom', $nom);
+            $consulta->bindParam(':ape', $ape);
+            $consulta->bindParam(':corr', $corr);
+            $consulta->bindParam(':cont', $cont);
+            $consulta->bindParam(':tip', $tip);
 
             if ($consulta->execute()) {
                 $mensaje = "exitoso";
@@ -41,6 +47,7 @@ class personaDAO {
     /*
      * busca con base a la id
      */
+
     public function consultar($id) {
         $conexion = new Conexion();
         $consulta = $conexion->prepare('SELECT * FROM persona WHERE codigo= :idc');

@@ -22,17 +22,23 @@ class asignaturaDAO {
     public function guardar($ces) {
         $conexion = new Conexion();
         $mensaje = "Fallido";
+      
+        $cod = $ces->getCodigo();
+        $nom = $ces->getNombre();
+        $sem = $ces->getSemestre();
+        $int = $ces->getIntencidad_horaria();
+        $cre = $ces->getCreditos();
+        $pla = $ces->getNombre_planestudio();
 
         if ($conexion != null) {
             $consulta = $conexion->prepare('INSERT INTO asignatura(codigo,nombre, semestre, intensidadhoraria,creditos, nombre_plandeestudios) VALUES(:cod, :nom , :sem , :int, :cre,:pla)');
 
-
-            $consulta->bindParam(':cod', $ces->getCodigo());
-            $consulta->bindParam(':nom', $ces->getNombre());
-            $consulta->bindParam(':sem', $ces->getSemestre());
-            $consulta->bindParam(':int', $ces->getIntencidad_horaria());
-            $consulta->bindParam(':cre', $ces->getCreditos());
-            $consulta->bindParam(':pla', $ces->getNombre_planestudio());
+            $consulta->bindParam(':cod', $cod);
+            $consulta->bindParam(':nom', $nom);
+            $consulta->bindParam(':sem', $sem);
+            $consulta->bindParam(':int', $int);
+            $consulta->bindParam(':cre', $cre);
+            $consulta->bindParam(':pla', $pla);
 
             if ($consulta->execute()) {
                 $mensaje = "exitoso";

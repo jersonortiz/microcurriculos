@@ -22,11 +22,13 @@ class departamentoDAO {
     public function guardar($ces) {
         $conexion = new Conexion();
         $mensaje = "Fallido";
+        $nom = $ces->getNombre();
+        $nomf = $ces->getNombre_facultad();
 
         if ($conexion != null) {
             $consulta = $conexion->prepare('INSERT INTO departamento(nombre , nombre_facultad) VALUES(:nom, :nomf)');
-            $consulta->bindParam(':num', $ces->getNombre());
-            $consulta->bindParam(':num', $ces->getNombre_facultad());
+            $consulta->bindParam(':nom', $nom);
+            $consulta->bindParam(':nomf', $nomf);
 
             if ($consulta->execute()) {
                 $mensaje = "exitoso";

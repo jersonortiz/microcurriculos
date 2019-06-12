@@ -26,10 +26,9 @@ class controladormateria {
         $ces->setIntencidad_horaria($ihor);
         $ces->setCreditos($cre);
         $ces->setNombre_planestudio($pla);
-
-
-        print_r($ces);
-        //$facdao->guardar($facdto);
+        
+        //print_r($ces);
+       echo $facdao->guardar($ces);
     }
 
 }

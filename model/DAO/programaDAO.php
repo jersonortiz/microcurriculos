@@ -23,12 +23,16 @@ class programaDAO {
         $conexion = new Conexion();
         $mensaje = "Fallido";
 
+        $nom = $ces->getNombre();
+        $cod = $ces->getCodigo();
+        $fac = $ces->getNombre_facultad();
+
         if ($conexion != null) {
             $consulta = $conexion->prepare('INSERT INTO programa(nombre,codigo, nombre_facultad) VALUES(:nom, :cod , :fac)');
 
-            $consulta->bindParam(':nom', $ces->getNombre());
-            $consulta->bindParam(':cod', $ces->getCodigo());
-            $consulta->bindParam(':fac', $ces->getNombre_facultad());
+            $consulta->bindParam(':nom', $nom);
+            $consulta->bindParam(':cod', $cod);
+            $consulta->bindParam(':fac', $fac);
             if ($consulta->execute()) {
                 $mensaje = "exitoso";
             }

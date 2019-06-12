@@ -18,12 +18,12 @@ class adminDAO {
     public function guardar($ces) {
         $conexion = new Conexion();
         $mensaje = "Fallido";
+        $codper = $ces->getCodigo_persona();
 
         if ($conexion != null) {
-            $consulta = $conexion->prepare('INSERT INTO administrador(id ,codigo_persona )'
-                    . ' VALUES(null,:codper )');
-            //$consulta->bindParam(':id', $ces->getId());
-            $consulta->bindParam(':codper', $ces->getCodigo_persona());
+            $consulta = $conexion->prepare('INSERT INTO administrador(codigo_persona )'
+                    . ' VALUES(:codper )');
+            $consulta->bindParam(':codper', $codper);
             if ($consulta->execute()) {
                 $mensaje = "exitoso";
             }
