@@ -24,8 +24,10 @@ require_once '../../model/DTO/docenteDTO.php';
 require_once '../../model/DAO/personaDAO.php';
 require_once '../../model/DTO/personaDTO.php';
 
-require_once '../../model/DAO/docenteDAO.php';
-require_once '../../model/DTO/docenteDTO.php';
+require_once '../../model/DAO/programaDAO.php';
+require_once '../../model/DTO/programaDTO.php';
+require_once '../../model/DAO/planestudioDAO.php';
+require_once '../../model/DTO/planEstudiosDTO.php';
 
 
 /*
@@ -246,6 +248,36 @@ class consultaController {
     public function consultaMateriasDocente($cod) {
         $docdao = new docenteDAO();
         return $docdao->consultarMaterias($cod);
+    }
+
+    public function consultaMats() {
+        $facDAo = new facultadDAO();
+        $facs = $facDAo->listar();
+        $progdao = new programaDAO();
+        $pladao = new planestudioDAO();
+
+        $facsprogs = array();
+        foreach ($facs as $fac) {
+            $progs = $progdao->consultarFacultad($fac);
+
+            $progplanes = array();
+            foreach ($progs as $pro) {
+                $planes = $pladao->consultarPrograma($pro->getCodigo());
+               
+
+
+                $matplan = array();
+                foreach ($planes as $plan) {
+                    $materias = $this->listarmaterias($plan->getNombre());
+                    array_push($matplan, array("plan" => $plan, "mat" => $materias));
+                }
+                
+                array_push($progplanes, array("prog" => $pro, "plan" => $matplan));
+            }
+            array_push($facsprogs, array("fac" => $fac, "pro" => $progplanes));
+        }
+        
+        return $facsprogs;
     }
 
 }

@@ -3,7 +3,7 @@
     <?php
     require_once '../../controllers/consultaseguimientocontroller.php';
     $algo = new consultaController();
-    $list = $algo->listarPlanEstudios();
+    $list = $algo->consultaMats();
     ?>
     <head>
         <title>Admin</title>
@@ -36,20 +36,24 @@
                 <div class="row-fluid">
                     <div class="span6">
 
-                    </div>
+                    <a href="registroFacultad.php">
+                        <button class="btn btn-primary">Registrar Facultad</button>
+                    </a>
+<br>
+                    <h3>Facultades</h3>
+
+                    
 
                     <div class="widget-box collapsible">
 
                         <?php
                         $contc = 1;
-                        foreach ($list as $fila) {
-                            $plan = $fila["pro"];
-                            $mats = $fila["mat"];
+                        foreach ($list as $faculs) {
                             ?>
 
                             <div class="widget-title">
                                 <a data-toggle="collapse" href="#collapse<?php echo $contc; ?>">
-                                    <h5> <?php echo $plan->getNombre(); ?>  </h5>
+                                    <h5> <?php echo $faculs['fac']; ?>  </h5>
                                 </a>
                             </div>
 
@@ -57,75 +61,150 @@
 
                                 <div class="widget-content">
 
-                                    
+                                    <a href="registroprograma.php">
+                                        <button class="btn btn-primary">Registrar programa</button>
+                                    </a>
+
+                                    <a href="registrodepartamento.php">
+                                        <button class="btn btn-primary">Registrar Departamento</button>
+                                    </a>
+                                    <br>
+                                    <h4>Programas</h4>
+
 
                                     <div class="widget-box collapsible">
                                         <?php
-                                        $cont = 1;
+                                        $progs = $faculs['pro'];
 
-                                        foreach ($mats as $sem) {
+                                        foreach ($progs as $programa) {
+
+                                            $prognom = $programa['prog']->getNombre();
+                                            $progcod = $programa['prog']->getCodigo();
+
+                                            $planes = $programa['plan'];
                                             ?>
 
-
                                             <div class="widget-title">
-                                                <a data-toggle="collapse" href="#collapsesem<?php echo $contc . $cont; ?>">
-                                                    <h5>Semestre <?php echo $cont; ?> </h5>
+                                                <a data-toggle="collapse" href="#collapsesem<?php echo $contc . $progcod; ?>">
+                                                    <h5> <?php echo $prognom; ?>   </h5>
                                                 </a>
                                             </div>
 
-                                            <div id="collapsesem<?php echo $contc . $cont; ?>" class="collapse">
-                                                <?php $cont++; ?>
+                                            <div id="collapsesem<?php echo $contc . $progcod; ?>" class="collapse">
                                                 <div class="widget-content">
-                                                    <div class="widget-box">
-                                                        <div class="widget-content nopadding">
-                                                            <table class="table table-bordered table-striped">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Codigo</th>
-                                                                        <th>Nombre</th>
-                                                                        <th>Grupo</th>
-                                                                        <th>Docente</th>
-                                                                        <th></th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <?php
-                                                                    foreach ($sem as $row) {
-                                                                        ?>
 
-                                                                        <tr class="odd gradeA">
-                                                                            <td> <?php echo $row[0]; ?> </td>
-                                                                            <td> <?php echo $row[1]; ?> </td>
-                                                                            <td> <?php echo $row[3]; ?> </td>
-                                                                            <td> <?php echo $row[4]; ?></td>
-                                                                            <td>
-                                                                                <a href="materia.php?cod=<?php echo $row[0] . "&gru=$row[5]"; ?> ">
-                                                                                    <span class="label label-info">ver info</span>
+
+                                    <a href="registroplanestudios.php?fac=<?php echo $faculs['fac']; ?>">
+                                        <button class="btn btn-primary">Registrar plan de estudio</button>
+                                    </a>
+                                    <br>
+                                    <h4>Planes de estudio</h4>
+
+                                                    <div class="widget-box collapsible">
+                                                        <?php
+                                                        $contplan = 1;
+
+                                                        foreach ($planes as $plan) {
+
+                                                            $plannom = $plan['plan']->getNombre();
+                                                            $plancod = $plan['plan']->getCodigo();
+
+                                                            $collmospl = $contplan . $plancod;
+
+                                                            $semestres = $plan['mat'];
+                                                            ?>
+
+
+                                                            <div class="widget-title">
+                                                                <a data-toggle="collapse" href="#collapsesem<?php echo $contc . $progcod . $collmospl; ?>">
+                                                                    <h5> <?php echo $plannom; ?>  </h5>
+                                                                </a>
+                                                            </div>
+
+                                                            <div id="collapsesem<?php echo $contc . $progcod . $collmospl; ?>" class="collapse">
+                                                                <div class="widget-content">
+
+<h5>Materias</h5>
+                                                                    <div class="widget-box collapsible">
+                                                                        <?php
+                                                                        $contsem = 1;
+
+                                                                        foreach ($semestres as $semestre) {
+                                                                            ?>
+
+
+
+
+                                                                            <div class="widget-title">
+                                                                                <a data-toggle="collapse" href="#collapsesem<?php echo $contc . $progcod . $collmospl . $contsem; ?>">
+                                                                                    <h5> Semestre  <?php echo $contsem; ?>   </h5>
                                                                                 </a>
-                                                                            </td>
-                                                                        </tr>
-                                                                    <?php } ?>
-                                                                </tbody>
-                                                            </table>                                                    
-                                                        </div>
+                                                                            </div>
+
+                                                                            <div id="collapsesem<?php echo $contc . $progcod . $collmospl . $contsem; ?>" class="collapse">
+                                                                                <div class="widget-content">
+
+                                                                                    <div class="widget-box">
+                                                                                        <div class="widget-content nopadding">
+                                                                                            <table class="table table-bordered table-striped">
+                                                                                                <thead>
+                                                                                                    <tr>
+                                                                                                        <th>Codigo</th>
+                                                                                                        <th>Nombre</th>
+                                                                                                        <th>Grupo</th>
+                                                                                                        <th>Docente</th>
+                                                                                                        <th></th>
+                                                                                                    </tr>
+                                                                                                </thead>
+                                                                                                <tbody>
+                                                                                                    <?php foreach ($semestre as $row) { ?>
+                                                                                                        <tr class="odd gradeA">
+                                                                                                            <td> <?php echo $row[0]; ?> </td>
+                                                                                                            <td> <?php echo $row[1]; ?> </td>
+                                                                                                            <td> <?php echo $row[3]; ?> </td>
+                                                                                                            <td> <?php echo $row[4]; ?></td>
+                                                                                                            <td>
+                                                                                                                <a href="materia.php?cod=<?php echo $row[0] . "&gru=$row[5]"; ?> ">
+                                                                                                                    <span class="label label-info">ver info</span>
+                                                                                                                </a>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <?php } ?>
+                                                                                                </tbody>
+                                                                                            </table>                                                    
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        <?php $contsem++;  } ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        <?php  $contplan++; } ?>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <?php $contc++; ?>
-                                        <?php } ?>
+                                        <?php } $contc++; ?>
                                     </div>
                                 </div>
                             </div>
                         <?php } ?>
-                    </div>       
+                    </div>   
+</div>
+
+
                 </div>
             </div>
         </div>
 
+
         <!--end-main-container-part-->
 
         <!--Footer-part-->
-        <?php include("../includes/footer.php"); ?>
+<?php
+include("../includes/footer.php");
+?>
         <!--end-Footer-part-->
 
         <script src="../js/excanvas.min.js"></script> 
