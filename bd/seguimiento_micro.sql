@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 11-06-2019 a las 16:42:51
+-- Tiempo de generación: 12-06-2019 a las 01:31:39
 -- Versión del servidor: 5.7.26-0ubuntu0.18.04.1
 -- Versión de PHP: 7.2.19-0ubuntu0.18.04.1
 
@@ -31,6 +31,13 @@ CREATE TABLE `administrador` (
   `codigo_persona` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `administrador`
+--
+
+INSERT INTO `administrador` (`id`, `codigo_persona`) VALUES
+(1, 9999);
+
 -- --------------------------------------------------------
 
 --
@@ -51,6 +58,7 @@ CREATE TABLE `asignatura` (
 --
 
 INSERT INTO `asignatura` (`codigo`, `nombre`, `semestre`, `intensidadhoraria`, `creditos`, `nombre_plandeestudios`) VALUES
+(9999, 'dificil', 4, 3, 4, 'ingenieria civil'),
 (11111, 'calculo diferencial', 1, 4, 4, 'ingenieria civil'),
 (21111, 'calculo integral', 2, 4, 4, 'ingenieria civil'),
 (101101, 'calculo integral', 2, 4, 4, 'tecnico profesional en procesamiento de alimentos'),
@@ -104,20 +112,19 @@ INSERT INTO `departamento` (`nombre`, `nombre_facultad`) VALUES
 CREATE TABLE `docente` (
   `id` int(11) NOT NULL,
   `codigo_persona` int(11) NOT NULL,
-  `nombre_departamento` varchar(50) NOT NULL,
-  `gruponumero` int(11) NOT NULL
+  `nombre_departamento` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `docente`
 --
 
-INSERT INTO `docente` (`id`, `codigo_persona`, `nombre_departamento`, `gruponumero`) VALUES
-(2, 1080, 'SISTEMAS E INFORMATICA', 2),
-(3, 1111, 'SISTEMAS E INFORMATICA', 3),
-(4, 1178, 'SISTEMAS E INFORMATICA', 4),
-(5, 1995, 'SISTEMAS E INFORMATICA', 5),
-(6, 6209, 'MATEMATICAS Y ESTADISTICA', 6);
+INSERT INTO `docente` (`id`, `codigo_persona`, `nombre_departamento`) VALUES
+(2, 1080, 'SISTEMAS E INFORMATICA'),
+(3, 1111, 'SISTEMAS E INFORMATICA'),
+(4, 1178, 'SISTEMAS E INFORMATICA'),
+(5, 1995, 'SISTEMAS E INFORMATICA'),
+(6, 6209, 'MATEMATICAS Y ESTADISTICA');
 
 -- --------------------------------------------------------
 
@@ -162,7 +169,10 @@ INSERT INTO `facultad` (`nombre`) VALUES
 ('CIENCIAS DE LA SALUD'),
 ('CIENCIAS EMPRESARIALES'),
 ('EDUCACION, ARTES Y HUMANIDADES'),
-('INGENIERIA');
+('INGENIERIA'),
+('nueva'),
+('nueva2'),
+('nueva3');
 
 -- --------------------------------------------------------
 
@@ -174,7 +184,7 @@ CREATE TABLE `grupo` (
   `grupo_numero` int(11) NOT NULL,
   `codigo_asignatura` int(11) NOT NULL,
   `grupo` char(1) NOT NULL DEFAULT 'A',
-  `codigo_docente` int(11) NOT NULL
+  `codigo_docente` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -186,7 +196,10 @@ INSERT INTO `grupo` (`grupo_numero`, `codigo_asignatura`, `grupo`, `codigo_docen
 (3, 102102, 'A', 1111),
 (4, 109109, 'A', 1178),
 (5, 111111, 'A', 1995),
-(6, 111111, 'B', 6209);
+(6, 111111, 'B', 6209),
+(7, 111111, 'C', 0),
+(8, 111111, 'D', 0),
+(9, 111111, 'E', 0);
 
 -- --------------------------------------------------------
 
@@ -366,7 +379,8 @@ INSERT INTO `persona` (`codigo`, `nombre`, `apellidos`, `correo`, `contrasena`, 
 (4608, 'matias', 'herrera caceres', 'matiashc@ufps.edu.co', '0000', 3),
 (5096, 'claudia yamile', 'gomez llanez', 'claudiaygomez@ufps.edu.co', '0000', 3),
 (6209, 'nelly rosana', 'diaz leal', 'nellyrosanadl@ufps.edu.co', '0000', 3),
-(9999, 'admin', 'admin', 'admin@ufps.edu.co', '0000', 1);
+(9999, 'admin', 'admin', 'admin@ufps.edu.co', '0000', 1),
+(1150099933, 'juan', 'pepea', 'algo@algo.es', '0000', 2);
 
 -- --------------------------------------------------------
 
@@ -419,7 +433,8 @@ INSERT INTO `plandeestudios` (`nombre`, `codigo`) VALUES
 ('tecnologia en obras civiles-presencial', 192),
 ('quimica industrial', 195),
 ('tecnologia en procesos industriales', 198),
-('trabajo social-nocturna', 234);
+('trabajo social-nocturna', 234),
+('algo ', 77777);
 
 -- --------------------------------------------------------
 
@@ -474,7 +489,8 @@ INSERT INTO `programa` (`nombre`, `codigo`, `nombre_facultad`) VALUES
 ('QUIMICA INDUSTRIAL', 195, 'CIENCIAS BASICAS'),
 ('TECNOLOGIA EN PROCESOS INDUSTRIALES', 198, 'INGENIERIA'),
 ('INGENIERIA CIVIL(COHORTE ESPECIAL)', 211, 'INGENIERIA'),
-('TRABAJO SOCIAL - NOCTURNA', 234, 'EDUCACION, ARTES Y HUMANIDADES');
+('TRABAJO SOCIAL - NOCTURNA', 234, 'EDUCACION, ARTES Y HUMANIDADES'),
+('ingenieria algo', 77777, 'nueva');
 
 -- --------------------------------------------------------
 
@@ -607,7 +623,6 @@ ALTER TABLE `departamento`
 ALTER TABLE `docente`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_docente_departamento` (`nombre_departamento`),
-  ADD KEY `fk_docente_grupo` (`gruponumero`),
   ADD KEY `fk_docente_persona` (`codigo_persona`);
 
 --
@@ -710,7 +725,7 @@ ALTER TABLE `unidad`
 -- AUTO_INCREMENT de la tabla `administrador`
 --
 ALTER TABLE `administrador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `docente`
 --
@@ -725,12 +740,17 @@ ALTER TABLE `estudiante`
 -- AUTO_INCREMENT de la tabla `grupo`
 --
 ALTER TABLE `grupo`
-  MODIFY `grupo_numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `grupo_numero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `matricula`
 --
 ALTER TABLE `matricula`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+--
+-- AUTO_INCREMENT de la tabla `microcurriculo`
+--
+ALTER TABLE `microcurriculo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111111113;
 --
 -- AUTO_INCREMENT de la tabla `unidad`
 --
@@ -769,12 +789,6 @@ ALTER TABLE `microcurriculo`
 --
 ALTER TABLE `tema`
   ADD CONSTRAINT `fk_tema_unidad` FOREIGN KEY (`id_unidad`) REFERENCES `unidad` (`id`);
-
---
--- Filtros para la tabla `unidad`
---
-ALTER TABLE `unidad`
-  ADD CONSTRAINT `fk_unidad_microcurriculo` FOREIGN KEY (`id_microcurriculo`) REFERENCES `microcurriculo` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
