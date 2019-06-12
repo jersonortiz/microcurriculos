@@ -15,38 +15,46 @@ require_once '../../model/DTO/asignaturaDTO.php';
  */
 class controladormateria {
 
-    function registroMateria($cod, $nom, $sem, $ihor, $cre, $pla) {
+  function registroMateria($cod, $nom, $sem, $ihor, $cre, $pla) {
 
-        $facdao = new asignaturaDAO();
+    $facdao = new asignaturaDAO();
 
-        $ces = new asignaturaDTO();
-        $ces->setCodigo($cod);
-        $ces->setNombre($nom);
-        $ces->setSemestre($sem);
-        $ces->setIntencidad_horaria($ihor);
-        $ces->setCreditos($cre);
-        $ces->setNombre_planestudio($pla);
-        
-        //print_r($ces);
-       echo $facdao->guardar($ces);
-    }
+    $ces = new asignaturaDTO();
+    $ces->setCodigo($cod);
+    $ces->setNombre($nom);
+    $ces->setSemestre($sem);
+    $ces->setIntencidad_horaria($ihor);
+    $ces->setCreditos($cre);
+    $ces->setNombre_planestudio($pla);
+
+    //print_r($ces);
+    return $facdao->guardar($ces);
+  }
 
 }
 
 if (isset($_GET['acc'])) {
-    $accion = $_GET['acc'];
+  $accion = $_GET['acc'];
 
-    switch ($accion) {
-        case 'reg':
-            $cod = $_POST['cod'];
-            $nom = $_POST['nom'];
-            $sem = $_POST['sem'];
-            $ihor = $_POST['ihor'];
-            $cre = $_POST['cre'];
-            $pla = $_POST['pla'];
+  switch ($accion) {
+    case 'reg':
+      $cod = $_POST['cod'];
+      $nom = $_POST['nom'];
+      $sem = $_POST['sem'];
+      $ihor = $_POST['ihor'];
+      $cre = $_POST['cre'];
+      $pla = $_POST['pla'];
 
-            $facc = new controladormateria();
-            $facc->registroMateria($cod , $nom , $sem , $ihor , $cre , $pla);
-            break;
-    }
+      $facc = new controladormateria();
+      $res = $facc->registroMateria($cod, $nom, $sem, $ihor, $cre, $pla);
+
+      if ($res == 'exitoso') {
+        header('Location: ../../views/admin/seguimientomateria.php?ope=exito');
+      } else {
+        header('Location: ../../views/admin/seguimientomateria.php?ope=mal');
+      }
+
+
+      break;
+  }
 }

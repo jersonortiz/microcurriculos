@@ -5,8 +5,6 @@
     require_once '../../model/DTO/facultadDTO.php';
 
     $fdao = new facultadDAO();
-
-
     $list = $fdao->listar();
     ?>
     <head>
@@ -24,10 +22,10 @@
     </head>
     <body>
 
-<?php
-include("../includes/navadmin.php");
-include("../includes/sideadmin.php");
-?>
+        <?php
+        include("../includes/navadmin.php");
+        include("../includes/sideadmin.php");
+        ?>
         <!--main-container-part-->
         <div id="content">
             <!--breadcrumbs-->
@@ -52,7 +50,7 @@ include("../includes/sideadmin.php");
                                         <div class="control-group">
                                             <label class="control-label">Nombre Departamento:</label>
                                             <div class="controls">
-                                                <input type="text" name="nom" id="nom" class="span11" placeholder="First name" />
+                                                <input type="text" name="nom" id="nom" class="span11" placeholder="Departamento de matematica" />
                                             </div>
                                         </div>
 
@@ -60,7 +58,7 @@ include("../includes/sideadmin.php");
                                             <label class="control-label">Facultad</label>
                                             <div class="controls">
                                                 <select id="facultad" name="facultad">
-<?php foreach ($list as $key) { ?>
+                                                    <?php foreach ($list as $key) { ?>
                                                       <option value="<?php echo $key; ?>" ><?php echo $key; ?></option>
                                                     <?php } ?>
                                                 </select>
@@ -83,9 +81,9 @@ include("../includes/sideadmin.php");
         <!--end-main-container-part-->
 
         <!--Footer-part-->
-<?php
-include("../includes/footer.php");
-?>
+        <?php
+        include("../includes/footer.php");
+        ?>
         <!--end-Footer-part-->
 
         <script src="../js/excanvas.min.js"></script> 

@@ -1,3 +1,8 @@
+<?php
+ header('Location: ./seguimientomateria.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <?php
@@ -150,13 +155,15 @@
                                                                         </div>
                                                                     </div>
                                                                     <?php $contsem++;
-                                                                  } ?>
+                                                                  }
+                                                                  ?>
                                                               </div>
                                                           </div>
                                                       </div>
 
-      <?php $contplan++;
-    } ?>
+                                                      <?php $contplan++;
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
                                         </div>

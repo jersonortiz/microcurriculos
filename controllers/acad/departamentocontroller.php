@@ -15,26 +15,33 @@ require_once '../../model/DTO/departamentoDTO.php';
  */
 class departamentocontroller {
 
-    function registroDepartamento($nom, $fac) {
-        $facdto = new departamentoDTO();
-        $facdao = new departamentoDAO();
-        $facdto->setNombre($nom);
-        $facdto->setNombre_facultad($fac);
-        print_r($facdto);
-        //$facdao->guardar($facdto);
-    }
+  function registroDepartamento($nom, $fac) {
+    $facdto = new departamentoDTO();
+    $facdao = new departamentoDAO();
+    $facdto->setNombre($nom);
+    $facdto->setNombre_facultad($fac);
+
+    return $facdao->guardar($facdto);
+  }
 
 }
 
 if (isset($_GET['acc'])) {
-    $accion = $_GET['acc'];
+  $accion = $_GET['acc'];
 
-    switch ($accion) {
-        case 'reg':
-            $nom = $_POST['nom'];
-            $fac = $_POST['facultad'];
-            $facc = new departamentocontroller();
-            $facc->registroDepartamento($nom, $fac);
-            break;
-    }
+  switch ($accion) {
+    case 'reg':
+      $nom = $_POST['nom'];
+      $fac = $_POST['facultad'];
+      $facc = new departamentocontroller();
+      $res = $facc->registroDepartamento($nom, $fac);
+
+      if ($res == 'exitoso') {
+        header('Location: ../../views/admin/seguimientomateria.php?ope=exito');
+      } else {
+        header('Location: ../../views/admin/seguimientomateria.php?ope=mal');
+      }
+
+      break;
+  }
 }

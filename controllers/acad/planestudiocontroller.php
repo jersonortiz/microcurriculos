@@ -15,25 +15,31 @@ require_once '../../model/DTO/planEstudiosDTO.php';
  */
 class planestudiocontroller {
 
-    function registroPlanEstudio($nom, $pro) {
-        $facdto = new planEstudiosDTO();
-        $facdao = new planestudioDAO();
-        $facdto->setNombre($nom);
-        $facdto->setCodigo($pro);
-        print_r($facdto);
-        //$facdao->guardar($facdto);
-    }
+  function registroPlanEstudio($nom, $pro) {
+    $facdto = new planEstudiosDTO();
+    $facdao = new planestudioDAO();
+    $facdto->setNombre($nom);
+    $facdto->setCodigo($pro);
+
+    return $facdao->guardar($facdto);
+  }
 
 }
 
 if (isset($_GET['acc'])) {
-    $accion = $_GET['acc'];
-    switch ($accion) {
-        case 'reg':
-            $nom = $_POST['nom'];
-            $pro = $_POST["prog"];
-            $facc = new planestudiocontroller();
-            $facc->registroPlanEstudio($nom, $pro);
-            break;
-    }
+  $accion = $_GET['acc'];
+  switch ($accion) {
+    case 'reg':
+      var_dump($_POST);
+      $nom = $_POST['nom'];
+      $pro = $_POST["prog"];
+      $facc = new planestudiocontroller();
+      $res = $facc->registroPlanEstudio($nom, $pro);
+      if ($res == 'exitoso') {
+        header('Location: ../../views/admin/seguimientomateria.php?ope=exito');
+      } else {
+        header('Location: ../../views/admin/seguimientomateria.php?ope=mal');
+      }
+      break;
+  }
 }

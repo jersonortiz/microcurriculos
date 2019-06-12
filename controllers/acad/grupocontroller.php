@@ -15,33 +15,41 @@ require_once '../../model/DTO/grupoDTO.php';
  */
 class grupocontroller {
 
-    function registroGrupo($cod, $gru) {
+  function registroGrupo($cod, $gru, $cdoc) {
 
-        $facdao = new grupoDAO();
-        $ces = new grupoDTO();
+    $facdao = new grupoDAO();
+    $ces = new grupoDTO();
 
-        $ces->setCodigo_asignatura($cod);
-        $ces->setGrupo($gru);
+    $ces->setCodigo_asignatura($cod);
+    $ces->setGrupo($gru);
+    $ces->setCodigo_docente($cdoc);
 
-        //print_r($ces);
-        return $facdao->guardar($ces);
-    }
+    //print_r($ces);
+    return $facdao->guardar($ces);
+  }
 
 }
 
 if (isset($_GET['acc'])) {
-    $accion = $_GET['acc'];
+  $accion = $_GET['acc'];
 
-    switch ($accion) {
-        case 'reg':
-            var_dump($_POST);
-            if (isset($_POST['regrupo'])) {
-                $gru = $_POST['grup'];
-                $cod = $_POST['cod'];
+  switch ($accion) {
+    case 'reg':
+      var_dump($_POST);
+      if (isset($_POST['regrupo'])) {
+        $gru = $_POST['grup'];
+        $cod = $_POST['cod'];
+        $cdoc = $_POST['cdoc'];
 
-                $facc = new grupocontroller();
-              echo $facc->registroGrupo($cod, $gru);
-            }
-            break;
-    }
+        $facc = new grupocontroller();
+        $res = $facc->registroGrupo($cod, $gru, $cdoc);
+
+        if ($res == 'exitoso') {
+          header('Location: ../../views/admin/seguimientomateria.php?ope=exito');
+        } else {
+          header('Location: ../../views/admin/seguimientomateria.php?ope=mal');
+        }
+      }
+      break;
+  }
 }

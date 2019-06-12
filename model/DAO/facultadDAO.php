@@ -26,9 +26,7 @@ class facultadDAO {
 
         if ($conexion != null) {
             $consulta = $conexion->prepare('INSERT INTO facultad(nombre) VALUES(:nom)');
-
-
-            $consulta->bindParam(':num', $fac);
+            $consulta->bindParam(':nom', $fac);
 
             if ($consulta->execute()) {
                 $mensaje = "exitoso";

@@ -43,7 +43,7 @@
                                         <div class="control-group">
                                             <label class="control-label">Nombre Facultad :</label>
                                             <div class="controls">
-                                                <input type="text" id="nom" name="nom" class="span11" placeholder="First name" />
+                                                <input type="text" id="nom" name="nom" class="span11" placeholder="Ingenieria" />
                                             </div>
                                         </div>
 

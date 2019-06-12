@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <?php
-    require_once '../../controllers/consultaseguimientocontroller.php';
-    $algo = new consultaController();
+        include("../includes/sesion.php");
+    require_once '../../controllers/consultaseguimientocontroller.php';    $algo = new consultaController();
     $list = $algo->consultaMats();
     ?>
     <head>
@@ -194,11 +194,11 @@
                                                 </div>
                                             </div>
                                         </div>
-  <?php } $contc++; ?>
+                                      <?php } $contc++; ?>
                                   </div>
                               </div>
                           </div>
-<?php } ?>
+                        <?php } ?>
                     </div>
                 </div>
 

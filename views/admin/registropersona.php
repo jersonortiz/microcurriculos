@@ -1,19 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <?php
-    require_once '../../model/DAO/programaDAO.php';
-    require_once '../../model/DTO/programaDTO.php';
-    require_once '../../model/DTO/planEstudiosDTO.php';
-    require_once '../../model/DAO/planestudioDAO.php';
-    $fdao = new planestudioDAO();
-
-    if (isset($_GET['fac'])) {
-      $plan = $_GET['fac'];
-      $panest = $fdao->consultar($plan);
-      $list = array($panest);
-    } else {
-      $list = $fdao->listar();
-    }
+  
     ?>
     <head>
         <title>Admin</title>
@@ -54,50 +42,50 @@
                         <div class="widget-content">
                             <div class="widget-box">
                                 <div class="widget-content nopadding">
-                                    <form action="../../controllers/acad/controladormateria.php?acc=reg" method="post" class="form-horizontal">
+                                    <form action="../../controllers/acad/personacontroller.php?acc=reg" method="post" class="form-horizontal">
 
                                         <div class="control-group">
-                                            <label class="control-label">Codigo materia:</label>
+                                            <label class="control-label">Codigo :</label>
                                             <div class="controls">
-                                                <input type="number" name="cod" id="cod" class="span11" placeholder="11550000" />
+                                                <input type="number" name="cod" id="cod" class="span11" placeholder="1150000" required=""/>
                                             </div>
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label">Nombre materia:</label>
+                                            <label class="control-label">Nombre :</label>
                                             <div class="controls">
-                                                <input type="text" name="nom" id="nom" class="span11" placeholder="Materia 1" />
+                                                <input type="text" name="nom" id="nom" class="span11" placeholder="Juan" required=""/>
                                             </div>
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label">Semestre materia:</label>
+                                            <label class="control-label">Apellido:</label>
                                             <div class="controls">
-                                                <input type="number" name="sem" id="sem" class="span11" placeholder="1" />
+                                                <input type="text" name="apel" id="apel" class="span11" placeholder="pepe" required=""/>
                                             </div>
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label">Intensidad horaria:</label>
+                                            <label class="control-label">Correo</label>
                                             <div class="controls">
-                                                <input type="number" name="ihor" id="ihor" class="span11" placeholder="3" />
+                                                <input type="email" name="corr" id="corr" class="span11" placeholder="alguien@algo.a" required=""/>
                                             </div>
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label">Creditos:</label>
+                                            <label class="control-label">Contraseña:</label>
                                             <div class="controls">
-                                                <input type="number" name="cre" id="cre" class="span11" placeholder="3" />
+                                                <input type="password" name="pass" id="pass" class="span11" placeholder="******" required="" />
                                             </div>
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label">Plan de estudios</label>
+                                            <label class="control-label">Tipo de usuario</label>
                                             <div class="controls">
-                                                <select id="pla" name="pla">
-                                                    <?php foreach ($list as $key) { ?>
-                                                      <option value="<?php echo $key->getNombre(); ?>" ><?php echo $key->getNombre(); ?></option>
-                                                    <?php } ?>
+                                                <select id="tipo" name="tipo">
+                                                    <option value="1">Administrador</option>
+                                                    <option value="2">Estudiante</option>
+                                                    <option value="3">Docente</option>
                                                 </select>
                                             </div>
                                         </div>

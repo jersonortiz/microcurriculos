@@ -58,7 +58,14 @@
                                                   <input type="number" name="cod" id="cod" value="<?php echo $cod; ?>" class="span11" />
                                                 <?php } else { ?>
                                                   <input type="number" name="cod" id="cod"  class="span11" placeholder="1009090" />
-<?php } ?>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+
+                                        <div class="control-group">
+                                            <label class="control-label">Codigo docente:</label>
+                                            <div class="controls">
+                                                <input type="text" name="cdoc" id="cdoc" class="span11" placeholder="1160000" />
                                             </div>
                                         </div>
 

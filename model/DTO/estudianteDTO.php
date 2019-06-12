@@ -15,6 +15,7 @@ class estudianteDTO {
     private $id;
     private $codigo_persona;
     private $id_matricula;
+ 
     
     function __construct() {
         

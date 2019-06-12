@@ -1,8 +1,8 @@
 
 <?php
 $conf= substr(basename($_SERVER['PHP_SELF']), 0,3);
-$a=$c='';
-$b=' class="submenu"';
+$a='';
+$b=$c='class="submenu"';
 /*
 if($conf=='con'){
     $b = ' class="active"';
@@ -19,8 +19,8 @@ switch($conf){
     $b = ' class="active  submenu"';
     break;
     case "con":
-    $c=  ' class="active"';
-    break;
+    $c=  ' class="active submenu "';
+
 
 }  
 
@@ -53,12 +53,21 @@ switch($conf){
         </li>
 
         <li <?php echo $c; ?> >
-            <a href="configuracion.php">
-                <i class="icon icon-pencil"></i>
+            <a href="#">
+                <i class="icon icon-cog"></i>
                 <span>Configuracion</span>
             </a>
-        </li>
 
+            <ul>
+                <li><a href="configuracion.php">Configurar Margen minimo</a></li>  
+                <li><a href="registropersona.php">Registrar persona</a></li>
+                <li><a href="registroFacultad.php">Registrar facultad</a></li>
+                <li><a href="registroprograma.php">Registrar programa academico</a></li>
+                <li><a href="registrodepartamento.php">Registrar departamento</a></li>
+                <li><a href="registroplanestudios.php">Registrar plan de estudio</a></li>
+                <li><a href="registromateria.php">Registrar Materia</a></li>
+            </ul>
+        </li>
     </ul>
 </div>
 <!--sidebar-menu-->

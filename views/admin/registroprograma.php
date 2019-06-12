@@ -52,14 +52,14 @@
                                         <div class="control-group">
                                             <label class="control-label">Nombre Programa:</label>
                                             <div class="controls">
-                                                <input type="text" name="nom" id="nom" class="span11" placeholder="First name" />
+                                                <input type="text" name="nom" id="nom" class="span11" placeholder="Ingenieria algo" />
                                             </div>
                                         </div>
 
                                         <div class="control-group">
                                             <label class="control-label">codigo Programa:</label>
                                             <div class="controls">
-                                                <input type="number" name="cod" id="cod" class="span11" placeholder="First name" />
+                                                <input type="number" name="cod" id="cod" class="span11" placeholder="115" />
                                             </div>
                                         </div>
 

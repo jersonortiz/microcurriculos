@@ -11,26 +11,31 @@ require_once '../../model/DTO/facultadDTO.php';
 
 class facultadcontroller {
 
-    function registroFacultad($nom) {
-        $facdto = new facultadDTO();
-        $facdao = new facultadDAO();
-        $facdto->setNombre($nom);
-        print_r($facdto);
-        //$facdao->guardar($facdto);
-    }
+  function registroFacultad($nom) {
+    $facdto = new facultadDTO();
+    $facdao = new facultadDAO();
+    $facdto->setNombre($nom);
+    return $facdao->guardar($facdto);
+  }
 
 }
 
 if (isset($_GET['acc'])) {
-    $accion = $_GET['acc'];
+  $accion = $_GET['acc'];
 
-    switch ($accion) {
-        case 'reg':
-            $nom = $_POST['nom'];
-            $facc = new facultadcontroller();
-            $facc->registroFacultad($nom);
-            break;
-    }
+  switch ($accion) {
+    case 'reg':
+      $nom = $_POST['nom'];
+      $facc = new facultadcontroller();
+      $res = $facc->registroFacultad($nom);
+
+      if ($res == 'exitoso') {
+        header('Location: ../../views/admin/seguimientomateria.php?ope=exito');
+      } else {
+        header('Location: ../../views/admin/seguimientomateria.php?ope=mal');
+      }
+      break;
+  }
 }
 
 
