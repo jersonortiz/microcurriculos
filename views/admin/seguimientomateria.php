@@ -124,16 +124,19 @@
                                                             <div id="collapsesem<?php echo $contc . $progcod . $collmospl; ?>" class="collapse">
                                                                 <div class="widget-content">
 
-<h5>Materias</h5>
+
+                                    <a href="registromateria.php?fac=<?php echo $plannom; ?>">
+                                        <button class="btn btn-primary">Registrar Materia</button>
+                                    </a>
+
+
+                                                                    <h5>Materias</h5>
                                                                     <div class="widget-box collapsible">
                                                                         <?php
                                                                         $contsem = 1;
 
-                                                                        foreach ($semestres as $semestre) {
+                                                                        foreach ($semestres as $semestre) { 
                                                                             ?>
-
-
-
 
                                                                             <div class="widget-title">
                                                                                 <a data-toggle="collapse" href="#collapsesem<?php echo $contc . $progcod . $collmospl . $contsem; ?>">
@@ -190,14 +193,11 @@
                                 </div>
                             </div>
                         <?php } ?>
-                    </div>   
-</div>
-
-
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
-
 
         <!--end-main-container-part-->
 

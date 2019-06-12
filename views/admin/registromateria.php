@@ -1,5 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+    require_once '../../model/DAO/programaDAO.php';
+    require_once '../../model/DTO/programaDTO.php';
+    require_once '../../model/DTO/planEstudiosDTO.php';
+    require_once '../../model/DAO/planestudioDAO.php';
+    $fdao = new planestudioDAO();
+
+    if( isset($_GET['fac']) ){
+        $plan = $_GET['fac'];
+        $panest =  $fdao->consultar($plan);
+        $list = array( $panest );
+    } else {
+        $list = $fdao->listar();
+    }
+?>
     <head>
         <title>Admin</title>
         <meta charset="UTF-8" />
@@ -39,7 +54,7 @@
                         <div class="widget-content">
                             <div class="widget-box">
                                 <div class="widget-content nopadding">
-                                    <form action="../../programacontroller.php" method="get" class="form-horizontal">
+                                    <form action="../../controllers/acad/controladormateria.php?acc=reg" method="post" class="form-horizontal">
 
                                         <div class="control-group">
                                             <label class="control-label">Codigo materia:</label>
@@ -77,11 +92,12 @@
                                         </div>
 
 										<div class="control-group">
-											<label class="control-label">Programa</label>
+											<label class="control-label">Plan de estudios</label>
 											<div class="controls">
-												<select id=facultades>
-													<option value="" >First option</option>
-													<option value="" >Second option</option>
+												<select id="pla" name="pla">
+                                                    <?php  foreach ($list as $key ) { ?>
+													<option value="<?php echo $key->getCodigo(); ?>" ><?php echo $key->getNombre(); ?></option>
+                                                    <?php } ?>
 												</select>
 											</div>
 										</div>

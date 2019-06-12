@@ -2,8 +2,6 @@
 <html lang="en">
 <?php
 
-
-
     require_once '../../model/DAO/programaDAO.php';
     require_once '../../model/DTO/programaDTO.php';
 
