@@ -4,6 +4,7 @@
         include("../includes/sesion.php");
     require_once '../../controllers/consultaseguimientocontroller.php';    $algo = new consultaController();
     $list = $algo->consultaMats();
+    print_r($list);
     ?>
     <head>
         <title>Admin</title>

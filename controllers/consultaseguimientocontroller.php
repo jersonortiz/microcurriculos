@@ -270,8 +270,9 @@ class consultaController {
                 foreach ($planes as $plan) {
                     $materias = $this->listarmaterias($plan->getNombre());
                     array_push($matplan, array("plan" => $plan, "mat" => $materias));
+
                 }
-                
+                 print_r($matplan);
                 array_push($progplanes, array("prog" => $pro, "plan" => $matplan));
             }
             array_push($facsprogs, array("fac" => $fac, "pro" => $progplanes));
