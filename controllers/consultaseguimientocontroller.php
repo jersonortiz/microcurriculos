@@ -76,7 +76,7 @@ class consultaController {
         $consulta = $conexion->prepare("SELECT A.codigo , A.nombre ,A.semestre ,G.grupo , "
                 . "P.nombre , G.grupo_numero FROM asignatura A , grupo G ,docente D , persona P "
                 . "WHERE A.nombre_plandeestudios = :pde AND "
-                . "G.codigo_asignatura = A.codigo AND G.grupo_numero=D.gruponumero "
+                . "G.codigo_asignatura = A.codigo AND D.codigo_persona=G.codigo_docente "
                 . "AND D.codigo_persona=P.codigo ORDER BY A.semestre");
         $consulta->bindParam(':pde', $fac);
         $consulta->execute();
@@ -269,10 +269,11 @@ class consultaController {
                 $matplan = array();
                 foreach ($planes as $plan) {
                     $materias = $this->listarmaterias($plan->getNombre());
+                 
                     array_push($matplan, array("plan" => $plan, "mat" => $materias));
 
                 }
-                 print_r($matplan);
+                //print_r($matplan);
                 array_push($progplanes, array("prog" => $pro, "plan" => $matplan));
             }
             array_push($facsprogs, array("fac" => $fac, "pro" => $progplanes));
