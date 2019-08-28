@@ -69,7 +69,6 @@ class consultaController {
     /*
      * 
      */
-
     public function listarmaterias($fac) {
 
         $conexion = new Conexion();

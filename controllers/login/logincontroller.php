@@ -12,27 +12,30 @@ if (!isset($_SESSION['user'])) {
     $ped = new personaDAO();
     $vr = $ped->consultar($nom);
 
-    $hash = $vr->getContrasena();
-    $tipo = $vr->getTipo();
+    if(isset($vr)){
 
-    if ($pass == $hash) {
-        echo '¡La contraseña es válida!';
-        $_SESSION['user'] = $vr;
+        $hash = $vr->getContrasena();
+        $tipo = $vr->getTipo();
 
-        switch ($tipo) {
-        	case 1:
-        		   header('Location: ../../views/admin/dashboard.php');
-        		break;
-        	case 2:
-        		   header('Location: ../../views/estudiante/dashboard.php');
-        		break;
-        	case 3:
-        		   header('Location: ../../views/docente/docdash.php');
-        		break;
+        if ($pass == $hash) {
+            echo '¡La contraseña es válida!';
+            $_SESSION['user'] = $vr;
+
+            switch ($tipo) {
+            	case 1:
+            		   header('Location: ../../views/admin/dashboard.php');
+            		break;
+            	case 2:
+            		   header('Location: ../../views/estudiante/dashboard.php');
+            		break;
+            	case 3:
+            		   header('Location: ../../views/docente/docdash.php');
+            		break;
+            }
+
+        } else {
+            echo 'La contraseña no es válida';
         }
-
-    } else {
-        echo 'La contraseña no es válida';
     }
 
 } else {
