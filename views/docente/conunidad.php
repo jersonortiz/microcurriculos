@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="widget-content">
 
-                                    <form action="#"  class="form-horizontal">
+                                    <form action="../../controllers/acad/unidadcontroller.php?acc=reg"  class="form-horizontal">
 
                                         <div class="control-group">
                                             <label class="control-label">Nombre </label>
